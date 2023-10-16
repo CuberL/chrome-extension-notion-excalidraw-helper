@@ -4,9 +4,7 @@
 
 ## 安装
 
-{% note %}
 **注意：** 目前 chrome 插件依然在应用商店审核阶段，所以暂时只提供 unpacked extension 的形式。
-{% endnote %}
 
 ### Unpacked extension
 
