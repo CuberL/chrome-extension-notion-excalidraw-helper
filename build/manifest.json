@@ -1,0 +1,1 @@
+{"description":"A chrome extension to copy scene data between notion and excalidraw","version":"1.0.0","name":"Chrome Extension Webpack","browser_action":{"default_icon":"icon.png"},"icons":{"128":"icon.png"},"manifest_version":3,"permissions":[],"content_scripts":[{"matches":["https://www.notion.so/*","https://notion.so/*"],"js":["main.bundle.js"],"run_at":"document_idle"}]}

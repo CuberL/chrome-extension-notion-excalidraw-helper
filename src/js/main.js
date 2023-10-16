@@ -1,0 +1,174 @@
+import { inflate } from 'pako'
+import axios from 'axios'
+import decodePng from 'png-chunks-extract'
+import tEXt from 'png-chunk-text'
+import * as notion from './notion_api'
+import { exportToBlob } from '@excalidraw/excalidraw'
+import '../img/icon.png'
+import loading_svg from '../img/loading.svg'
+import excalidraw_svg from '../img/excalidraw.svg'
+import checked_svg from '../img/checked.svg'
+import warning_svg from '../img/warning.svg'
+import { byteStringToArrayBuffer, getFileName, getPageID, waitMatchedElement } from './utils'
+
+const getImageAndCopyToCliboard = async (url) => {
+  const result = await axios(
+    {
+      method: 'get',
+      url,
+      responseType: 'arraybuffer',
+      withCredentials: true
+    }
+  )
+
+  const png = decodePng(new Uint8Array(result.data))
+  const text_chunk = png.find(chunk => chunk.name === 'tEXt')
+  const { text: text_chunk_text } = tEXt.decode(text_chunk.data)
+  const graph_json_encoded = inflate(byteStringToArrayBuffer(JSON.parse(text_chunk_text).encoded), {
+    to: 'string'
+  })
+  const parsed = JSON.parse(graph_json_encoded);
+  parsed.type = 'excalidraw/clipboard'
+  navigator.clipboard.writeText(JSON.stringify(parsed))
+};
+
+const setupButton = (img_block) => {
+  // Should add button for the element if no button yet
+  const buttons = document.evaluate('*//div[@role="button"]', img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+  if (buttons.snapshotLength !== 4) {
+    return;
+  }
+
+  const first_button = buttons.snapshotItem(0);
+  const copy_excalidraw_json_button = document.createElement('div');
+  for (let attribute of first_button.attributes) {
+    copy_excalidraw_json_button.setAttribute(attribute.name, attribute.value);
+  }
+  copy_excalidraw_json_button.innerHTML = excalidraw_svg
+
+  // Insert element
+  first_button.insertAdjacentElement('afterend', copy_excalidraw_json_button);
+
+  // Add click listener
+  copy_excalidraw_json_button.addEventListener('click', async () => {
+    const imgs = document.evaluate("*//img", img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null)
+    if (imgs.snapshotLength === 0) {
+      return
+    }
+    const img = imgs.snapshotItem(0);
+    const url = img.attributes.src.value;
+    const real_url_encoded = url.replace(/^\/image\//, '')
+    const real_url = new URL(decodeURIComponent(real_url_encoded));
+    real_url.searchParams.delete('width');
+    real_url.searchParams.append('download', 'true')
+    real_url.searchParams.append('name', getFileName(real_url.pathname))
+
+    const signed_url = new URL("https://www.notion.so");
+    signed_url.pathname = '/signed/' + encodeURIComponent(real_url.origin + real_url.pathname);
+    signed_url.searchParams.append('table', 'block');
+    signed_url.searchParams.append('id', real_url.searchParams.get('id'));
+    signed_url.searchParams.append('spaceId', real_url.searchParams.get('spaceId'));
+    signed_url.searchParams.append('name', getFileName(real_url.pathname));
+    signed_url.searchParams.append('download', 'true');
+    signed_url.searchParams.append('userId', real_url.searchParams.get('userId'));
+    signed_url.searchParams.append('cache', 'v2');
+
+    const page_id = getPageID(document.location.pathname)
+
+    // need to try to download the file and get the aws cookie
+    await notion.getBlockFileDownloadUrl(
+      {
+        block_id: real_url.searchParams.get('id'),
+        page_id,
+        active_user_id
+      }
+    )
+    copy_excalidraw_json_button.innerHTML = loading_svg;
+    try {
+      await getImageAndCopyToCliboard(signed_url.toString());
+      copy_excalidraw_json_button.innerHTML = checked_svg;
+    } catch (ex) {
+      console.log("Error when get scene data from image", ex);
+      copy_excalidraw_json_button.innerHTML = warning_svg;
+    } finally {
+      setTimeout(() => {
+        copy_excalidraw_json_button.innerHTML = excalidraw_svg
+      }, 3000)
+    }
+  })
+}
+
+const initSetupButtons = () => {
+  const exist_img_nodes = document.evaluate('//div[contains(@class, "notion-image-block")]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null)
+  for (let n = 0; n < exist_img_nodes.snapshotLength; n++) {
+    setupButton(exist_img_nodes.snapshotItem(n));
+  }
+}
+
+let last_url = null;
+let active_user_id = null;
+document.onreadystatechange = () => {
+  if (document.readyState === "complete") {
+    const mo = new MutationObserver(mutations => {
+      mutations.map(mutation => {
+        if (last_url !== location.pathname) {
+          last_url = location.pathname;
+          waitMatchedElement(document, `//div[contains(@class, "notion-page-content")]`).then(() => { initSetupButtons() })
+          const space_domain = location.pathname.split('/')[1];
+          notion.getPublicPageData({space_domain, block_id: getPageID(location.pathname)}).then(({data}) => { active_user_id = data.ownerUserId})
+        }
+        if (mutation?.target?.attributes?.class?.value.trim().includes('notion-image-block')) {
+          waitMatchedElement(mutation.target, `*//div[@role="button"]`).then(() => {setupButton(mutation.target)})
+        }
+      });
+    });
+
+    mo.observe(document, {
+      childList: true,
+      subtree: true,
+      attributes: false
+    })
+
+    document.addEventListener('paste', async (event) => {
+      const text = event.clipboardData?.getData("text/plain")
+      if (text?.includes('{"type":"excalidraw/clipboard"')) {
+        event.preventDefault();
+        event.stopPropagation();
+        const parsed = JSON.parse(text);
+        const blob = await exportToBlob(
+          {
+            elements: parsed.elements,
+            appState: {
+              exportEmbedScene: true,
+            },
+            quality: 1,
+            files: parsed.files,
+            getDimensions(width, height) {
+              return {
+                width: width * 3,
+                height: height * 3,
+                scale: 3
+              }
+            },
+            mimeType: 'image/png',
+          }
+        )
+
+        const file = new File([blob], 'image.png', { type: 'image/png' })
+
+        const dataTransfer = new DataTransfer()
+        dataTransfer.items.add(file)
+
+        const pasteEvent = new ClipboardEvent('paste', {
+          bubbles: true,
+          cancelable: true,
+          clipboardData: dataTransfer,
+        })
+
+        document.dispatchEvent(pasteEvent)
+      }
+    })
+  }
+};
+
+

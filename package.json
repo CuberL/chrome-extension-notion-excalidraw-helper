@@ -1,0 +1,37 @@
+{
+  "name": "chrome-extension-notion-copy-excalidraw",
+  "version": "1.0.0",
+  "description": "A chrome extension to copy scene data between notion and excalidraw",
+  "scripts": {
+    "build": "node utils/build.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@babel/preset-env": "^7.23.2",
+    "babel-loader": "^8",
+    "clean-webpack-plugin": "3.0.0",
+    "copy-webpack-plugin": "5.0.5",
+    "css-loader": "3.2.0",
+    "file-loader": "4.3.0",
+    "fs-extra": "8.1.0",
+    "html-loader": "0.5.5",
+    "html-webpack-plugin": "3.2.0",
+    "raw-loader": "^4.0.2",
+    "style-loader": "1.0.0",
+    "terser-webpack-plugin": "^4.2.3",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "write-file-webpack-plugin": "4.5.1"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.16.1",
+    "axios": "^1.5.1",
+    "clipboardy": "^3.0.0",
+    "pako": "^2.1.0",
+    "png-chunk-text": "^1.0.0",
+    "png-chunks-extract": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
