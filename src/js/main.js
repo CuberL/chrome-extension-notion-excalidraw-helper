@@ -33,9 +33,10 @@ const getImageAndCopyToCliboard = async (url) => {
 };
 
 const setupButton = (img_block) => {
-  // Should add button for the element if no button yet
-  const buttons = document.evaluate('*//div[@role="button"]', img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-  if (buttons.snapshotLength !== 4) {
+  const buttons = document.evaluate('self::div[contains(@class, "notion-image-block") and count(descendant::div[@excelidraw_copy_button="true"])=0]//div[@role="button"]', img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+
+  // no need to add button if no matched block
+  if (buttons.snapshotLength == 0) {
     return;
   }
 
@@ -44,6 +45,7 @@ const setupButton = (img_block) => {
   for (let attribute of first_button.attributes) {
     copy_excalidraw_json_button.setAttribute(attribute.name, attribute.value);
   }
+  copy_excalidraw_json_button.setAttribute("excelidraw_copy_button", "true");
   copy_excalidraw_json_button.innerHTML = excalidraw_svg
 
   // Insert element
@@ -123,6 +125,14 @@ document.onreadystatechange = () => {
         }
         if (mutation?.target?.attributes?.class?.value.trim().includes('notion-image-block')) {
           waitMatchedElement(mutation.target, `*//div[@role="button"]`).then(() => {setupButton(mutation.target)})
+        }
+        if (mutation?.target?.attributes?.class?.value.trim().includes('notion-cursor-default')) {
+          // Resize the button will trigger this event, so we need to check if we need to add the button back.
+          // Check if it is the descendant of notion-image-block using xpath
+          const img_blocks = document.evaluate('ancestor::div[contains(@class, "notion-image-block")]', mutation.target, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+          if (img_blocks.snapshotLength > 0) {
+            setupButton(img_blocks.snapshotItem(0));
+          }
         }
       });
     });
