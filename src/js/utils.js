@@ -34,3 +34,8 @@ export const waitMatchedElement = (base, xpath) => new Promise(resolve => {
         attributes: true
     });
 })
+
+export const getSpaceDomain = (path) => {
+    const space_domain = location.pathname.split('/')[1];
+    return space_domain;
+}

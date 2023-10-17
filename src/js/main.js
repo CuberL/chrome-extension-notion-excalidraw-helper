@@ -9,7 +9,7 @@ import loading_svg from '../img/loading.svg'
 import excalidraw_svg from '../img/excalidraw.svg'
 import checked_svg from '../img/checked.svg'
 import warning_svg from '../img/warning.svg'
-import { byteStringToArrayBuffer, getFileName, getPageID, waitMatchedElement } from './utils'
+import { byteStringToArrayBuffer, getFileName, getPageID, getSpaceDomain, waitMatchedElement } from './utils'
 
 const getImageAndCopyToCliboard = async (url) => {
   const result = await axios(
@@ -73,14 +73,20 @@ const setupButton = (img_block) => {
     signed_url.searchParams.append('userId', real_url.searchParams.get('userId'));
     signed_url.searchParams.append('cache', 'v2');
 
-    const page_id = getPageID(document.location.pathname)
+    const page_id = getPageID(document.location.pathname);
+    const space_domain = getSpaceDomain(document.location.pathname);
+    const {
+      data: {
+        ownerUserId
+      }
+    } = await notion.getPublicPageData({space_domain, block_id: getPageID(location.pathname)});
 
     // need to try to download the file and get the aws cookie
     await notion.getBlockFileDownloadUrl(
       {
         block_id: real_url.searchParams.get('id'),
         page_id,
-        active_user_id
+        active_user_id: ownerUserId
       }
     )
     copy_excalidraw_json_button.innerHTML = loading_svg;
@@ -114,8 +120,6 @@ document.onreadystatechange = () => {
         if (last_url !== location.pathname) {
           last_url = location.pathname;
           waitMatchedElement(document, `//div[contains(@class, "notion-page-content")]`).then(() => { initSetupButtons() })
-          const space_domain = location.pathname.split('/')[1];
-          notion.getPublicPageData({space_domain, block_id: getPageID(location.pathname)}).then(({data}) => { active_user_id = data.ownerUserId})
         }
         if (mutation?.target?.attributes?.class?.value.trim().includes('notion-image-block')) {
           waitMatchedElement(mutation.target, `*//div[@role="button"]`).then(() => {setupButton(mutation.target)})
