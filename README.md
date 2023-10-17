@@ -1,4 +1,4 @@
-# chrome-extension-notion-copy-excalidraw 
+# chrome-extension-notion-excalidraw-helper
 
 这是一个方便大家同时使用 notion 和 excelidraw 的小插件，可以方便的将 excelidraw 图形在 notion 和 excelidraw 之间互相拷贝，这样一来可以很方便的使用强大的 excelidraw 制作 notion 插图。
 
