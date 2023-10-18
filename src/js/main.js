@@ -33,7 +33,7 @@ const getImageAndCopyToCliboard = async (url) => {
 };
 
 const setupButton = (img_block) => {
-  const buttons = document.evaluate('self::div[contains(@class, "notion-image-block") and count(descendant::div[@excelidraw_copy_button="true"])=0]//div[@role="button"]', img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+  const buttons = document.evaluate('self::div[contains(@class, "notion-image-block") and count(descendant::div[@excalidraw_copy_button="true"])=0]//div[@role="button"]', img_block, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
   // no need to add button if no matched block
   if (buttons.snapshotLength == 0) {
@@ -45,7 +45,7 @@ const setupButton = (img_block) => {
   for (let attribute of first_button.attributes) {
     copy_excalidraw_json_button.setAttribute(attribute.name, attribute.value);
   }
-  copy_excalidraw_json_button.setAttribute("excelidraw_copy_button", "true");
+  copy_excalidraw_json_button.setAttribute("excalidraw_copy_button", "true");
   copy_excalidraw_json_button.innerHTML = excalidraw_svg
 
   // Insert element

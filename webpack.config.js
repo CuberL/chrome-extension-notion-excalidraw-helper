@@ -24,6 +24,7 @@ var options = {
       new TerserPlugin({
         parallel: true,
         terserOptions: {
+          mangle: false,
           ecma: 6,
           output: { 
              ascii_only: true 
