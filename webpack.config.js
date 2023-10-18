@@ -19,7 +19,7 @@ var options = {
     filename: "[name].bundle.js"
   },
   optimization: {
-    minimize: true,
+    minimize: false,
     minimizer: [
       new TerserPlugin({
         parallel: true,
