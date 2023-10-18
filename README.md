@@ -1,61 +1,64 @@
 # chrome-extension-notion-excalidraw-helper
 
-这是一个方便大家同时使用 notion 和 excalidraw 的小插件，可以方便的将 excalidraw 图形在 notion 和 excalidraw 之间互相拷贝，这样一来可以很方便的使用强大的 excalidraw 制作 notion 插图。
+[简体中文](README-CN.md)
 
-## 安装
+This is a extension that makes it easy for everyone to use notion and excalidraw together. It can easily copy excalidraw graphics between notion and excalidraw, so that you can easily use the powerful excalidraw to make notion illustrations.
 
-**注意：** 目前 chrome 插件依然在应用商店审核阶段，所以暂时只提供 unpacked extension 的形式。
+## Installation
+
+**Note:** The chrome extension is still in the app store review stage, so only the unpacked extension is provided for the time being.
 
 ### Unpacked extension
 
-Repo 中已经有构建好的 unpacked extension，可以直接打开 Chrome 的插件设置页，开启 developer mode，点击 Load unpacked，选择该 repo 中的 build 目录即可。
+The unpacked extension has been built in the repo. You can directly open the Chrome extension settings page, turn on developer mode, click Load unpacked, and select the build directory in this repo.
 
 ![Alt text](doc/image.png)
 
-### 从源码构建
- 
-如果您需要对代码做一些改进，可以选择从代码来构建，也非常大家来提 PR 对该插件进行改进
+### Build from source code
+
+If you need to make some improvements to the code, you can choose to build from the code, and it is also very welcome to PR to improve the extension
 
 ``` shell
 yarn
 yarn build
-```
+```     
 
-## 使用方法
+## Usage
 
-该插件的使用非常简单，有以下两个最基本的操作：
+The usage of this extension is very simple, there are the following two most basic operations:
 
-### 从 excalidraw 复制到 notion
+### Copy from excalidraw to notion
 
-在插件安装后，在 excalidraw 中用选框选中所需要复制的模型，使用复制文本的快捷键（比如 mac 是 command + C）
+After the extension is installed, select graphics need to be copied in excalidraw with a selection box, and use the shortcut key to copy them (such as command + C on mac)
 
 ![Alt text](doc/image-1.png)
 
-然后在 notion 粘贴，即可将 excalidraw 的图形以图片的形式粘贴到 notion。该图片带有 excalidraw 的原始数据，可以重新导入图片到excalidraw来继续编辑。
+Then paste it into notion, and you can paste the excalidraw graphic into notion in the form of a image. The picture contains the original data of excalidraw, and you can re-import the picture into excalidraw to continue editing.
 
 ![Alt text](doc/image-2.png)
 
-### 从 notion 复制到 excalidraw
+### Copy from notion to excalidraw
 
 ![Alt text](doc/image-3.png)
 
-对于已经包含有 excalidraw 原始数据的图片，hover 在图片上，点击带有 excalidraw 标志的按钮，一直等到该按钮变成 √，然后就可以打开 excalidraw 进行粘贴，原来的图形就会以可编辑的形式重新粘贴回 excalidraw，并且白板上原有的内容不会消失
+For pictures that already contain excalidraw original data, hover over the image block, click the button with the excalidraw logo, and wait until the button becomes √, then you can open excalidraw for pasting, and the original graphics will be pasted back to excalidraw in an editable form, and the original content on the whiteboard will still there. No backup operations are required.
 
 ![Alt text](doc/image-4.png)
 
-对未安装插件的浏览者来说，它在 notion 上就是一张普通的图片，不会因为没有安装插件而影响观看。
+For viewers who have not installed the extension, it is just an ordinary image on notion, and the viewing will not be affected.
 
-## 为什么需要这个插件
+## Why do you need this extension
 
-### 从 excalidraw 复制到 notion
+### Copy from excalidraw to notion
 
-手动操作时，需要手动将图片导出为 png 到本地磁盘，然后再到 notion 添加一个 image block，手动上传该图片。
+When operating manually, you need to manually export the image to the local disk, and then add an image block to notion, and manually upload the image.
 
-### 从 notion 复制到 excalidraw
+### Copy from notion to excalidraw
 
-手动操作时，需要手动从 notion 下载原始图片到本地磁盘，然后在 excalidraw 打开图片来导入；如果此时 excalidraw 白板上已经有内容，则需要先备份当前的数据，否则导入图片会让当前白板数据丢失。
+When operating manually, you need to manually download the original image from notion to the local disk, and then open the image in excalidraw to import; if there is already content on the excalidraw whiteboard at this time, you need to back up the current data first, otherwise importing the image will cause the current whiteboard data to be lost.
 
-总而言之，这个插件主要是为了降低在 notion 中嵌入 excalidraw 图形并且保留一些编辑功能的成本。
+In short, this extension is mainly to reduce the cost of embedding excalidraw graphics in notion and retaining some editing functions.
 
-## 已知问题
-- 在粘贴到 notion 时，偶尔渲染出来的手写字体会丢失，变成普通字体，通常发生在第一次粘贴时，暂时可以重新删掉再粘贴一次
+## Known issues
+
+- When pasting to notion, the rendered handwriting font will occasionally be lost and become a normal font. This usually happens when pasting for the first time. You can delete it and paste it again temporarily
