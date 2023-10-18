@@ -66,6 +66,15 @@ var options = {
             ]
           }
         }
+      },
+      {
+        test: /node_modules\/@excalidraw\/excalidraw\/dist\/.*\.js$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: '"https://unpkg.com/"',
+          replace: 'chrome.runtime.getURL("/")',
+          flags: "g"
+        }
       }
     ]
   },
@@ -83,6 +92,14 @@ var options = {
           ...JSON.parse(content.toString())
         }))
       }
+    }]),
+    new CopyWebpackPlugin([{
+      from: "node_modules/@excalidraw/excalidraw/dist/excalidraw-assets/*.js",
+      to: "@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/[name].[ext]"
+    }]),
+    new CopyWebpackPlugin([{
+      from: "node_modules/@excalidraw/excalidraw/dist/excalidraw-assets/*.woff2",
+      to: "@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/[name].[ext]"
     }]),
     new WriteFilePlugin()
   ]
