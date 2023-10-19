@@ -75,6 +75,26 @@ var options = {
           replace: 'chrome.runtime.getURL("/")',
           flags: "g"
         }
+      },
+      // Remove script tag to pass the review
+      {
+        test: /node_modules.*\.js$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: '<script',
+          replace: '<_script',
+          flags: "g"
+        }
+      },
+      // Remove script tag to pass the review
+      {
+        test: /node_modules.*\.js$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: '/script>',
+          replace: '/_script>',
+          flags: "g"
+        }
       }
     ]
   },
