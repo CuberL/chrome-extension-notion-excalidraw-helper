@@ -114,9 +114,20 @@ const initSetupButtons = () => {
 }
 
 let last_url = null;
-let active_user_id = null;
-document.onreadystatechange = () => {
+document.onreadystatechange = async () => {
   if (document.readyState === "complete") {
+    const virgil_font = new FontFace(
+      'Virgil',
+      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Virgil.woff2"))})`,
+    );
+    await virgil_font.load()
+
+    const cascadia_font = new FontFace(
+      'Cascadia',
+      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Cascadia.woff2"))})`,
+    );
+    await cascadia_font.load();
+
     const mo = new MutationObserver(mutations => {
       mutations.map(mutation => {
         if (last_url !== location.pathname) {

@@ -58,7 +58,3 @@ When operating manually, you need to manually export the image to the local disk
 When operating manually, you need to manually download the original image from notion to the local disk, and then open the image in excalidraw to import; if there is already content on the excalidraw whiteboard at this time, you need to back up the current data first, otherwise importing the image will cause the current whiteboard data to be lost.
 
 In short, this extension is mainly to reduce the cost of embedding excalidraw graphics in notion and retaining some editing functions.
-
-## Known issues
-
-- When pasting to notion, the rendered handwriting font will occasionally be lost and become a normal font. This usually happens when pasting for the first time. You can delete it and paste it again temporarily
