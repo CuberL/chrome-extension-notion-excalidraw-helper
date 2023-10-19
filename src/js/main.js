@@ -106,14 +106,6 @@ const setupButton = (img_block) => {
   })
 }
 
-const initSetupButtons = (base_element) => {
-  const exist_img_nodes = document.evaluate('//div[contains(@class, "notion-image-block")]', base_element, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null)
-  for (let n = 0; n < exist_img_nodes.snapshotLength; n++) {
-    setupButton(exist_img_nodes.snapshotItem(n));
-  }
-}
-
-let last_url = null;
 document.onreadystatechange = async () => {
   if (document.readyState === "complete") {
     const virgil_font = new FontFace(
@@ -130,21 +122,21 @@ document.onreadystatechange = async () => {
 
     const mo = new MutationObserver(mutations => {
       mutations.map(mutation => {
-        if (last_url !== location.pathname) {
-          last_url = location.pathname;
-          waitMatchedElement(document, `//div[contains(@class, "notion-page-content")]`).then(elem => { initSetupButtons(elem) })
-        }
-        if (mutation?.target?.attributes?.class?.value.trim().includes('notion-image-block')) {
-          waitMatchedElement(mutation.target, `*//div[@role="button"]`).then(() => {setupButton(mutation.target)})
-        }
-        if (mutation?.target?.attributes?.class?.value.trim().includes('notion-cursor-default')) {
-          // Resize the button will trigger this event, so we need to check if we need to add the button back.
-          // Check if it is the descendant of notion-image-block using xpath
-          const img_blocks = document.evaluate('ancestor::div[contains(@class, "notion-image-block")]', mutation.target, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-          if (img_blocks.snapshotLength > 0) {
-            setupButton(img_blocks.snapshotItem(0));
+        if (mutation.type === 'childList') {
+          if (mutation?.target.matches('.notion-cursor-default')) {
+            // Resize the button will trigger this event, so we need to check if we need to add the button back.
+            // Check if it is the descendant of notion-image-block using xpath
+            const img_blocks = document.evaluate('ancestor::div[contains(@class, "notion-image-block")]', mutation.target, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+            if (img_blocks.snapshotLength > 0) {
+              setupButton(img_blocks.snapshotItem(0));
+            }
+          } else {
+            const img_blocks = mutation.target.querySelectorAll('.notion-image-block');
+            if (img_blocks.length > 0) {
+              img_blocks.forEach(setupButton);
+            }
           }
-        }
+        } 
       });
     });
 
