@@ -106,8 +106,8 @@ const setupButton = (img_block) => {
   })
 }
 
-const initSetupButtons = () => {
-  const exist_img_nodes = document.evaluate('//div[contains(@class, "notion-image-block")]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null)
+const initSetupButtons = (base_element) => {
+  const exist_img_nodes = document.evaluate('//div[contains(@class, "notion-image-block")]', base_element, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null)
   for (let n = 0; n < exist_img_nodes.snapshotLength; n++) {
     setupButton(exist_img_nodes.snapshotItem(n));
   }
@@ -132,7 +132,7 @@ document.onreadystatechange = async () => {
       mutations.map(mutation => {
         if (last_url !== location.pathname) {
           last_url = location.pathname;
-          waitMatchedElement(document, `//div[contains(@class, "notion-page-content")]`).then(() => { initSetupButtons() })
+          waitMatchedElement(document, `//div[contains(@class, "notion-page-content")]`).then(elem => { initSetupButtons(elem) })
         }
         if (mutation?.target?.attributes?.class?.value.trim().includes('notion-image-block')) {
           waitMatchedElement(mutation.target, `*//div[@role="button"]`).then(() => {setupButton(mutation.target)})
