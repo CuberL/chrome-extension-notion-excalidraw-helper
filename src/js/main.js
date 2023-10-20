@@ -106,7 +106,7 @@ const setupButton = (img_block) => {
   })
 }
 
-document.onreadystatechange = async () => {
+document.addEventListener('readystatechange', async () => {
   if (document.readyState === "complete") {
     const virgil_font = new FontFace(
       'Virgil',
@@ -186,6 +186,4 @@ document.onreadystatechange = async () => {
       }
     })
   }
-};
-
-
+});
