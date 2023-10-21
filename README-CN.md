@@ -4,7 +4,11 @@
 
 ## 安装
 
-**注意：** 目前 chrome 插件依然在应用商店审核阶段，所以暂时只提供 unpacked extension 的形式。
+### 从商店安装
+
+https://chrome.google.com/webstore/detail/notion-x-excalidraw-helpe/fbpnfcemlpcledmlpjmphpkehgokghmg
+
+加入到 Chrome 即可使用!
 
 ### Unpacked extension
 
