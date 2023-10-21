@@ -6,7 +6,11 @@ This is a extension that makes it easy for everyone to use notion and excalidraw
 
 ## Installation
 
-**Note:** The chrome extension is still in the app store review stage, so only the unpacked extension is provided for the time being.
+### Install from app store
+
+https://chrome.google.com/webstore/detail/notion-x-excalidraw-helpe/fbpnfcemlpcledmlpjmphpkehgokghmg
+
+Just add to chrome and enjoy!
 
 ### Unpacked extension
 
