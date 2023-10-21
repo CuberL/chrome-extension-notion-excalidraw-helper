@@ -4,6 +4,8 @@
 
 This is a extension that makes it easy for everyone to use notion and excalidraw together. It can easily copy excalidraw graphics between notion and excalidraw, so that you can easily use the powerful excalidraw to make notion illustrations.
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/K8wZ2NGHT4I/0.jpg)](https://www.youtube.com/watch?v=K8wZ2NGHT4I)
+
 ## Installation
 
 ### Install from app store
