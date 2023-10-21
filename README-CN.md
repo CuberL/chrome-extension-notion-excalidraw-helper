@@ -8,7 +8,7 @@
 
 https://chrome.google.com/webstore/detail/notion-x-excalidraw-helpe/fbpnfcemlpcledmlpjmphpkehgokghmg
 
-加入到 Chrome 即可使用!
+添加到 Chrome 即可使用!
 
 ### Unpacked extension
 
