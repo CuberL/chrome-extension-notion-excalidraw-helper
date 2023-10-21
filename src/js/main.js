@@ -80,8 +80,11 @@ const setupButton = (img_block) => {
     const {
       data: {
         ownerUserId
-      }
+      },
+      headers
     } = await notion.getPublicPageData({space_domain, block_id: getPageID(location.pathname)});
+
+    ownerUserId = ownerUserId || headers['x-notion-user-id']
 
     // need to try to download the file and get the aws cookie
     await notion.getBlockFileDownloadUrl(
