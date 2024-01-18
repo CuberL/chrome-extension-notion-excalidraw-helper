@@ -111,17 +111,21 @@ const setupButton = (img_block) => {
 
 document.addEventListener('readystatechange', async () => {
   if (document.readyState === "complete") {
-    const virgil_font = new FontFace(
-      'Virgil',
-      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Virgil.woff2"))})`,
-    );
-    await virgil_font.load()
 
     const cascadia_font = new FontFace(
       'Cascadia',
       `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Cascadia.woff2"))})`,
     );
     await cascadia_font.load();
+
+    const virgil_font = new FontFace(
+      'Virgil',
+      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Virgil.woff2"))})`,
+    );
+    await virgil_font.load();
+
+    document.fonts.add(cascadia_font);
+    document.fonts.add(virgil_font);
 
     const mo = new MutationObserver(mutations => {
       mutations.map(mutation => {
