@@ -77,7 +77,7 @@ const setupButton = (img_block) => {
 
     const page_id = getPageID(document.location.pathname);
     const space_domain = getSpaceDomain(document.location.pathname);
-    const {
+    let {
       data: {
         ownerUserId
       },
