@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-notion-excalidraw-helper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A chrome extension to copy graph data between notion and excalidraw",
   "scripts": {
     "build": "node utils/build.js"
