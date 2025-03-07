@@ -65,16 +65,6 @@ const setupButton = (img_block) => {
     real_url.searchParams.append('download', 'true')
     real_url.searchParams.append('name', getFileName(real_url.pathname))
 
-    const signed_url = new URL("https://www.notion.so");
-    signed_url.pathname = '/signed/' + encodeURIComponent(real_url.origin + real_url.pathname);
-    signed_url.searchParams.append('table', 'block');
-    signed_url.searchParams.append('id', real_url.searchParams.get('id'));
-    signed_url.searchParams.append('spaceId', real_url.searchParams.get('spaceId'));
-    signed_url.searchParams.append('name', getFileName(real_url.pathname));
-    signed_url.searchParams.append('download', 'true');
-    signed_url.searchParams.append('userId', real_url.searchParams.get('userId'));
-    signed_url.searchParams.append('cache', 'v2');
-
     const page_id = getPageID(document.location.pathname);
     const space_domain = getSpaceDomain(document.location.pathname);
     let {
@@ -83,17 +73,33 @@ const setupButton = (img_block) => {
       },
       headers
     } = await notion.getPublicPageData({space_domain, block_id: getPageID(location.pathname)});
-
     ownerUserId = ownerUserId || headers['x-notion-user-id']
 
     // need to try to download the file and get the aws cookie
-    await notion.getBlockFileDownloadUrl(
+    const {
+      data: {
+        url: image_download_url
+      }
+    } = await notion.getBlockFileDownloadUrl(
       {
         block_id: real_url.searchParams.get('id'),
         page_id,
         active_user_id: ownerUserId
       }
     )
+
+    const signed_url = new URL("https://www.notion.so");
+    signed_url.pathname = '/signed/' + encodeURIComponent(image_download_url);
+    signed_url.searchParams.append('table', 'block');
+    signed_url.searchParams.append('id', real_url.searchParams.get('id'));
+    signed_url.searchParams.append('spaceId', real_url.searchParams.get('spaceId'));
+    signed_url.searchParams.append('name', getFileName(real_url.pathname));
+    signed_url.searchParams.append('download', 'true');
+    signed_url.searchParams.append('userId', real_url.searchParams.get('userId'));
+    signed_url.searchParams.append('cache', 'v2');
+
+
+    
     copy_excalidraw_json_button.innerHTML = loading_svg;
     try {
       await getImageAndCopyToCliboard(signed_url.toString());
