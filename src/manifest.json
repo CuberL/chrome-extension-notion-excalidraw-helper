@@ -23,7 +23,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "@excalidraw/*"
+        "/fonts/*.woff2"
       ],
       "matches": [
         "https://notion.so/*",

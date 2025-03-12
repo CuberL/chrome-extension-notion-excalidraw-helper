@@ -46,6 +46,11 @@ var options = {
         exclude: /node_modules/
       },
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: require.resolve('@open-wc/webpack-import-meta-loader'),
+      },
+      {
         test: /\.html$/,
         loader: "html-loader",
         exclude: /node_modules/
@@ -68,32 +73,37 @@ var options = {
         }
       },
       {
-        test: /node_modules\/@excalidraw\/excalidraw\/dist\/.*\.js$/,
-        loader: 'string-replace-loader',
-        options: {
-          search: '"https://unpkg.com/"',
-          replace: 'chrome.runtime.getURL("/")',
-          flags: "g"
-        }
-      },
-      // Remove script tag to pass the review
-      {
-        test: /node_modules.*\.js$/,
-        loader: 'string-replace-loader',
-        options: {
-          search: '<script',
-          replace: '<_script',
-          flags: "g"
-        }
-      },
-      // Remove script tag to pass the review
-      {
-        test: /node_modules.*\.js$/,
-        loader: 'string-replace-loader',
-        options: {
-          search: '/script>',
-          replace: '/_script>',
-          flags: "g"
+        test: /\.(?:js|mjs|cjs)$/,
+        include: [
+          path.resolve(__dirname, 'src'), 
+        ],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ],
+            plugins: [
+              [
+                '@babel/plugin-proposal-optional-chaining'
+              ],
+              [
+                '@babel/plugin-transform-nullish-coalescing-operator'
+              ],
+              [
+                '@babel/plugin-transform-logical-assignment-operators'
+              ],
+              [
+                '@babel/plugin-transform-private-property-in-object'
+              ],
+              [
+                '@babel/plugin-proposal-class-properties'
+              ],
+              [
+                '@babel/plugin-proposal-throw-expressions'
+              ]
+            ]
+          }
         }
       }
     ]
@@ -114,12 +124,8 @@ var options = {
       }
     }]),
     new CopyWebpackPlugin([{
-      from: "node_modules/@excalidraw/excalidraw/dist/excalidraw-assets/*.js",
-      to: "@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/[name].[ext]"
-    }]),
-    new CopyWebpackPlugin([{
-      from: "node_modules/@excalidraw/excalidraw/dist/excalidraw-assets/*.woff2",
-      to: "@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/[name].[ext]"
+      from: "src/js/excalidraw/*.woff2",
+      to: "fonts/[name].[ext]"
     }]),
     new WriteFilePlugin()
   ]

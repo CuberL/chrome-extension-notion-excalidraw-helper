@@ -3,13 +3,15 @@ import axios from 'axios'
 import decodePng from 'png-chunks-extract'
 import tEXt from 'png-chunk-text'
 import * as notion from './notion_api'
-import { exportToBlob } from '@excalidraw/excalidraw'
+import { exportToBlob } from './excalidraw/bundle.js'
 import '../img/icon.png'
 import loading_svg from '../img/loading.svg'
 import excalidraw_svg from '../img/excalidraw.svg'
 import checked_svg from '../img/checked.svg'
 import warning_svg from '../img/warning.svg'
 import { byteStringToArrayBuffer, getFileName, getPageID, getSpaceDomain, waitMatchedElement } from './utils'
+
+window.EXCALIDRAW_ASSET_PATH = chrome.runtime.getURL('/fonts/')
 
 const getImageAndCopyToCliboard = async (url) => {
   const result = await axios(
@@ -117,22 +119,6 @@ const setupButton = (img_block) => {
 
 document.addEventListener('readystatechange', async () => {
   if (document.readyState === "complete") {
-
-    const cascadia_font = new FontFace(
-      'Cascadia',
-      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Cascadia.woff2"))})`,
-    );
-    await cascadia_font.load();
-
-    const virgil_font = new FontFace(
-      'Virgil',
-      `url(${(chrome.runtime.getURL("@excalidraw/excalidraw@0.16.1/dist/excalidraw-assets/Virgil.woff2"))})`,
-    );
-    await virgil_font.load();
-
-    document.fonts.add(cascadia_font);
-    document.fonts.add(virgil_font);
-
     const mo = new MutationObserver(mutations => {
       mutations.map(mutation => {
         if (mutation.type === 'childList') {
@@ -165,6 +151,7 @@ document.addEventListener('readystatechange', async () => {
         event.preventDefault();
         event.stopPropagation();
         const parsed = JSON.parse(text);
+        console.log(parsed)
         const blob = await exportToBlob(
           {
             elements: parsed.elements,
@@ -183,6 +170,7 @@ document.addEventListener('readystatechange', async () => {
             mimeType: 'image/png',
           }
         )
+        console.log(blob)
 
         const file = new File([blob], 'image.png', { type: 'image/png' })
 
