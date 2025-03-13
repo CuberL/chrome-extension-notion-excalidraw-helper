@@ -13,6 +13,7 @@ var options = {
   mode: 'production',
   entry: {
     main: path.join(__dirname, "src", "js", "main.js"),
+    options: path.join(__dirname, "src", "js", "options.js"),
   },
   output: {
     path: path.join(__dirname, "build"),
@@ -126,6 +127,10 @@ var options = {
     new CopyWebpackPlugin([{
       from: "src/js/excalidraw/*.woff2",
       to: "fonts/[name].[ext]"
+    }]),
+    new CopyWebpackPlugin([{
+      from: "src/options.html",
+      to: "options.html"
     }]),
     new WriteFilePlugin()
   ]

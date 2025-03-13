@@ -151,6 +151,11 @@ document.addEventListener('readystatechange', async () => {
         event.preventDefault();
         event.stopPropagation();
         const parsed = JSON.parse(text);
+        
+        // 获取配置的图片质量
+        const { scale = 3 } = await chrome.storage.sync.get();
+        console.log(scale)
+
         const blob = await exportToBlob(
           {
             elements: parsed.elements,
@@ -161,9 +166,9 @@ document.addEventListener('readystatechange', async () => {
             files: parsed.files,
             getDimensions(width, height) {
               return {
-                width: width * 3,
-                height: height * 3,
-                scale: 3
+                width: width * scale,
+                height: height * scale,
+                scale: scale
               }
             },
             mimeType: 'image/png',
