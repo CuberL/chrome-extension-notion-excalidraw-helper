@@ -151,7 +151,6 @@ document.addEventListener('readystatechange', async () => {
         event.preventDefault();
         event.stopPropagation();
         const parsed = JSON.parse(text);
-        console.log(parsed)
         const blob = await exportToBlob(
           {
             elements: parsed.elements,
@@ -170,7 +169,6 @@ document.addEventListener('readystatechange', async () => {
             mimeType: 'image/png',
           }
         )
-        console.log(blob)
 
         const file = new File([blob], 'image.png', { type: 'image/png' })
 
