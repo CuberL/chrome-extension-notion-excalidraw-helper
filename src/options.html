@@ -18,6 +18,7 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
+      font-size: 13px;
     }
     select {
       width: 100%;
@@ -47,12 +48,23 @@
     .status.show {
       opacity: 1;
     }
+    .description {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
   <h1>Options</h1>
   <div class="option-group">
-    <label for="scale">Scale</label>
+    <label for="scale">Scale ratio</label>
+    <div class="description">
+      Scale ratio determines the resolution of the embedded PNG, with 1x for standard screens, 2x for high-resolution displays, and 3x for ultra-high-resolution screens.
+      If you need faster document loading or the image exceeds Notion's limits, you can choose 1x.
+    </div>
     <select id="scale">
       <option value="1">1x</option>
       <option value="2">2x</option>
