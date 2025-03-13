@@ -16,7 +16,7 @@ Just add to chrome and enjoy!
 
 ### Unpacked extension
 
-The unpacked extension has been built in the repo. You can directly open the Chrome extension settings page, turn on developer mode, click Load unpacked, and select the build directory in this repo.
+The precompiled unpacked extension can be downloaded from releases. You can directly open the Chrome extension settings page, turn on developer mode, click Load unpacked, and select the build directory to install it.
 
 ![Alt text](doc/image.png)
 
