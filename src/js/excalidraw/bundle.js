@@ -4,7 +4,6 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
   get: (a2, b2) => (typeof require !== "undefined" ? require : a2)[b2]
 }) : x)(function(x) {
@@ -184,11 +183,6 @@ function straightHachureLines(polygons, gap, hachureStepOffset) {
 }
 var init_hachure = __esm({
   "node_modules/hachure-fill/bin/hachure.js"() {
-    __name(rotatePoints, "rotatePoints");
-    __name(rotateLines, "rotateLines");
-    __name(areSamePoints, "areSamePoints");
-    __name(hachureLines, "hachureLines");
-    __name(straightHachureLines, "straightHachureLines");
   }
 });
 
@@ -212,7 +206,6 @@ function polygonHachureLines(polygonList, o2) {
 var init_scan_line_hachure = __esm({
   "node_modules/roughjs/bin/fillers/scan-line-hachure.js"() {
     init_hachure();
-    __name(polygonHachureLines, "polygonHachureLines");
   }
 });
 
@@ -222,9 +215,6 @@ var init_hachure_filler = __esm({
   "node_modules/roughjs/bin/fillers/hachure-filler.js"() {
     init_scan_line_hachure();
     HachureFiller = class {
-      static {
-        __name(this, "HachureFiller");
-      }
       constructor(helper2) {
         this.helper = helper2;
       }
@@ -255,7 +245,6 @@ function lineLength(line3) {
 }
 var init_geometry = __esm({
   "node_modules/roughjs/bin/geometry.js"() {
-    __name(lineLength, "lineLength");
   }
 });
 
@@ -267,9 +256,6 @@ var init_zigzag_filler = __esm({
     init_scan_line_hachure();
     init_geometry();
     ZigZagFiller = class extends HachureFiller {
-      static {
-        __name(this, "ZigZagFiller");
-      }
       fillPolygons(polygonList, o2) {
         let gap = o2.hachureGap;
         if (gap < 0) {
@@ -306,9 +292,6 @@ var init_hatch_filler = __esm({
   "node_modules/roughjs/bin/fillers/hatch-filler.js"() {
     init_hachure_filler();
     HatchFiller = class extends HachureFiller {
-      static {
-        __name(this, "HatchFiller");
-      }
       fillPolygons(polygonList, o2) {
         const set = this._fillPolygons(polygonList, o2);
         const o22 = Object.assign({}, o2, { hachureAngle: o2.hachureAngle + 90 });
@@ -327,9 +310,6 @@ var init_dot_filler = __esm({
     init_geometry();
     init_scan_line_hachure();
     DotFiller = class {
-      static {
-        __name(this, "DotFiller");
-      }
       constructor(helper2) {
         this.helper = helper2;
       }
@@ -378,9 +358,6 @@ var init_dashed_filler = __esm({
     init_geometry();
     init_scan_line_hachure();
     DashedFiller = class {
-      static {
-        __name(this, "DashedFiller");
-      }
       constructor(helper2) {
         this.helper = helper2;
       }
@@ -424,9 +401,6 @@ var init_zigzag_line_filler = __esm({
     init_geometry();
     init_scan_line_hachure();
     ZigZagLineFiller = class {
-      static {
-        __name(this, "ZigZagLineFiller");
-      }
       constructor(helper2) {
         this.helper = helper2;
       }
@@ -516,7 +490,6 @@ var init_filler = __esm({
     init_dashed_filler();
     init_zigzag_line_filler();
     fillers = {};
-    __name(getFiller, "getFiller");
   }
 });
 
@@ -527,11 +500,7 @@ function randomSeed() {
 var Random;
 var init_math = __esm({
   "node_modules/roughjs/bin/math.js"() {
-    __name(randomSeed, "randomSeed");
     Random = class {
-      static {
-        __name(this, "Random");
-      }
       constructor(seed) {
         this.seed = seed;
       }
@@ -626,9 +595,6 @@ var init_parser = __esm({
     NUMBER = 1;
     EOD = 2;
     PARAMS = { A: 7, a: 7, C: 6, c: 6, H: 1, h: 1, L: 2, l: 2, M: 2, m: 2, Q: 4, q: 4, S: 4, s: 4, T: 2, t: 2, V: 1, v: 1, Z: 0, z: 0 };
-    __name(tokenize, "tokenize");
-    __name(isType, "isType");
-    __name(parsePath, "parsePath");
   }
 });
 
@@ -744,7 +710,6 @@ function absolutize(segments) {
 }
 var init_absolutize = __esm({
   "node_modules/path-data-parser/lib/absolutize.js"() {
-    __name(absolutize, "absolutize");
   }
 });
 
@@ -963,10 +928,6 @@ function arcToCubicCurves(x1, y1, x2, y2, r1, r2, angle, largeArcFlag, sweepFlag
 }
 var init_normalize = __esm({
   "node_modules/path-data-parser/lib/normalize.js"() {
-    __name(normalize, "normalize");
-    __name(degToRad, "degToRad");
-    __name(rotate, "rotate");
-    __name(arcToCubicCurves, "arcToCubicCurves");
   }
 });
 
@@ -1215,8 +1176,8 @@ function _line(x1, y1, x2, y2, o2, move, overlay) {
   midDispX = _offsetOpt(midDispX, o2, roughnessGain);
   midDispY = _offsetOpt(midDispY, o2, roughnessGain);
   const ops = [];
-  const randomHalf = /* @__PURE__ */ __name(() => _offsetOpt(halfOffset, o2, roughnessGain), "randomHalf");
-  const randomFull = /* @__PURE__ */ __name(() => _offsetOpt(offset, o2, roughnessGain), "randomFull");
+  const randomHalf = () => _offsetOpt(halfOffset, o2, roughnessGain);
+  const randomFull = () => _offsetOpt(offset, o2, roughnessGain);
   const preserveVertices = o2.preserveVertices;
   if (move) {
     if (overlay) {
@@ -1443,33 +1404,6 @@ var init_renderer = __esm({
       ellipse,
       doubleLineOps: doubleLineFillOps
     };
-    __name(line, "line");
-    __name(linearPath, "linearPath");
-    __name(polygon, "polygon");
-    __name(rectangle, "rectangle");
-    __name(curve, "curve");
-    __name(ellipse, "ellipse");
-    __name(generateEllipseParams, "generateEllipseParams");
-    __name(ellipseWithParams, "ellipseWithParams");
-    __name(arc, "arc");
-    __name(svgPath, "svgPath");
-    __name(solidFillPolygon, "solidFillPolygon");
-    __name(patternFillPolygons, "patternFillPolygons");
-    __name(patternFillArc, "patternFillArc");
-    __name(randOffset, "randOffset");
-    __name(randOffsetWithRange, "randOffsetWithRange");
-    __name(doubleLineFillOps, "doubleLineFillOps");
-    __name(cloneOptionsAlterSeed, "cloneOptionsAlterSeed");
-    __name(random, "random");
-    __name(_offset, "_offset");
-    __name(_offsetOpt, "_offsetOpt");
-    __name(_doubleLine, "_doubleLine");
-    __name(_line, "_line");
-    __name(_curveWithOffset, "_curveWithOffset");
-    __name(_curve, "_curve");
-    __name(_computeEllipsePoints, "_computeEllipsePoints");
-    __name(_arc, "_arc");
-    __name(_bezierTo, "_bezierTo");
   }
 });
 
@@ -1510,8 +1444,6 @@ function curveToBezier(pointsIn, curveTightness = 0) {
 }
 var init_curve_to_bezier = __esm({
   "node_modules/points-on-curve/lib/curve-to-bezier.js"() {
-    __name(clone, "clone");
-    __name(curveToBezier, "curveToBezier");
   }
 });
 
@@ -1629,15 +1561,6 @@ function pointsOnBezierCurves(points, tolerance = 0.15, distance3) {
 }
 var init_lib2 = __esm({
   "node_modules/points-on-curve/lib/index.js"() {
-    __name(distance, "distance");
-    __name(distanceSq, "distanceSq");
-    __name(distanceToSegmentSq, "distanceToSegmentSq");
-    __name(lerp, "lerp");
-    __name(flatness, "flatness");
-    __name(getPointsOnBezierCurveWithSplitting, "getPointsOnBezierCurveWithSplitting");
-    __name(simplify, "simplify");
-    __name(simplifyPoints, "simplifyPoints");
-    __name(pointsOnBezierCurves, "pointsOnBezierCurves");
   }
 });
 
@@ -1649,19 +1572,19 @@ function pointsOnPath(path, tolerance, distance3) {
   let currentPoints = [];
   let start2 = [0, 0];
   let pendingCurve = [];
-  const appendPendingCurve = /* @__PURE__ */ __name(() => {
+  const appendPendingCurve = () => {
     if (pendingCurve.length >= 4) {
       currentPoints.push(...pointsOnBezierCurves(pendingCurve, tolerance));
     }
     pendingCurve = [];
-  }, "appendPendingCurve");
-  const appendPendingPoints = /* @__PURE__ */ __name(() => {
+  };
+  const appendPendingPoints = () => {
     appendPendingCurve();
     if (currentPoints.length) {
       sets.push(currentPoints);
       currentPoints = [];
     }
-  }, "appendPendingPoints");
+  };
   for (const { key, data } of normalized) {
     switch (key) {
       case "M":
@@ -1705,7 +1628,6 @@ var init_lib3 = __esm({
   "node_modules/points-on-path/lib/index.js"() {
     init_lib2();
     init_lib();
-    __name(pointsOnPath, "pointsOnPath");
   }
 });
 
@@ -1720,9 +1642,6 @@ var init_generator = __esm({
     init_lib3();
     NOS = "none";
     RoughGenerator = class {
-      static {
-        __name(this, "RoughGenerator");
-      }
       constructor(config) {
         this.defaultOptions = {
           maxRandomnessOffset: 2,
@@ -1990,9 +1909,6 @@ var init_canvas = __esm({
   "node_modules/roughjs/bin/canvas.js"() {
     init_generator();
     RoughCanvas = class {
-      static {
-        __name(this, "RoughCanvas");
-      }
       constructor(canvas, config) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
@@ -2141,9 +2057,6 @@ var init_svg = __esm({
     init_core();
     init_generator();
     RoughSVG = class {
-      static {
-        __name(this, "RoughSVG");
-      }
       constructor(svg, config) {
         this.svg = svg;
         this.gen = new RoughGenerator(config);
@@ -2302,9 +2215,9 @@ var require_lodash = __commonJS({
     var objectToString = objectProto.toString;
     var nativeMax = Math.max;
     var nativeMin = Math.min;
-    var now = /* @__PURE__ */ __name(function() {
+    var now = function() {
       return root.Date.now();
-    }, "now");
+    };
     function debounce2(func, wait, options) {
       var lastArgs, lastThis, maxWait, result, timerId, lastCallTime, lastInvokeTime = 0, leading = false, maxing = false, trailing = true;
       if (typeof func != "function") {
@@ -2324,23 +2237,19 @@ var require_lodash = __commonJS({
         result = func.apply(thisArg, args);
         return result;
       }
-      __name(invokeFunc, "invokeFunc");
       function leadingEdge(time) {
         lastInvokeTime = time;
         timerId = setTimeout(timerExpired, wait);
         return leading ? invokeFunc(time) : result;
       }
-      __name(leadingEdge, "leadingEdge");
       function remainingWait(time) {
         var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime, result2 = wait - timeSinceLastCall;
         return maxing ? nativeMin(result2, maxWait - timeSinceLastInvoke) : result2;
       }
-      __name(remainingWait, "remainingWait");
       function shouldInvoke(time) {
         var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime;
         return lastCallTime === void 0 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
       }
-      __name(shouldInvoke, "shouldInvoke");
       function timerExpired() {
         var time = now();
         if (shouldInvoke(time)) {
@@ -2348,7 +2257,6 @@ var require_lodash = __commonJS({
         }
         timerId = setTimeout(timerExpired, remainingWait(time));
       }
-      __name(timerExpired, "timerExpired");
       function trailingEdge(time) {
         timerId = void 0;
         if (trailing && lastArgs) {
@@ -2357,7 +2265,6 @@ var require_lodash = __commonJS({
         lastArgs = lastThis = void 0;
         return result;
       }
-      __name(trailingEdge, "trailingEdge");
       function cancel() {
         if (timerId !== void 0) {
           clearTimeout(timerId);
@@ -2365,11 +2272,9 @@ var require_lodash = __commonJS({
         lastInvokeTime = 0;
         lastArgs = lastCallTime = lastThis = timerId = void 0;
       }
-      __name(cancel, "cancel");
       function flush() {
         return timerId === void 0 ? result : trailingEdge(now());
       }
-      __name(flush, "flush");
       function debounced() {
         var time = now(), isInvoking = shouldInvoke(time);
         lastArgs = arguments;
@@ -2389,12 +2294,10 @@ var require_lodash = __commonJS({
         }
         return result;
       }
-      __name(debounced, "debounced");
       debounced.cancel = cancel;
       debounced.flush = flush;
       return debounced;
     }
-    __name(debounce2, "debounce");
     function throttle2(func, wait, options) {
       var leading = true, trailing = true;
       if (typeof func != "function") {
@@ -2410,20 +2313,16 @@ var require_lodash = __commonJS({
         "trailing": trailing
       });
     }
-    __name(throttle2, "throttle");
     function isObject(value) {
       var type = typeof value;
       return !!value && (type == "object" || type == "function");
     }
-    __name(isObject, "isObject");
     function isObjectLike(value) {
       return !!value && typeof value == "object";
     }
-    __name(isObjectLike, "isObjectLike");
     function isSymbol(value) {
       return typeof value == "symbol" || isObjectLike(value) && objectToString.call(value) == symbolTag;
     }
-    __name(isSymbol, "isSymbol");
     function toNumber(value) {
       if (typeof value == "number") {
         return value;
@@ -2442,7 +2341,6 @@ var require_lodash = __commonJS({
       var isBinary = reIsBinary.test(value);
       return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
     }
-    __name(toNumber, "toNumber");
     module.exports = throttle2;
   }
 });
@@ -2620,21 +2518,21 @@ var init_colors = __esm({
   "packages/excalidraw/colors.ts"() {
     "use strict";
     init_open_color();
-    pick = /* @__PURE__ */ __name((source, keys) => {
+    pick = (source, keys) => {
       return keys.reduce((acc, key) => {
         if (key in source) {
           acc[key] = source[key];
         }
         return acc;
       }, {});
-    }, "pick");
+    };
     DEFAULT_CHART_COLOR_INDEX = 4;
     DEFAULT_ELEMENT_STROKE_COLOR_INDEX = 4;
     DEFAULT_ELEMENT_BACKGROUND_COLOR_INDEX = 1;
     ELEMENTS_PALETTE_SHADE_INDEXES = [0, 2, 4, 6, 8];
-    getSpecificColorShades = /* @__PURE__ */ __name((color, indexArr) => {
+    getSpecificColorShades = (color, indexArr) => {
       return indexArr.map((index) => open_color_default[color][index]);
-    }, "getSpecificColorShades");
+    };
     COLOR_PALETTE = {
       transparent: "transparent",
       black: "#1e1e1e",
@@ -2709,7 +2607,7 @@ var init_colors = __esm({
       bronze: COLOR_PALETTE.bronze,
       ...COMMON_ELEMENT_SHADES
     };
-    getAllColorsSpecificShade = /* @__PURE__ */ __name((index) => [
+    getAllColorsSpecificShade = (index) => [
       // 2nd row
       COLOR_PALETTE.cyan[index],
       COLOR_PALETTE.blue[index],
@@ -2722,12 +2620,12 @@ var init_colors = __esm({
       COLOR_PALETTE.yellow[index],
       COLOR_PALETTE.orange[index],
       COLOR_PALETTE.red[index]
-    ], "getAllColorsSpecificShade");
+    ];
   }
 });
 
 // packages/excalidraw/constants.ts
-var isDarwin, isWindows, isAndroid, isFirefox, isChrome, isSafari, isIOS, supportsResizeObserver, DRAGGING_THRESHOLD, LINE_CONFIRM_THRESHOLD, SHIFT_LOCKING_ANGLE, CURSOR_TYPE, ENV, CJK_HAND_DRAWN_FALLBACK_FONT, WINDOWS_EMOJI_FALLBACK_FONT, FONT_FAMILY, FONT_FAMILY_FALLBACKS, getFontFamilyFallbacks, THEME, FRAME_STYLE, DEFAULT_FONT_SIZE, DEFAULT_FONT_FAMILY, DEFAULT_TEXT_ALIGN, DEFAULT_VERTICAL_ALIGN, DEFAULT_TRANSFORM_HANDLE_SPACING, SIDE_RESIZING_THRESHOLD, EPSILON, DEFAULT_COLLISION_THRESHOLD, DEFAULT_GRID_SIZE, DEFAULT_GRID_STEP, IMAGE_MIME_TYPES, MIME_TYPES, ALLOWED_PASTE_MIME_TYPES, EXPORT_DATA_TYPES, EXPORT_SOURCE, MIN_ZOOM, MAX_ZOOM, THEME_FILTER, EXPORT_SCALES, DEFAULT_EXPORT_PADDING, MAX_ALLOWED_FILE_BYTES, VERSIONS, BOUND_TEXT_PADDING, ARROW_LABEL_WIDTH_FRACTION, ARROW_LABEL_FONT_SIZE_TO_MIN_WIDTH_RATIO, VERTICAL_ALIGN, TEXT_ALIGN, ELEMENT_READY_TO_ERASE_OPACITY, DEFAULT_PROPORTIONAL_RADIUS, DEFAULT_ADAPTIVE_RADIUS, ROUNDNESS, ROUGHNESS, DEFAULT_ELEMENT_PROPS, LIBRARY_SIDEBAR_TAB, DEFAULT_SIDEBAR, STATS_PANELS, ARROW_TYPE, DEFAULT_REDUCED_GLOBAL_ALPHA, ELEMENT_LINK_KEY, ORIG_ID;
+var isDarwin, isWindows, isAndroid, isFirefox, isChrome, isSafari, isIOS, supportsResizeObserver, DRAGGING_THRESHOLD, LINE_CONFIRM_THRESHOLD, SHIFT_LOCKING_ANGLE, CURSOR_TYPE, ENV, CJK_HAND_DRAWN_FALLBACK_FONT, WINDOWS_EMOJI_FALLBACK_FONT, FONT_FAMILY, FONT_FAMILY_FALLBACKS, getFontFamilyFallbacks, THEME, FRAME_STYLE, DEFAULT_FONT_SIZE, DEFAULT_FONT_FAMILY, DEFAULT_TEXT_ALIGN, DEFAULT_VERTICAL_ALIGN, DEFAULT_TRANSFORM_HANDLE_SPACING, SIDE_RESIZING_THRESHOLD, EPSILON, DEFAULT_COLLISION_THRESHOLD, DEFAULT_GRID_SIZE, DEFAULT_GRID_STEP, IMAGE_MIME_TYPES, MIME_TYPES, ALLOWED_PASTE_MIME_TYPES, EXPORT_DATA_TYPES, EXPORT_SOURCE, MIN_ZOOM, MAX_ZOOM, THEME_FILTER, MAX_DECIMALS_FOR_SVG_EXPORT, EXPORT_SCALES, DEFAULT_EXPORT_PADDING, MAX_ALLOWED_FILE_BYTES, SVG_NS, VERSIONS, BOUND_TEXT_PADDING, ARROW_LABEL_WIDTH_FRACTION, ARROW_LABEL_FONT_SIZE_TO_MIN_WIDTH_RATIO, VERTICAL_ALIGN, TEXT_ALIGN, ELEMENT_READY_TO_ERASE_OPACITY, DEFAULT_PROPORTIONAL_RADIUS, DEFAULT_ADAPTIVE_RADIUS, ROUNDNESS, ROUGHNESS, DEFAULT_ELEMENT_PROPS, LIBRARY_SIDEBAR_TAB, DEFAULT_SIDEBAR, STATS_PANELS, ARROW_TYPE, DEFAULT_REDUCED_GLOBAL_ALPHA, ELEMENT_LINK_KEY, ORIG_ID;
 var init_constants = __esm({
   "packages/excalidraw/constants.ts"() {
     "use strict";
@@ -2774,14 +2672,14 @@ var init_constants = __esm({
       [CJK_HAND_DRAWN_FALLBACK_FONT]: 100,
       [WINDOWS_EMOJI_FALLBACK_FONT]: 1e3
     };
-    getFontFamilyFallbacks = /* @__PURE__ */ __name((fontFamily) => {
+    getFontFamilyFallbacks = (fontFamily) => {
       switch (fontFamily) {
         case FONT_FAMILY.Excalifont:
           return [CJK_HAND_DRAWN_FALLBACK_FONT, WINDOWS_EMOJI_FALLBACK_FONT];
         default:
           return [WINDOWS_EMOJI_FALLBACK_FONT];
       }
-    }, "getFontFamilyFallbacks");
+    };
     THEME = {
       LIGHT: "light",
       DARK: "dark"
@@ -2852,9 +2750,11 @@ var init_constants = __esm({
     MIN_ZOOM = 0.1;
     MAX_ZOOM = 30;
     THEME_FILTER = "invert(93%) hue-rotate(180deg)";
+    MAX_DECIMALS_FOR_SVG_EXPORT = 2;
     EXPORT_SCALES = [1, 2, 3];
     DEFAULT_EXPORT_PADDING = 10;
     MAX_ALLOWED_FILE_BYTES = 4 * 1024 * 1024;
+    SVG_NS = "http://www.w3.org/2000/svg";
     VERSIONS = {
       excalidraw: 2,
       excalidrawLibrary: 2
@@ -2937,9 +2837,9 @@ var require_es6_promise_pool = __commonJS({
       }
     })(exports, function() {
       "use strict";
-      var EventTarget = /* @__PURE__ */ __name(function() {
+      var EventTarget = function() {
         this._listeners = {};
-      }, "EventTarget");
+      };
       EventTarget.prototype.addEventListener = function(type, listener) {
         this._listeners[type] = this._listeners[type] || [];
         if (this._listeners[type].indexOf(listener) < 0) {
@@ -2962,30 +2862,30 @@ var require_es6_promise_pool = __commonJS({
           }
         }
       };
-      var isGenerator = /* @__PURE__ */ __name(function(func) {
+      var isGenerator = function(func) {
         return typeof func.constructor === "function" && func.constructor.name === "GeneratorFunction";
-      }, "isGenerator");
-      var functionToIterator = /* @__PURE__ */ __name(function(func) {
+      };
+      var functionToIterator = function(func) {
         return {
-          next: /* @__PURE__ */ __name(function() {
+          next: function() {
             var promise = func();
             return promise ? { value: promise } : { done: true };
-          }, "next")
+          }
         };
-      }, "functionToIterator");
-      var promiseToIterator = /* @__PURE__ */ __name(function(promise) {
+      };
+      var promiseToIterator = function(promise) {
         var called = false;
         return {
-          next: /* @__PURE__ */ __name(function() {
+          next: function() {
             if (called) {
               return { done: true };
             }
             called = true;
             return { value: promise };
-          }, "next")
+          }
         };
-      }, "promiseToIterator");
-      var toIterator = /* @__PURE__ */ __name(function(obj, Promise2) {
+      };
+      var toIterator = function(obj, Promise2) {
         var type = typeof obj;
         if (type === "object") {
           if (typeof obj.next === "function") {
@@ -2999,13 +2899,13 @@ var require_es6_promise_pool = __commonJS({
           return isGenerator(obj) ? obj() : functionToIterator(obj);
         }
         return promiseToIterator(Promise2.resolve(obj));
-      }, "toIterator");
-      var PromisePoolEvent = /* @__PURE__ */ __name(function(target, type, data) {
+      };
+      var PromisePoolEvent = function(target, type, data) {
         this.target = target;
         this.type = type;
         this.data = data;
-      }, "PromisePoolEvent");
-      var PromisePool2 = /* @__PURE__ */ __name(function(source, concurrency, options) {
+      };
+      var PromisePool2 = function(source, concurrency, options) {
         EventTarget.call(this);
         if (typeof concurrency !== "number" || Math.floor(concurrency) !== concurrency || concurrency < 1) {
           throw new Error("Invalid concurrency");
@@ -3018,7 +2918,7 @@ var require_es6_promise_pool = __commonJS({
         this._size = 0;
         this._promise = null;
         this._callbacks = null;
-      }, "PromisePool");
+      };
       PromisePool2.prototype = new EventTarget();
       PromisePool2.prototype.constructor = PromisePool2;
       PromisePool2.prototype.concurrency = function(value) {
@@ -3119,16 +3019,16 @@ var init_utils = __esm({
   "packages/math/utils.ts"() {
     "use strict";
     PRECISION = 1e-4;
-    clamp = /* @__PURE__ */ __name((value, min, max) => {
+    clamp = (value, min, max) => {
       return Math.min(Math.max(value, min), max);
-    }, "clamp");
-    round = /* @__PURE__ */ __name((value, precision, func = "round") => {
+    };
+    round = (value, precision, func = "round") => {
       const multiplier = Math.pow(10, precision);
       return Math[func]((value + Number.EPSILON) * multiplier) / multiplier;
-    }, "round");
-    isFiniteNumber = /* @__PURE__ */ __name((value) => {
+    };
+    isFiniteNumber = (value) => {
       return typeof value === "number" && Number.isFinite(value);
-    }, "isFiniteNumber");
+    };
   }
 });
 
@@ -3146,9 +3046,6 @@ var init_angle = __esm({
   "packages/math/angle.ts"() {
     "use strict";
     init_utils();
-    __name(degreesToRadians, "degreesToRadians");
-    __name(radiansToDegrees, "radiansToDegrees");
-    __name(isRightAngleRads, "isRightAngleRads");
   }
 });
 
@@ -3181,21 +3078,13 @@ var vectorNormalize;
 var init_vector = __esm({
   "packages/math/vector.ts"() {
     "use strict";
-    __name(vector, "vector");
-    __name(vectorFromPoint, "vectorFromPoint");
-    __name(vectorCross, "vectorCross");
-    __name(vectorAdd, "vectorAdd");
-    __name(vectorSubtract, "vectorSubtract");
-    __name(vectorScale, "vectorScale");
-    __name(vectorMagnitudeSq, "vectorMagnitudeSq");
-    __name(vectorMagnitude, "vectorMagnitude");
-    vectorNormalize = /* @__PURE__ */ __name((v) => {
+    vectorNormalize = (v) => {
       const m = vectorMagnitude(v);
       if (m === 0) {
         return vector(0, 0);
       }
       return vector(v[0] / m, v[1] / m);
-    }, "vectorNormalize");
+    };
   }
 });
 
@@ -3246,18 +3135,7 @@ var init_point = __esm({
     init_angle();
     init_utils();
     init_vector();
-    __name(pointFrom, "pointFrom");
-    __name(pointFromArray, "pointFromArray");
-    __name(pointFromPair, "pointFromPair");
-    __name(pointFromVector, "pointFromVector");
-    __name(isPoint, "isPoint");
-    __name(pointsEqual, "pointsEqual");
-    __name(pointRotateRads, "pointRotateRads");
-    __name(pointTranslate, "pointTranslate");
-    __name(pointCenter, "pointCenter");
-    __name(pointDistance, "pointDistance");
-    __name(pointDistanceSq, "pointDistanceSq");
-    pointScaleFromOrigin = /* @__PURE__ */ __name((p, mid, multiplier) => pointTranslate(mid, vectorScale(vectorFromPoint(p, mid), multiplier)), "pointScaleFromOrigin");
+    pointScaleFromOrigin = (p, mid, multiplier) => pointTranslate(mid, vectorScale(vectorFromPoint(p, mid), multiplier));
   }
 });
 
@@ -3282,8 +3160,6 @@ var init_line = __esm({
   "packages/math/line.ts"() {
     "use strict";
     init_point();
-    __name(line2, "line");
-    __name(linesIntersectAt, "linesIntersectAt");
   }
 });
 
@@ -3306,15 +3182,14 @@ var init_segment = __esm({
     init_point();
     init_utils();
     init_vector();
-    __name(lineSegment, "lineSegment");
-    pointOnLineSegment = /* @__PURE__ */ __name((point, line3, threshold = PRECISION) => {
+    pointOnLineSegment = (point, line3, threshold = PRECISION) => {
       const distance3 = distanceToLineSegment(point, line3);
       if (distance3 === 0) {
         return true;
       }
       return distance3 < threshold;
-    }, "pointOnLineSegment");
-    distanceToLineSegment = /* @__PURE__ */ __name((point, line3) => {
+    };
+    distanceToLineSegment = (point, line3) => {
       const [x, y] = point;
       const [[x1, y1], [x2, y2]] = line3;
       const A2 = x - x1;
@@ -3342,8 +3217,7 @@ var init_segment = __esm({
       const dx = x - xx;
       const dy = y - yy;
       return Math.sqrt(dx * dx + dy * dy);
-    }, "distanceToLineSegment");
-    __name(lineSegmentIntersectionPoints, "lineSegmentIntersectionPoints");
+    };
   }
 });
 
@@ -3364,8 +3238,6 @@ var init_rectangle = __esm({
     "use strict";
     init_point();
     init_segment();
-    __name(rectangle2, "rectangle");
-    __name(rectangleIntersectLineSegment, "rectangleIntersectLineSegment");
   }
 });
 
@@ -3423,16 +3295,16 @@ function curveIntersectLineSegment(c, l2) {
   ).length === 0) {
     return [];
   }
-  const line3 = /* @__PURE__ */ __name((s2) => pointFrom(
+  const line3 = (s2) => pointFrom(
     l2[0][0] + s2 * (l2[1][0] - l2[0][0]),
     l2[0][1] + s2 * (l2[1][1] - l2[0][1])
-  ), "line");
+  );
   const initial_guesses = [
     [0.5, 0],
     [0.2, 0],
     [0.8, 0]
   ];
-  const calculate = /* @__PURE__ */ __name(([t0, s0]) => {
+  const calculate = ([t0, s0]) => {
     const solution2 = solve(
       (t5, s3) => {
         const bezier_point = bezierEquation(c, t5);
@@ -3453,7 +3325,7 @@ function curveIntersectLineSegment(c, l2) {
       return null;
     }
     return bezierEquation(c, t4);
-  }, "calculate");
+  };
   let solution = calculate(initial_guesses[0]);
   if (solution) {
     return [solution];
@@ -3469,7 +3341,7 @@ function curveIntersectLineSegment(c, l2) {
   return [];
 }
 function curveClosestPoint(c, p, tolerance = 1e-3) {
-  const localMinimum = /* @__PURE__ */ __name((min, max, f, e8 = tolerance) => {
+  const localMinimum = (min, max, f, e8 = tolerance) => {
     let m = min;
     let n2 = max;
     let k;
@@ -3482,7 +3354,7 @@ function curveClosestPoint(c, p, tolerance = 1e-3) {
       }
     }
     return k;
-  }, "localMinimum");
+  };
   const maxSteps = 30;
   let closestStep = 0;
   for (let min = Infinity, step = 0; step < maxSteps; step++) {
@@ -3523,17 +3395,10 @@ var init_curve = __esm({
     "use strict";
     init_point();
     init_rectangle();
-    __name(curve2, "curve");
-    __name(gradient, "gradient");
-    __name(solve, "solve");
-    bezierEquation = /* @__PURE__ */ __name((c, t4) => pointFrom(
+    bezierEquation = (c, t4) => pointFrom(
       (1 - t4) ** 3 * c[0][0] + 3 * (1 - t4) ** 2 * t4 * c[1][0] + 3 * (1 - t4) * t4 ** 2 * c[2][0] + t4 ** 3 * c[3][0],
       (1 - t4) ** 3 * c[0][1] + 3 * (1 - t4) ** 2 * t4 * c[1][1] + 3 * (1 - t4) * t4 ** 2 * c[2][1] + t4 ** 3 * c[3][1]
-    ), "bezierEquation");
-    __name(curveIntersectLineSegment, "curveIntersectLineSegment");
-    __name(curveClosestPoint, "curveClosestPoint");
-    __name(curvePointDistance, "curvePointDistance");
-    __name(curveBounds, "curveBounds");
+    );
   }
 });
 
@@ -3557,9 +3422,7 @@ var init_polygon = __esm({
     init_point();
     init_segment();
     init_utils();
-    __name(polygon2, "polygon");
-    __name(polygonFromPoints, "polygonFromPoints");
-    pointOnPolygon = /* @__PURE__ */ __name((p, poly, threshold = PRECISION) => {
+    pointOnPolygon = (p, poly, threshold = PRECISION) => {
       let on = false;
       for (let i2 = 0, l2 = poly.length - 1; i2 < l2; i2++) {
         if (pointOnLineSegment(p, lineSegment(poly[i2], poly[i2 + 1]), threshold)) {
@@ -3568,9 +3431,7 @@ var init_polygon = __esm({
         }
       }
       return on;
-    }, "pointOnPolygon");
-    __name(polygonClose, "polygonClose");
-    __name(polygonIsClosed, "polygonIsClosed");
+    };
   }
 });
 
@@ -3583,16 +3444,15 @@ var init_range = __esm({
   "packages/math/range.ts"() {
     "use strict";
     init_utils2();
-    __name(rangeInclusive, "rangeInclusive");
-    rangeIncludesValue = /* @__PURE__ */ __name((value, [min, max]) => {
+    rangeIncludesValue = (value, [min, max]) => {
       return value >= min && value <= max;
-    }, "rangeIncludesValue");
+    };
   }
 });
 
 // packages/math/triangle.ts
 function triangleIncludesPoint([a2, b2, c], p) {
-  const triangleSign = /* @__PURE__ */ __name((p1, p2, p3) => (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1]), "triangleSign");
+  const triangleSign = (p1, p2, p3) => (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1]);
   const d1 = triangleSign(p, a2, b2);
   const d2 = triangleSign(p, b2, c);
   const d3 = triangleSign(p, c, a2);
@@ -3603,7 +3463,6 @@ function triangleIncludesPoint([a2, b2, c], p) {
 var init_triangle = __esm({
   "packages/math/triangle.ts"() {
     "use strict";
-    __name(triangleIncludesPoint, "triangleIncludesPoint");
   }
 });
 
@@ -3647,7 +3506,7 @@ var init_utils2 = __esm({
     init_math2();
     init_colors();
     init_constants();
-    getFontFamilyString = /* @__PURE__ */ __name(({
+    getFontFamilyString = ({
       fontFamily
     }) => {
       for (const [fontFamilyString, id] of Object.entries(FONT_FAMILY)) {
@@ -3656,24 +3515,24 @@ var init_utils2 = __esm({
         }
       }
       return WINDOWS_EMOJI_FALLBACK_FONT;
-    }, "getFontFamilyString");
-    getFontString = /* @__PURE__ */ __name(({
+    };
+    getFontString = ({
       fontSize,
       fontFamily
     }) => {
       return `${fontSize}px ${getFontFamilyString({ fontFamily })}`;
-    }, "getFontString");
-    debounce = /* @__PURE__ */ __name((fn, timeout) => {
+    };
+    debounce = (fn, timeout) => {
       let handle = 0;
       let lastArgs = null;
-      const ret = /* @__PURE__ */ __name((...args) => {
+      const ret = (...args) => {
         lastArgs = args;
         clearTimeout(handle);
         handle = window.setTimeout(() => {
           lastArgs = null;
           fn(...args);
         }, timeout);
-      }, "ret");
+      };
       ret.flush = () => {
         clearTimeout(handle);
         if (lastArgs) {
@@ -3687,12 +3546,12 @@ var init_utils2 = __esm({
         clearTimeout(handle);
       };
       return ret;
-    }, "debounce");
-    throttleRAF = /* @__PURE__ */ __name((fn, opts) => {
+    };
+    throttleRAF = (fn, opts) => {
       let timerId = null;
       let lastArgs = null;
       let lastArgsTrailing = null;
-      const scheduleFunc = /* @__PURE__ */ __name((args) => {
+      const scheduleFunc = (args) => {
         timerId = window.requestAnimationFrame(() => {
           timerId = null;
           fn(...args);
@@ -3703,9 +3562,9 @@ var init_utils2 = __esm({
             scheduleFunc(lastArgs);
           }
         });
-      }, "scheduleFunc");
-      const ret = /* @__PURE__ */ __name((...args) => {
-        if (import.meta.env.MODE === "test") {
+      };
+      const ret = (...args) => {
+        if (false) {
           fn(...args);
           return;
         }
@@ -3715,7 +3574,7 @@ var init_utils2 = __esm({
         } else if (opts?.trailing) {
           lastArgsTrailing = args;
         }
-      }, "ret");
+      };
       ret.flush = () => {
         if (timerId !== null) {
           cancelAnimationFrame(timerId);
@@ -3734,9 +3593,9 @@ var init_utils2 = __esm({
         }
       };
       return ret;
-    }, "throttleRAF");
-    distance2 = /* @__PURE__ */ __name((x, y) => Math.abs(x - y), "distance");
-    updateActiveTool = /* @__PURE__ */ __name((appState, data) => {
+    };
+    distance2 = (x, y) => Math.abs(x - y);
+    updateActiveTool = (appState, data) => {
       if (data.type === "custom") {
         return {
           ...appState.activeTool,
@@ -3752,23 +3611,23 @@ var init_utils2 = __esm({
         customType: null,
         locked: data.locked ?? appState.activeTool.locked
       };
-    }, "updateActiveTool");
+    };
     RS_LTR_CHARS = "A-Za-z\xC0-\xD6\xD8-\xF6\xF8-\u02B8\u0300-\u0590\u0800-\u1FFF\u2C00-\uFB1C\uFDFE-\uFE6F\uFEFD-\uFFFF";
     RS_RTL_CHARS = "\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC";
     RE_RTL_CHECK = new RegExp(`^[^${RS_LTR_CHARS}]*[${RS_RTL_CHARS}]`);
-    isRTL = /* @__PURE__ */ __name((text) => RE_RTL_CHECK.test(text), "isRTL");
-    tupleToCoors = /* @__PURE__ */ __name((xyTuple) => {
+    isRTL = (text) => RE_RTL_CHECK.test(text);
+    tupleToCoors = (xyTuple) => {
       const [x, y] = xyTuple;
       return { x, y };
-    }, "tupleToCoors");
-    isTransparent = /* @__PURE__ */ __name((color) => {
+    };
+    isTransparent = (color) => {
       const isRGBTransparent = color.length === 5 && color.substr(4, 1) === "0";
       const isRRGGBBTransparent = color.length === 9 && color.substr(7, 2) === "00";
       return isRGBTransparent || isRRGGBBTransparent || color === COLOR_PALETTE.transparent;
-    }, "isTransparent");
-    isBindingFallthroughEnabled = /* @__PURE__ */ __name((el) => el.fillStyle !== "solid" || isTransparent(el.backgroundColor), "isBindingFallthroughEnabled");
-    getUpdatedTimestamp = /* @__PURE__ */ __name(() => isTestEnv() ? 1 : Date.now(), "getUpdatedTimestamp");
-    arrayToMap = /* @__PURE__ */ __name((items) => {
+    };
+    isBindingFallthroughEnabled = (el) => el.fillStyle !== "solid" || isTransparent(el.backgroundColor);
+    getUpdatedTimestamp = () => isTestEnv() ? 1 : Date.now();
+    arrayToMap = (items) => {
       if (items instanceof Map) {
         return items;
       }
@@ -3776,16 +3635,16 @@ var init_utils2 = __esm({
         acc.set(typeof element === "string" ? element : element.id, element);
         return acc;
       }, /* @__PURE__ */ new Map());
-    }, "arrayToMap");
-    isTestEnv = /* @__PURE__ */ __name(() => import.meta.env.MODE === "test", "isTestEnv");
-    isServerEnv = /* @__PURE__ */ __name(() => typeof process !== "undefined" && true, "isServerEnv");
-    _defaultIsShallowComparatorFallback = /* @__PURE__ */ __name((a2, b2) => {
+    };
+    isTestEnv = () => false;
+    isServerEnv = () => typeof process !== "undefined" && true;
+    _defaultIsShallowComparatorFallback = (a2, b2) => {
       if (Array.isArray(a2) && Array.isArray(b2) && a2.length === 0 && b2.length === 0) {
         return true;
       }
       return a2 === b2;
-    }, "_defaultIsShallowComparatorFallback");
-    isShallowEqual = /* @__PURE__ */ __name((objA, objB, comparators, debug = false) => {
+    };
+    isShallowEqual = (objA, objB, comparators, debug = false) => {
       const aKeys = Object.keys(objA);
       const bKeys = Object.keys(objB);
       if (aKeys.length !== bKeys.length) {
@@ -3829,8 +3688,8 @@ var init_utils2 = __esm({
         }
         return ret;
       });
-    }, "isShallowEqual");
-    assertNever = /* @__PURE__ */ __name((value, message, softAssert) => {
+    };
+    assertNever = (value, message, softAssert) => {
       if (!message) {
         return value;
       }
@@ -3839,24 +3698,20 @@ var init_utils2 = __esm({
         return value;
       }
       throw new Error(message);
-    }, "assertNever");
-    __name(invariant, "invariant");
-    normalizeEOL = /* @__PURE__ */ __name((str) => {
+    };
+    normalizeEOL = (str) => {
       return str.replace(/\r?\n|\r/g, "\n");
-    }, "normalizeEOL");
-    toBrandedType = /* @__PURE__ */ __name((value) => {
+    };
+    toBrandedType = (value) => {
       return value;
-    }, "toBrandedType");
-    promiseTry = /* @__PURE__ */ __name(async (fn, ...args) => {
+    };
+    promiseTry = async (fn, ...args) => {
       return new Promise((resolve) => {
         resolve(fn(...args));
       });
-    }, "promiseTry");
-    isAnyTrue = /* @__PURE__ */ __name((...args) => Math.max(...args.map((arg) => arg ? 1 : 0)) > 0, "isAnyTrue");
+    };
+    isAnyTrue = (...args) => Math.max(...args.map((arg) => arg ? 1 : 0)) > 0;
     PromisePool = class {
-      static {
-        __name(this, "PromisePool");
-      }
       pool;
       entries = {};
       constructor(source, concurrency) {
@@ -3866,12 +3721,12 @@ var init_utils2 = __esm({
         );
       }
       all() {
-        const listener = /* @__PURE__ */ __name((event) => {
+        const listener = (event) => {
           if (event.data.result) {
             const [index, value] = event.data.result;
             this.entries[index] = value;
           }
-        }, "listener");
+        };
         this.pool.addEventListener("fulfilled", listener);
         return this.pool.start().then(() => {
           setTimeout(() => {
@@ -3881,9 +3736,9 @@ var init_utils2 = __esm({
         });
       }
     };
-    escapeDoubleQuotes = /* @__PURE__ */ __name((str) => {
+    escapeDoubleQuotes = (str) => {
       return str.replace(/"/g, "&quot;");
-    }, "escapeDoubleQuotes");
+    };
   }
 });
 
@@ -3894,67 +3749,67 @@ var init_typeChecks = __esm({
     "use strict";
     init_constants();
     init_utils2();
-    isInitializedImageElement = /* @__PURE__ */ __name((element) => {
+    isInitializedImageElement = (element) => {
       return !!element && element.type === "image" && !!element.fileId;
-    }, "isInitializedImageElement");
-    isImageElement = /* @__PURE__ */ __name((element) => {
+    };
+    isImageElement = (element) => {
       return !!element && element.type === "image";
-    }, "isImageElement");
-    isEmbeddableElement = /* @__PURE__ */ __name((element) => {
+    };
+    isEmbeddableElement = (element) => {
       return !!element && element.type === "embeddable";
-    }, "isEmbeddableElement");
-    isIframeElement = /* @__PURE__ */ __name((element) => {
+    };
+    isIframeElement = (element) => {
       return !!element && element.type === "iframe";
-    }, "isIframeElement");
-    isIframeLikeElement = /* @__PURE__ */ __name((element) => {
+    };
+    isIframeLikeElement = (element) => {
       return !!element && (element.type === "iframe" || element.type === "embeddable");
-    }, "isIframeLikeElement");
-    isTextElement = /* @__PURE__ */ __name((element) => {
+    };
+    isTextElement = (element) => {
       return element != null && element.type === "text";
-    }, "isTextElement");
-    isFrameElement = /* @__PURE__ */ __name((element) => {
+    };
+    isFrameElement = (element) => {
       return element != null && element.type === "frame";
-    }, "isFrameElement");
-    isMagicFrameElement = /* @__PURE__ */ __name((element) => {
+    };
+    isMagicFrameElement = (element) => {
       return element != null && element.type === "magicframe";
-    }, "isMagicFrameElement");
-    isFrameLikeElement = /* @__PURE__ */ __name((element) => {
+    };
+    isFrameLikeElement = (element) => {
       return element != null && (element.type === "frame" || element.type === "magicframe");
-    }, "isFrameLikeElement");
-    isFreeDrawElement = /* @__PURE__ */ __name((element) => {
+    };
+    isFreeDrawElement = (element) => {
       return element != null && isFreeDrawElementType(element.type);
-    }, "isFreeDrawElement");
-    isFreeDrawElementType = /* @__PURE__ */ __name((elementType) => {
+    };
+    isFreeDrawElementType = (elementType) => {
       return elementType === "freedraw";
-    }, "isFreeDrawElementType");
-    isLinearElement = /* @__PURE__ */ __name((element) => {
+    };
+    isLinearElement = (element) => {
       return element != null && isLinearElementType(element.type);
-    }, "isLinearElement");
-    isArrowElement = /* @__PURE__ */ __name((element) => {
+    };
+    isArrowElement = (element) => {
       return element != null && element.type === "arrow";
-    }, "isArrowElement");
-    isElbowArrow = /* @__PURE__ */ __name((element) => {
+    };
+    isElbowArrow = (element) => {
       return isArrowElement(element) && element.elbowed;
-    }, "isElbowArrow");
-    isLinearElementType = /* @__PURE__ */ __name((elementType) => {
+    };
+    isLinearElementType = (elementType) => {
       return elementType === "arrow" || elementType === "line";
-    }, "isLinearElementType");
-    isBindingElement = /* @__PURE__ */ __name((element, includeLocked = true) => {
+    };
+    isBindingElement = (element, includeLocked = true) => {
       return element != null && (!element.locked || includeLocked === true) && isBindingElementType(element.type);
-    }, "isBindingElement");
-    isBindingElementType = /* @__PURE__ */ __name((elementType) => {
+    };
+    isBindingElementType = (elementType) => {
       return elementType === "arrow";
-    }, "isBindingElementType");
-    isBindableElement = /* @__PURE__ */ __name((element, includeLocked = true) => {
+    };
+    isBindableElement = (element, includeLocked = true) => {
       return element != null && (!element.locked || includeLocked === true) && (element.type === "rectangle" || element.type === "diamond" || element.type === "ellipse" || element.type === "image" || element.type === "iframe" || element.type === "embeddable" || element.type === "frame" || element.type === "magicframe" || element.type === "text" && !element.containerId);
-    }, "isBindableElement");
-    isRectanguloidElement = /* @__PURE__ */ __name((element) => {
+    };
+    isRectanguloidElement = (element) => {
       return element != null && (element.type === "rectangle" || element.type === "diamond" || element.type === "image" || element.type === "iframe" || element.type === "embeddable" || element.type === "frame" || element.type === "magicframe" || element.type === "text" && !element.containerId);
-    }, "isRectanguloidElement");
-    isTextBindableContainer = /* @__PURE__ */ __name((element, includeLocked = true) => {
+    };
+    isTextBindableContainer = (element, includeLocked = true) => {
       return element != null && (!element.locked || includeLocked === true) && (element.type === "rectangle" || element.type === "diamond" || element.type === "ellipse" || isArrowElement(element));
-    }, "isTextBindableContainer");
-    isExcalidrawElement = /* @__PURE__ */ __name((element) => {
+    };
+    isExcalidrawElement = (element) => {
       const type = element?.type;
       if (!type) {
         return false;
@@ -3980,17 +3835,17 @@ var init_typeChecks = __esm({
           return false;
         }
       }
-    }, "isExcalidrawElement");
-    hasBoundTextElement = /* @__PURE__ */ __name((element) => {
+    };
+    hasBoundTextElement = (element) => {
       return isTextBindableContainer(element) && !!element.boundElements?.some(({ type }) => type === "text");
-    }, "hasBoundTextElement");
-    isBoundToContainer = /* @__PURE__ */ __name((element) => {
+    };
+    isBoundToContainer = (element) => {
       return element !== null && "containerId" in element && element.containerId !== null && isTextElement(element);
-    }, "isBoundToContainer");
-    isUsingAdaptiveRadius = /* @__PURE__ */ __name((type) => type === "rectangle" || type === "embeddable" || type === "iframe" || type === "image", "isUsingAdaptiveRadius");
-    isFixedPointBinding = /* @__PURE__ */ __name((binding) => {
+    };
+    isUsingAdaptiveRadius = (type) => type === "rectangle" || type === "embeddable" || type === "iframe" || type === "image";
+    isFixedPointBinding = (binding) => {
       return Object.hasOwn(binding, "fixedPoint") && binding.fixedPoint != null;
-    }, "isFixedPointBinding");
+    };
   }
 });
 
@@ -4001,31 +3856,28 @@ var init_textMeasurements = __esm({
     "use strict";
     init_constants();
     init_utils2();
-    measureText = /* @__PURE__ */ __name((text, font, lineHeight) => {
+    measureText = (text, font, lineHeight) => {
       const _text = text.split("\n").map((x) => x || " ").join("\n");
       const fontSize = parseFloat(font);
       const height = getTextHeight(_text, fontSize, lineHeight);
       const width = getTextWidth(_text, font);
       return { width, height };
-    }, "measureText");
+    };
     DUMMY_TEXT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toLocaleUpperCase();
-    normalizeText = /* @__PURE__ */ __name((text) => {
+    normalizeText = (text) => {
       return normalizeEOL(text).replace(/\t/g, "        ");
-    }, "normalizeText");
-    splitIntoLines = /* @__PURE__ */ __name((text) => {
+    };
+    splitIntoLines = (text) => {
       return normalizeText(text).split("\n");
-    }, "splitIntoLines");
-    detectLineHeight = /* @__PURE__ */ __name((textElement) => {
+    };
+    detectLineHeight = (textElement) => {
       const lineCount = splitIntoLines(textElement.text).length;
       return textElement.height / lineCount / textElement.fontSize;
-    }, "detectLineHeight");
-    getLineHeightInPx = /* @__PURE__ */ __name((fontSize, lineHeight) => {
+    };
+    getLineHeightInPx = (fontSize, lineHeight) => {
       return fontSize * lineHeight;
-    }, "getLineHeightInPx");
+    };
     CanvasTextMetricsProvider = class {
-      static {
-        __name(this, "CanvasTextMetricsProvider");
-      }
       canvas;
       constructor() {
         this.canvas = document.createElement("canvas");
@@ -4048,27 +3900,27 @@ var init_textMeasurements = __esm({
         return advanceWidth;
       }
     };
-    getLineWidth = /* @__PURE__ */ __name((text, font) => {
+    getLineWidth = (text, font) => {
       if (!textMetricsProvider) {
         textMetricsProvider = new CanvasTextMetricsProvider();
       }
       return textMetricsProvider.getLineWidth(text, font);
-    }, "getLineWidth");
-    getTextWidth = /* @__PURE__ */ __name((text, font) => {
+    };
+    getTextWidth = (text, font) => {
       const lines = splitIntoLines(text);
       let width = 0;
       lines.forEach((line3) => {
         width = Math.max(width, getLineWidth(line3, font));
       });
       return width;
-    }, "getTextWidth");
-    getTextHeight = /* @__PURE__ */ __name((text, fontSize, lineHeight) => {
+    };
+    getTextHeight = (text, fontSize, lineHeight) => {
       const lineCount = splitIntoLines(text).length;
       return getLineHeightInPx(fontSize, lineHeight) * lineCount;
-    }, "getTextHeight");
+    };
     charWidth = /* @__PURE__ */ (() => {
       const cachedCharWidth = {};
-      const calculate = /* @__PURE__ */ __name((char, font) => {
+      const calculate = (char, font) => {
         const unicode = char.charCodeAt(0);
         if (!cachedCharWidth[font]) {
           cachedCharWidth[font] = [];
@@ -4078,13 +3930,13 @@ var init_textMeasurements = __esm({
           cachedCharWidth[font][unicode] = width;
         }
         return cachedCharWidth[font][unicode];
-      }, "calculate");
-      const getCache = /* @__PURE__ */ __name((font) => {
+      };
+      const getCache = (font) => {
         return cachedCharWidth[font];
-      }, "getCache");
-      const clearCache = /* @__PURE__ */ __name((font) => {
+      };
+      const clearCache = (font) => {
         cachedCharWidth[font] = [];
-      }, "clearCache");
+      };
       return {
         calculate,
         getCache,
@@ -4101,13 +3953,13 @@ var init_textWrapping = __esm({
     "use strict";
     init_constants();
     init_textMeasurements();
-    containsCJK = /* @__PURE__ */ __name((text) => {
+    containsCJK = (text) => {
       if (!cachedCjkRegex) {
         cachedCjkRegex = Regex.class(...Object.values(CJK));
       }
       return cachedCjkRegex.test(text);
-    }, "containsCJK");
-    getLineBreakRegex = /* @__PURE__ */ __name(() => {
+    };
+    getLineBreakRegex = () => {
       if (!cachedLineBreakRegex) {
         try {
           cachedLineBreakRegex = getLineBreakRegexAdvanced();
@@ -4116,13 +3968,13 @@ var init_textWrapping = __esm({
         }
       }
       return cachedLineBreakRegex;
-    }, "getLineBreakRegex");
-    getEmojiRegex = /* @__PURE__ */ __name(() => {
+    };
+    getEmojiRegex = () => {
       if (!cachedEmojiRegex) {
         cachedEmojiRegex = getEmojiRegexUnicode();
       }
       return cachedEmojiRegex;
-    }, "getEmojiRegex");
+    };
     COMMON = {
       /**
        * Natural breaking points for any grammars.
@@ -4184,11 +4036,11 @@ var init_textWrapping = __esm({
       ANY: /[\p{Emoji}]/u,
       MOST: /[\p{Extended_Pictographic}\p{Emoji_Presentation}]/u
     };
-    getLineBreakRegexSimple = /* @__PURE__ */ __name(() => Regex.or(
+    getLineBreakRegexSimple = () => Regex.or(
       getEmojiRegex(),
       Break.On(COMMON.HYPHEN, COMMON.WHITESPACE, CJK.CHAR)
-    ), "getLineBreakRegexSimple");
-    getLineBreakRegexAdvanced = /* @__PURE__ */ __name(() => Regex.or(
+    );
+    getLineBreakRegexAdvanced = () => Regex.or(
       // Unicode-defined regex for (multi-codepoint) Emojis
       getEmojiRegex(),
       // Rules for whitespace and hyphen
@@ -4201,8 +4053,8 @@ var init_textWrapping = __esm({
       Break.BeforeMany(CJK.OPENING).NotPrecededBy(COMMON.OPENING).Build(),
       Break.AfterMany(CJK.CLOSING).NotFollowedBy(COMMON.CLOSING).Build(),
       Break.AfterMany(COMMON.CLOSING).FollowedBy(COMMON.OPENING).Build()
-    ), "getLineBreakRegexAdvanced");
-    getEmojiRegexUnicode = /* @__PURE__ */ __name(() => Regex.group(
+    );
+    getEmojiRegexUnicode = () => Regex.group(
       Regex.or(
         EMOJI.FLAG,
         Regex.and(
@@ -4213,90 +4065,90 @@ var init_textWrapping = __esm({
           )
         )
       )
-    ), "getEmojiRegexUnicode");
+    );
     Regex = {
       /**
        * Builds a regex from a string.
        */
-      build: /* @__PURE__ */ __name((regex) => new RegExp(regex, "u"), "build"),
+      build: (regex) => new RegExp(regex, "u"),
       /**
        * Joins regexes into a single string.
        */
-      join: /* @__PURE__ */ __name((...regexes) => regexes.map((x) => x.source).join(""), "join"),
+      join: (...regexes) => regexes.map((x) => x.source).join(""),
       /**
        * Joins regexes into a single regex as with "and" operator.
        */
-      and: /* @__PURE__ */ __name((...regexes) => Regex.build(Regex.join(...regexes)), "and"),
+      and: (...regexes) => Regex.build(Regex.join(...regexes)),
       /**
        * Joins regexes into a single regex with "or" operator.
        */
-      or: /* @__PURE__ */ __name((...regexes) => Regex.build(regexes.map((x) => x.source).join("|")), "or"),
+      or: (...regexes) => Regex.build(regexes.map((x) => x.source).join("|")),
       /**
        * Puts regexes into a matching group.
        */
-      group: /* @__PURE__ */ __name((...regexes) => Regex.build(`(${Regex.join(...regexes)})`), "group"),
+      group: (...regexes) => Regex.build(`(${Regex.join(...regexes)})`),
       /**
        * Puts regexes into a character class.
        */
-      class: /* @__PURE__ */ __name((...regexes) => Regex.build(`[${Regex.join(...regexes)}]`), "class")
+      class: (...regexes) => Regex.build(`[${Regex.join(...regexes)}]`)
     };
     Break = {
       /**
        * Break on the given class of characters.
        */
-      On: /* @__PURE__ */ __name((...regexes) => {
+      On: (...regexes) => {
         const joined = Regex.join(...regexes);
         return Regex.build(`([${joined}])`);
-      }, "On"),
+      },
       /**
        * Break before the given class of characters.
        */
-      Before: /* @__PURE__ */ __name((...regexes) => {
+      Before: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?=[${joined}])`), "builder");
+        const builder = () => Regex.build(`(?=[${joined}])`);
         return Break.Chain(builder);
-      }, "Before"),
+      },
       /**
        * Break after the given class of characters.
        */
-      After: /* @__PURE__ */ __name((...regexes) => {
+      After: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?<=[${joined}])`), "builder");
+        const builder = () => Regex.build(`(?<=[${joined}])`);
         return Break.Chain(builder);
-      }, "After"),
+      },
       /**
        * Break before one or multiple characters of the same class.
        */
-      BeforeMany: /* @__PURE__ */ __name((...regexes) => {
+      BeforeMany: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?<![${joined}])(?=[${joined}])`), "builder");
+        const builder = () => Regex.build(`(?<![${joined}])(?=[${joined}])`);
         return Break.Chain(builder);
-      }, "BeforeMany"),
+      },
       /**
        * Break after one or multiple character from the same class.
        */
-      AfterMany: /* @__PURE__ */ __name((...regexes) => {
+      AfterMany: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?<=[${joined}])(?![${joined}])`), "builder");
+        const builder = () => Regex.build(`(?<=[${joined}])(?![${joined}])`);
         return Break.Chain(builder);
-      }, "AfterMany"),
+      },
       /**
        * Do not break before the given class of characters.
        */
-      NotBefore: /* @__PURE__ */ __name((...regexes) => {
+      NotBefore: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?![${joined}])`), "builder");
+        const builder = () => Regex.build(`(?![${joined}])`);
         return Break.Chain(builder);
-      }, "NotBefore"),
+      },
       /**
        * Do not break after the given class of characters.
        */
-      NotAfter: /* @__PURE__ */ __name((...regexes) => {
+      NotAfter: (...regexes) => {
         const joined = Regex.join(...regexes);
-        const builder = /* @__PURE__ */ __name(() => Regex.build(`(?<![${joined}])`), "builder");
+        const builder = () => Regex.build(`(?<![${joined}])`);
         return Break.Chain(builder);
-      }, "NotAfter"),
-      Chain: /* @__PURE__ */ __name((rootBuilder) => ({
+      },
+      Chain: (rootBuilder) => ({
         /**
          * Build the root regex.
          */
@@ -4304,46 +4156,46 @@ var init_textWrapping = __esm({
         /**
          * Specify additional class of characters that should precede the root regex.
          */
-        PreceededBy: /* @__PURE__ */ __name((...regexes) => {
+        PreceededBy: (...regexes) => {
           const root = rootBuilder();
           const preceeded = Break.After(...regexes).Build();
-          const builder = /* @__PURE__ */ __name(() => Regex.and(preceeded, root), "builder");
+          const builder = () => Regex.and(preceeded, root);
           return Break.Chain(builder);
-        }, "PreceededBy"),
+        },
         /**
          * Specify additional class of characters that should follow the root regex.
          */
-        FollowedBy: /* @__PURE__ */ __name((...regexes) => {
+        FollowedBy: (...regexes) => {
           const root = rootBuilder();
           const followed = Break.Before(...regexes).Build();
-          const builder = /* @__PURE__ */ __name(() => Regex.and(root, followed), "builder");
+          const builder = () => Regex.and(root, followed);
           return Break.Chain(builder);
-        }, "FollowedBy"),
+        },
         /**
          * Specify additional class of characters that should not precede the root regex.
          */
-        NotPrecededBy: /* @__PURE__ */ __name((...regexes) => {
+        NotPrecededBy: (...regexes) => {
           const root = rootBuilder();
           const notPreceeded = Break.NotAfter(...regexes).Build();
-          const builder = /* @__PURE__ */ __name(() => Regex.and(notPreceeded, root), "builder");
+          const builder = () => Regex.and(notPreceeded, root);
           return Break.Chain(builder);
-        }, "NotPrecededBy"),
+        },
         /**
          * Specify additional class of characters that should not follow the root regex.
          */
-        NotFollowedBy: /* @__PURE__ */ __name((...regexes) => {
+        NotFollowedBy: (...regexes) => {
           const root = rootBuilder();
           const notFollowed = Break.NotBefore(...regexes).Build();
-          const builder = /* @__PURE__ */ __name(() => Regex.and(root, notFollowed), "builder");
+          const builder = () => Regex.and(root, notFollowed);
           return Break.Chain(builder);
-        }, "NotFollowedBy")
-      }), "Chain")
+        }
+      })
     };
-    parseTokens = /* @__PURE__ */ __name((line3) => {
+    parseTokens = (line3) => {
       const breakLineRegex = getLineBreakRegex();
       return line3.normalize("NFC").split(breakLineRegex).filter(Boolean);
-    }, "parseTokens");
-    wrapText = /* @__PURE__ */ __name((text, font, maxWidth) => {
+    };
+    wrapText = (text, font, maxWidth) => {
       if (!Number.isFinite(maxWidth) || maxWidth < 0) {
         return text;
       }
@@ -4359,8 +4211,8 @@ var init_textWrapping = __esm({
         lines.push(...wrappedLine);
       }
       return lines.join("\n");
-    }, "wrapText");
-    wrapLine = /* @__PURE__ */ __name((line3, font, maxWidth) => {
+    };
+    wrapLine = (line3, font, maxWidth) => {
       const lines = [];
       const tokens = parseTokens(line3);
       const tokenIterator = tokens[Symbol.iterator]();
@@ -4396,8 +4248,8 @@ var init_textWrapping = __esm({
         lines.push(trailingLine);
       }
       return lines;
-    }, "wrapLine");
-    wrapWord = /* @__PURE__ */ __name((word, font, maxWidth) => {
+    };
+    wrapWord = (word, font, maxWidth) => {
       if (getEmojiRegex().test(word)) {
         return [word];
       }
@@ -4424,8 +4276,8 @@ var init_textWrapping = __esm({
         lines.push(currentLine);
       }
       return lines;
-    }, "wrapWord");
-    trimLine = /* @__PURE__ */ __name((line3, font, maxWidth) => {
+    };
+    trimLine = (line3, font, maxWidth) => {
       const shouldTrimWhitespaces = getLineWidth(line3, font) > maxWidth;
       if (!shouldTrimWhitespaces) {
         return line3;
@@ -4446,17 +4298,17 @@ var init_textWrapping = __esm({
         trimmedLineWidth = testLineWidth;
       }
       return trimmedLine;
-    }, "trimLine");
-    isSingleCharacter = /* @__PURE__ */ __name((maybeSingleCharacter) => {
+    };
+    isSingleCharacter = (maybeSingleCharacter) => {
       return maybeSingleCharacter.codePointAt(0) !== void 0 && maybeSingleCharacter.codePointAt(1) === void 0;
-    }, "isSingleCharacter");
-    satisfiesWordInvariant = /* @__PURE__ */ __name((word) => {
-      if (import.meta.env.MODE === ENV.TEST || import.meta.env.DEV) {
+    };
+    satisfiesWordInvariant = (word) => {
+      if ("production" === ENV.TEST || import.meta.env.DEV) {
         if (/\s/.test(word)) {
           throw new Error("Word should not contain any whitespaces!");
         }
       }
-    }, "satisfiesWordInvariant");
+    };
   }
 });
 
@@ -4469,7 +4321,7 @@ var init_shape = __esm({
     init_element();
     init_lib2();
     init_utils2();
-    getPolygonShape = /* @__PURE__ */ __name((element) => {
+    getPolygonShape = (element) => {
       const { angle, width, height, x, y } = element;
       const cx = x + width / 2;
       const cy = y + height / 2;
@@ -4494,8 +4346,8 @@ var init_shape = __esm({
         type: "polygon",
         data
       };
-    }, "getPolygonShape");
-    getEllipseShape = /* @__PURE__ */ __name((element) => {
+    };
+    getEllipseShape = (element) => {
       const { width, height, angle, x, y } = element;
       return {
         type: "ellipse",
@@ -4506,8 +4358,8 @@ var init_shape = __esm({
           halfHeight: height / 2
         }
       };
-    }, "getEllipseShape");
-    getCurvePathOps = /* @__PURE__ */ __name((shape) => {
+    };
+    getCurvePathOps = (shape) => {
       if (!shape) {
         return [];
       }
@@ -4517,13 +4369,13 @@ var init_shape = __esm({
         }
       }
       return shape.sets[0].ops;
-    }, "getCurvePathOps");
-    getCurveShape = /* @__PURE__ */ __name((roughShape, startingPoint = pointFrom(0, 0), angleInRadian, center) => {
-      const transform = /* @__PURE__ */ __name((p) => pointRotateRads(
+    };
+    getCurveShape = (roughShape, startingPoint = pointFrom(0, 0), angleInRadian, center) => {
+      const transform = (p) => pointRotateRads(
         pointFrom(p[0] + startingPoint[0], p[1] + startingPoint[1]),
         center,
         angleInRadian
-      ), "transform");
+      );
       const ops = getCurvePathOps(roughShape);
       const polycurve = [];
       let p0 = pointFrom(0, 0);
@@ -4545,8 +4397,8 @@ var init_shape = __esm({
         type: "polycurve",
         data: polycurve
       };
-    }, "getCurveShape");
-    polylineFromPoints = /* @__PURE__ */ __name((points) => {
+    };
+    polylineFromPoints = (points) => {
       let previousPoint = points[0];
       const polyline = [];
       for (let i2 = 1; i2 < points.length; i2++) {
@@ -4555,15 +4407,15 @@ var init_shape = __esm({
         previousPoint = nextPoint;
       }
       return polyline;
-    }, "polylineFromPoints");
-    getFreedrawShape = /* @__PURE__ */ __name((element, center, isClosed = false) => {
-      const transform = /* @__PURE__ */ __name((p) => pointRotateRads(
+    };
+    getFreedrawShape = (element, center, isClosed = false) => {
+      const transform = (p) => pointRotateRads(
         pointFromVector(
           vectorAdd(vectorFromPoint(p), vector(element.x, element.y))
         ),
         center,
         element.angle
-      ), "transform");
+      );
       const polyline = polylineFromPoints(
         element.points.map((p) => transform(p))
       );
@@ -4574,13 +4426,13 @@ var init_shape = __esm({
         type: "polyline",
         data: polyline
       };
-    }, "getFreedrawShape");
-    getClosedCurveShape = /* @__PURE__ */ __name((element, roughShape, startingPoint = pointFrom(0, 0), angleInRadian, center) => {
-      const transform = /* @__PURE__ */ __name((p) => pointRotateRads(
+    };
+    getClosedCurveShape = (element, roughShape, startingPoint = pointFrom(0, 0), angleInRadian, center) => {
+      const transform = (p) => pointRotateRads(
         pointFrom(p[0] + startingPoint[0], p[1] + startingPoint[1]),
         center,
         angleInRadian
-      ), "transform");
+      );
       if (element.roundness === null) {
         return {
           type: "polygon",
@@ -4617,8 +4469,8 @@ var init_shape = __esm({
         type: "polygon",
         data: polygonFromPoints(polygonPoints)
       };
-    }, "getClosedCurveShape");
-    distanceToEllipse = /* @__PURE__ */ __name((p, ellipse3) => {
+    };
+    distanceToEllipse = (p, ellipse3) => {
       const { angle, halfWidth, halfHeight, center } = ellipse3;
       const a2 = halfWidth;
       const b2 = halfHeight;
@@ -4660,10 +4512,10 @@ var init_shape = __esm({
         pointFrom(rotatedPointX, rotatedPointY),
         pointFrom(minX, minY)
       );
-    }, "distanceToEllipse");
-    pointOnEllipse = /* @__PURE__ */ __name((point, ellipse3, threshold = PRECISION) => {
+    };
+    pointOnEllipse = (point, ellipse3, threshold = PRECISION) => {
       return distanceToEllipse(point, ellipse3) <= threshold;
-    }, "pointOnEllipse");
+    };
   }
 });
 
@@ -4674,7 +4526,7 @@ var init_collision = __esm({
     "use strict";
     init_shape();
     init_math2();
-    isPointOnShape = /* @__PURE__ */ __name((point, shape, tolerance = 0) => {
+    isPointOnShape = (point, shape, tolerance = 0) => {
       switch (shape.type) {
         case "polygon":
           return pointOnPolygon(point, shape.data, tolerance);
@@ -4691,15 +4543,15 @@ var init_collision = __esm({
         default:
           throw Error(`shape ${shape} is not implemented`);
       }
-    }, "isPointOnShape");
-    pointOnPolycurve = /* @__PURE__ */ __name((point, polycurve, tolerance) => {
+    };
+    pointOnPolycurve = (point, polycurve, tolerance) => {
       return polycurve.some((curve3) => pointOnCurve(point, curve3, tolerance));
-    }, "pointOnPolycurve");
-    cubicBezierEquation = /* @__PURE__ */ __name((curve3) => {
+    };
+    cubicBezierEquation = (curve3) => {
       const [p0, p1, p2, p3] = curve3;
       return (t4, idx) => Math.pow(1 - t4, 3) * p3[idx] + 3 * t4 * Math.pow(1 - t4, 2) * p2[idx] + 3 * Math.pow(t4, 2) * (1 - t4) * p1[idx] + p0[idx] * Math.pow(t4, 3);
-    }, "cubicBezierEquation");
-    polyLineFromCurve = /* @__PURE__ */ __name((curve3, segments = 10) => {
+    };
+    polyLineFromCurve = (curve3, segments = 10) => {
       const equation = cubicBezierEquation(curve3);
       let startingPoint = [equation(0, 0), equation(0, 1)];
       const lineSegments = [];
@@ -4714,13 +4566,13 @@ var init_collision = __esm({
         }
       }
       return lineSegments;
-    }, "polyLineFromCurve");
-    pointOnCurve = /* @__PURE__ */ __name((point, curve3, threshold) => {
+    };
+    pointOnCurve = (point, curve3, threshold) => {
       return pointOnPolyline(point, polyLineFromCurve(curve3), threshold);
-    }, "pointOnCurve");
-    pointOnPolyline = /* @__PURE__ */ __name((point, polyline, threshold = 1e-4) => {
+    };
+    pointOnPolyline = (point, polyline, threshold = 1e-4) => {
       return polyline.some((line3) => pointOnLineSegment(point, line3, threshold));
-    }, "pointOnPolyline");
+    };
   }
 });
 
@@ -4812,7 +4664,7 @@ var init_keys = __esm({
       [KEYS.Z, CODES.Z],
       [KEYS.Y, CODES.Y]
     ]);
-    shouldRotateWithDiscreteAngle = /* @__PURE__ */ __name((event) => event.shiftKey, "shouldRotateWithDiscreteAngle");
+    shouldRotateWithDiscreteAngle = (event) => event.shiftKey;
   }
 });
 
@@ -4823,23 +4675,21 @@ var require_react_development = __commonJS({
     (function() {
       function defineDeprecationWarning(methodName, info) {
         Object.defineProperty(Component.prototype, methodName, {
-          get: /* @__PURE__ */ __name(function() {
+          get: function() {
             console.warn(
               "%s(...) is deprecated in plain JavaScript React classes. %s",
               info[0],
               info[1]
             );
-          }, "get")
+          }
         });
       }
-      __name(defineDeprecationWarning, "defineDeprecationWarning");
       function getIteratorFn(maybeIterable) {
         if (null === maybeIterable || "object" !== typeof maybeIterable)
           return null;
         maybeIterable = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable["@@iterator"];
         return "function" === typeof maybeIterable ? maybeIterable : null;
       }
-      __name(getIteratorFn, "getIteratorFn");
       function warnNoop(publicInstance, callerName) {
         publicInstance = (publicInstance = publicInstance.constructor) && (publicInstance.displayName || publicInstance.name) || "ReactClass";
         var warningKey = publicInstance + "." + callerName;
@@ -4849,28 +4699,23 @@ var require_react_development = __commonJS({
           publicInstance
         ), didWarnStateUpdateForUnmountedComponent[warningKey] = true);
       }
-      __name(warnNoop, "warnNoop");
       function Component(props, context, updater) {
         this.props = props;
         this.context = context;
         this.refs = emptyObject;
         this.updater = updater || ReactNoopUpdateQueue;
       }
-      __name(Component, "Component");
       function ComponentDummy() {
       }
-      __name(ComponentDummy, "ComponentDummy");
       function PureComponent(props, context, updater) {
         this.props = props;
         this.context = context;
         this.refs = emptyObject;
         this.updater = updater || ReactNoopUpdateQueue;
       }
-      __name(PureComponent, "PureComponent");
       function testStringCoercion(value) {
         return "" + value;
       }
-      __name(testStringCoercion, "testStringCoercion");
       function checkKeyStringCoercion(value) {
         try {
           testStringCoercion(value);
@@ -4890,7 +4735,6 @@ var require_react_development = __commonJS({
           return testStringCoercion(value);
         }
       }
-      __name(checkKeyStringCoercion, "checkKeyStringCoercion");
       function getComponentNameFromType(type) {
         if (null == type) return null;
         if ("function" === typeof type)
@@ -4935,14 +4779,11 @@ var require_react_development = __commonJS({
           }
         return null;
       }
-      __name(getComponentNameFromType, "getComponentNameFromType");
       function isValidElementType(type) {
         return "string" === typeof type || "function" === typeof type || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_OFFSCREEN_TYPE || "object" === typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE$1 || void 0 !== type.getModuleId) ? true : false;
       }
-      __name(isValidElementType, "isValidElementType");
       function disabledLog() {
       }
-      __name(disabledLog, "disabledLog");
       function disableLogs() {
         if (0 === disabledDepth) {
           prevLog = console.log;
@@ -4970,7 +4811,6 @@ var require_react_development = __commonJS({
         }
         disabledDepth++;
       }
-      __name(disableLogs, "disableLogs");
       function reenableLogs() {
         disabledDepth--;
         if (0 === disabledDepth) {
@@ -4989,7 +4829,6 @@ var require_react_development = __commonJS({
           "disabledDepth fell below zero. This is a bug in React. Please file an issue."
         );
       }
-      __name(reenableLogs, "reenableLogs");
       function describeBuiltInComponentFrame(name) {
         if (void 0 === prefix)
           try {
@@ -5001,7 +4840,6 @@ var require_react_development = __commonJS({
           }
         return "\n" + prefix + name + suffix;
       }
-      __name(describeBuiltInComponentFrame, "describeBuiltInComponentFrame");
       function describeNativeComponentFrame(fn, construct) {
         if (!fn || reentry) return "";
         var frame = componentFrameCache.get(fn);
@@ -5015,16 +4853,16 @@ var require_react_development = __commonJS({
         disableLogs();
         try {
           var RunInRootFrame = {
-            DetermineComponentFrameRoot: /* @__PURE__ */ __name(function() {
+            DetermineComponentFrameRoot: function() {
               try {
                 if (construct) {
-                  var Fake = /* @__PURE__ */ __name(function() {
+                  var Fake = function() {
                     throw Error();
-                  }, "Fake");
+                  };
                   Object.defineProperty(Fake.prototype, "props", {
-                    set: /* @__PURE__ */ __name(function() {
+                    set: function() {
                       throw Error();
-                    }, "set")
+                    }
                   });
                   if ("object" === typeof Reflect && Reflect.construct) {
                     try {
@@ -5055,7 +4893,7 @@ var require_react_development = __commonJS({
                   return [sample.stack, control.stack];
               }
               return [null, null];
-            }, "DetermineComponentFrameRoot")
+            }
           };
           RunInRootFrame.DetermineComponentFrameRoot.displayName = "DetermineComponentFrameRoot";
           var namePropDescriptor = Object.getOwnPropertyDescriptor(
@@ -5106,7 +4944,6 @@ var require_react_development = __commonJS({
         "function" === typeof fn && componentFrameCache.set(fn, sampleLines);
         return sampleLines;
       }
-      __name(describeNativeComponentFrame, "describeNativeComponentFrame");
       function describeUnknownElementTypeFrameInDEV(type) {
         if (null == type) return "";
         if ("function" === typeof type) {
@@ -5139,12 +4976,10 @@ var require_react_development = __commonJS({
           }
         return "";
       }
-      __name(describeUnknownElementTypeFrameInDEV, "describeUnknownElementTypeFrameInDEV");
       function getOwner() {
         var dispatcher = ReactSharedInternals.A;
         return null === dispatcher ? null : dispatcher.getOwner();
       }
-      __name(getOwner, "getOwner");
       function hasValidKey(config) {
         if (hasOwnProperty.call(config, "key")) {
           var getter = Object.getOwnPropertyDescriptor(config, "key").get;
@@ -5152,7 +4987,6 @@ var require_react_development = __commonJS({
         }
         return void 0 !== config.key;
       }
-      __name(hasValidKey, "hasValidKey");
       function defineKeyPropWarningGetter(props, displayName) {
         function warnAboutAccessingKey() {
           specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
@@ -5160,14 +4994,12 @@ var require_react_development = __commonJS({
             displayName
           ));
         }
-        __name(warnAboutAccessingKey, "warnAboutAccessingKey");
         warnAboutAccessingKey.isReactWarning = true;
         Object.defineProperty(props, "key", {
           get: warnAboutAccessingKey,
           configurable: true
         });
       }
-      __name(defineKeyPropWarningGetter, "defineKeyPropWarningGetter");
       function elementRefGetterWithDeprecationWarning() {
         var componentName = getComponentNameFromType(this.type);
         didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
@@ -5176,7 +5008,6 @@ var require_react_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      __name(elementRefGetterWithDeprecationWarning, "elementRefGetterWithDeprecationWarning");
       function ReactElement(type, key, self2, source, owner, props) {
         self2 = props.ref;
         type = {
@@ -5206,7 +5037,6 @@ var require_react_development = __commonJS({
         Object.freeze && (Object.freeze(type.props), Object.freeze(type));
         return type;
       }
-      __name(ReactElement, "ReactElement");
       function cloneAndReplaceKey(oldElement, newKey) {
         newKey = ReactElement(
           oldElement.type,
@@ -5219,7 +5049,6 @@ var require_react_development = __commonJS({
         newKey._store.validated = oldElement._store.validated;
         return newKey;
       }
-      __name(cloneAndReplaceKey, "cloneAndReplaceKey");
       function validateChildKeys(node, parentType) {
         if ("object" === typeof node && node && node.$$typeof !== REACT_CLIENT_REFERENCE) {
           if (isArrayImpl(node))
@@ -5234,11 +5063,9 @@ var require_react_development = __commonJS({
               isValidElement(node.value) && validateExplicitKey(node.value, parentType);
         }
       }
-      __name(validateChildKeys, "validateChildKeys");
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      __name(isValidElement, "isValidElement");
       function validateExplicitKey(element, parentType) {
         if (element._store && !element._store.validated && null == element.key && (element._store.validated = 1, parentType = getCurrentComponentErrorInfo(parentType), !ownerHasKeyUseWarning[parentType])) {
           ownerHasKeyUseWarning[parentType] = true;
@@ -5258,28 +5085,23 @@ var require_react_development = __commonJS({
           ReactSharedInternals.getCurrentStack = prevGetCurrentStack;
         }
       }
-      __name(validateExplicitKey, "validateExplicitKey");
       function getCurrentComponentErrorInfo(parentType) {
         var info = "", owner = getOwner();
         owner && (owner = getComponentNameFromType(owner.type)) && (info = "\n\nCheck the render method of `" + owner + "`.");
         info || (parentType = getComponentNameFromType(parentType)) && (info = "\n\nCheck the top-level render call using <" + parentType + ">.");
         return info;
       }
-      __name(getCurrentComponentErrorInfo, "getCurrentComponentErrorInfo");
       function escape(key) {
         var escaperLookup = { "=": "=0", ":": "=2" };
         return "$" + key.replace(/[=:]/g, function(match) {
           return escaperLookup[match];
         });
       }
-      __name(escape, "escape");
       function getElementKey(element, index) {
         return "object" === typeof element && null !== element && null != element.key ? (checkKeyStringCoercion(element.key), escape("" + element.key)) : index.toString(36);
       }
-      __name(getElementKey, "getElementKey");
       function noop$1() {
       }
-      __name(noop$1, "noop$1");
       function resolveThenable(thenable) {
         switch (thenable.status) {
           case "fulfilled":
@@ -5303,7 +5125,6 @@ var require_react_development = __commonJS({
         }
         throw thenable;
       }
-      __name(resolveThenable, "resolveThenable");
       function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
         var type = typeof children;
         if ("undefined" === type || "boolean" === type) children = null;
@@ -5385,7 +5206,6 @@ var require_react_development = __commonJS({
         }
         return invokeCallback;
       }
-      __name(mapIntoArray, "mapIntoArray");
       function mapChildren(children, func, context) {
         if (null == children) return children;
         var result = [], count = 0;
@@ -5394,7 +5214,6 @@ var require_react_development = __commonJS({
         });
         return result;
       }
-      __name(mapChildren, "mapChildren");
       function lazyInitializer(payload) {
         if (-1 === payload._status) {
           var ctor = payload._result;
@@ -5421,7 +5240,6 @@ var require_react_development = __commonJS({
           ), ctor.default;
         throw payload._result;
       }
-      __name(lazyInitializer, "lazyInitializer");
       function resolveDispatcher() {
         var dispatcher = ReactSharedInternals.H;
         null === dispatcher && console.error(
@@ -5429,10 +5247,8 @@ var require_react_development = __commonJS({
         );
         return dispatcher;
       }
-      __name(resolveDispatcher, "resolveDispatcher");
       function noop() {
       }
-      __name(noop, "noop");
       function enqueueTask(task) {
         if (null === enqueueTaskImpl)
           try {
@@ -5442,29 +5258,26 @@ var require_react_development = __commonJS({
               "timers"
             ).setImmediate;
           } catch (_err) {
-            enqueueTaskImpl = /* @__PURE__ */ __name(function(callback) {
+            enqueueTaskImpl = function(callback) {
               false === didWarnAboutMessageChannel && (didWarnAboutMessageChannel = true, "undefined" === typeof MessageChannel && console.error(
                 "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning."
               ));
               var channel = new MessageChannel();
               channel.port1.onmessage = callback;
               channel.port2.postMessage(void 0);
-            }, "enqueueTaskImpl");
+            };
           }
         return enqueueTaskImpl(task);
       }
-      __name(enqueueTask, "enqueueTask");
       function aggregateErrors(errors) {
         return 1 < errors.length && "function" === typeof AggregateError ? new AggregateError(errors) : errors[0];
       }
-      __name(aggregateErrors, "aggregateErrors");
       function popActScope(prevActQueue, prevActScopeDepth) {
         prevActScopeDepth !== actScopeDepth - 1 && console.error(
           "You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. "
         );
         actScopeDepth = prevActScopeDepth;
       }
-      __name(popActScope, "popActScope");
       function recursivelyFlushAsyncActWork(returnValue, resolve, reject2) {
         var queue = ReactSharedInternals.actQueue;
         if (null !== queue)
@@ -5481,7 +5294,6 @@ var require_react_development = __commonJS({
           else ReactSharedInternals.actQueue = null;
         0 < ReactSharedInternals.thrownErrors.length ? (queue = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, reject2(queue)) : resolve(returnValue);
       }
-      __name(recursivelyFlushAsyncActWork, "recursivelyFlushAsyncActWork");
       function flushActQueue(queue) {
         if (!isFlushing) {
           isFlushing = true;
@@ -5510,23 +5322,22 @@ var require_react_development = __commonJS({
           }
         }
       }
-      __name(flushActQueue, "flushActQueue");
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
       var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
       Symbol.for("react.provider");
       var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
-        isMounted: /* @__PURE__ */ __name(function() {
+        isMounted: function() {
           return false;
-        }, "isMounted"),
-        enqueueForceUpdate: /* @__PURE__ */ __name(function(publicInstance) {
+        },
+        enqueueForceUpdate: function(publicInstance) {
           warnNoop(publicInstance, "forceUpdate");
-        }, "enqueueForceUpdate"),
-        enqueueReplaceState: /* @__PURE__ */ __name(function(publicInstance) {
+        },
+        enqueueReplaceState: function(publicInstance) {
           warnNoop(publicInstance, "replaceState");
-        }, "enqueueReplaceState"),
-        enqueueSetState: /* @__PURE__ */ __name(function(publicInstance) {
+        },
+        enqueueSetState: function(publicInstance) {
           warnNoop(publicInstance, "setState");
-        }, "enqueueSetState")
+        }
       }, assign2 = Object.assign, emptyObject = {};
       Object.freeze(emptyObject);
       Component.prototype.isReactComponent = {};
@@ -5595,7 +5406,7 @@ var require_react_development = __commonJS({
       } : enqueueTask;
       exports.Children = {
         map: mapChildren,
-        forEach: /* @__PURE__ */ __name(function(children, forEachFunc, forEachContext) {
+        forEach: function(children, forEachFunc, forEachContext) {
           mapChildren(
             children,
             function() {
@@ -5603,26 +5414,26 @@ var require_react_development = __commonJS({
             },
             forEachContext
           );
-        }, "forEach"),
-        count: /* @__PURE__ */ __name(function(children) {
+        },
+        count: function(children) {
           var n2 = 0;
           mapChildren(children, function() {
             n2++;
           });
           return n2;
-        }, "count"),
-        toArray: /* @__PURE__ */ __name(function(children) {
+        },
+        toArray: function(children) {
           return mapChildren(children, function(child) {
             return child;
           }) || [];
-        }, "toArray"),
-        only: /* @__PURE__ */ __name(function(children) {
+        },
+        only: function(children) {
           if (!isValidElement(children))
             throw Error(
               "React.Children.only expected to receive a single React element child."
             );
           return children;
-        }, "only")
+        }
       };
       exports.Component = Component;
       exports.Fragment = REACT_FRAGMENT_TYPE;
@@ -5650,7 +5461,7 @@ var require_react_development = __commonJS({
             ));
           });
           return {
-            then: /* @__PURE__ */ __name(function(resolve, reject2) {
+            then: function(resolve, reject2) {
               didAwaitActCall = true;
               thenable.then(
                 function(returnValue) {
@@ -5683,7 +5494,7 @@ var require_react_development = __commonJS({
                   ), ReactSharedInternals.thrownErrors.length = 0, reject2(error)) : reject2(error);
                 }
               );
-            }, "then")
+            }
           };
         }
         var returnValue$jscomp$0 = result;
@@ -5696,7 +5507,7 @@ var require_react_development = __commonJS({
         if (0 < ReactSharedInternals.thrownErrors.length)
           throw callback = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, callback;
         return {
-          then: /* @__PURE__ */ __name(function(resolve, reject2) {
+          then: function(resolve, reject2) {
             didAwaitActCall = true;
             0 === prevActScopeDepth ? (ReactSharedInternals.actQueue = queue, enqueueTask(function() {
               return recursivelyFlushAsyncActWork(
@@ -5705,7 +5516,7 @@ var require_react_development = __commonJS({
                 reject2
               );
             })) : resolve(returnValue$jscomp$0);
-          }, "then")
+          }
         };
       };
       exports.cache = function(fn) {
@@ -5831,13 +5642,13 @@ var require_react_development = __commonJS({
         Object.defineProperty(elementType, "displayName", {
           enumerable: false,
           configurable: true,
-          get: /* @__PURE__ */ __name(function() {
+          get: function() {
             return ownName;
-          }, "get"),
-          set: /* @__PURE__ */ __name(function(name) {
+          },
+          set: function(name) {
             ownName = name;
             render.name || render.displayName || (Object.defineProperty(render, "name", { value: name }), render.displayName = name);
-          }, "set")
+          }
         });
         return elementType;
       };
@@ -5863,13 +5674,13 @@ var require_react_development = __commonJS({
         Object.defineProperty(compare, "displayName", {
           enumerable: false,
           configurable: true,
-          get: /* @__PURE__ */ __name(function() {
+          get: function() {
             return ownName;
-          }, "get"),
-          set: /* @__PURE__ */ __name(function(name) {
+          },
+          set: function(name) {
             ownName = name;
             type.name || type.displayName || (Object.defineProperty(type, "name", { value: name }), type.displayName = name);
-          }, "set")
+          }
         });
         return compare;
       };
@@ -6016,8 +5827,6 @@ function clsx_m_default() {
 }
 var init_clsx_m = __esm({
   "node_modules/clsx/dist/clsx.m.js"() {
-    __name(toVal, "toVal");
-    __name(clsx_m_default, "default");
   }
 });
 
@@ -6070,11 +5879,9 @@ var require_react_jsx_runtime_development = __commonJS({
           }
         return null;
       }
-      __name(getComponentNameFromType, "getComponentNameFromType");
       function testStringCoercion(value) {
         return "" + value;
       }
-      __name(testStringCoercion, "testStringCoercion");
       function checkKeyStringCoercion(value) {
         try {
           testStringCoercion(value);
@@ -6094,10 +5901,8 @@ var require_react_jsx_runtime_development = __commonJS({
           return testStringCoercion(value);
         }
       }
-      __name(checkKeyStringCoercion, "checkKeyStringCoercion");
       function disabledLog() {
       }
-      __name(disabledLog, "disabledLog");
       function disableLogs() {
         if (0 === disabledDepth) {
           prevLog = console.log;
@@ -6125,7 +5930,6 @@ var require_react_jsx_runtime_development = __commonJS({
         }
         disabledDepth++;
       }
-      __name(disableLogs, "disableLogs");
       function reenableLogs() {
         disabledDepth--;
         if (0 === disabledDepth) {
@@ -6144,7 +5948,6 @@ var require_react_jsx_runtime_development = __commonJS({
           "disabledDepth fell below zero. This is a bug in React. Please file an issue."
         );
       }
-      __name(reenableLogs, "reenableLogs");
       function describeBuiltInComponentFrame(name) {
         if (void 0 === prefix)
           try {
@@ -6156,7 +5959,6 @@ var require_react_jsx_runtime_development = __commonJS({
           }
         return "\n" + prefix + name + suffix;
       }
-      __name(describeBuiltInComponentFrame, "describeBuiltInComponentFrame");
       function describeNativeComponentFrame(fn, construct) {
         if (!fn || reentry) return "";
         var frame = componentFrameCache.get(fn);
@@ -6170,16 +5972,16 @@ var require_react_jsx_runtime_development = __commonJS({
         disableLogs();
         try {
           var RunInRootFrame = {
-            DetermineComponentFrameRoot: /* @__PURE__ */ __name(function() {
+            DetermineComponentFrameRoot: function() {
               try {
                 if (construct) {
-                  var Fake = /* @__PURE__ */ __name(function() {
+                  var Fake = function() {
                     throw Error();
-                  }, "Fake");
+                  };
                   Object.defineProperty(Fake.prototype, "props", {
-                    set: /* @__PURE__ */ __name(function() {
+                    set: function() {
                       throw Error();
-                    }, "set")
+                    }
                   });
                   if ("object" === typeof Reflect && Reflect.construct) {
                     try {
@@ -6210,7 +6012,7 @@ var require_react_jsx_runtime_development = __commonJS({
                   return [sample.stack, control.stack];
               }
               return [null, null];
-            }, "DetermineComponentFrameRoot")
+            }
           };
           RunInRootFrame.DetermineComponentFrameRoot.displayName = "DetermineComponentFrameRoot";
           var namePropDescriptor = Object.getOwnPropertyDescriptor(
@@ -6261,7 +6063,6 @@ var require_react_jsx_runtime_development = __commonJS({
         "function" === typeof fn && componentFrameCache.set(fn, sampleLines);
         return sampleLines;
       }
-      __name(describeNativeComponentFrame, "describeNativeComponentFrame");
       function describeUnknownElementTypeFrameInDEV(type) {
         if (null == type) return "";
         if ("function" === typeof type) {
@@ -6294,12 +6095,10 @@ var require_react_jsx_runtime_development = __commonJS({
           }
         return "";
       }
-      __name(describeUnknownElementTypeFrameInDEV, "describeUnknownElementTypeFrameInDEV");
       function getOwner() {
         var dispatcher = ReactSharedInternals.A;
         return null === dispatcher ? null : dispatcher.getOwner();
       }
-      __name(getOwner, "getOwner");
       function hasValidKey(config) {
         if (hasOwnProperty.call(config, "key")) {
           var getter = Object.getOwnPropertyDescriptor(config, "key").get;
@@ -6307,7 +6106,6 @@ var require_react_jsx_runtime_development = __commonJS({
         }
         return void 0 !== config.key;
       }
-      __name(hasValidKey, "hasValidKey");
       function defineKeyPropWarningGetter(props, displayName) {
         function warnAboutAccessingKey() {
           specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
@@ -6315,14 +6113,12 @@ var require_react_jsx_runtime_development = __commonJS({
             displayName
           ));
         }
-        __name(warnAboutAccessingKey, "warnAboutAccessingKey");
         warnAboutAccessingKey.isReactWarning = true;
         Object.defineProperty(props, "key", {
           get: warnAboutAccessingKey,
           configurable: true
         });
       }
-      __name(defineKeyPropWarningGetter, "defineKeyPropWarningGetter");
       function elementRefGetterWithDeprecationWarning() {
         var componentName = getComponentNameFromType(this.type);
         didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
@@ -6331,7 +6127,6 @@ var require_react_jsx_runtime_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      __name(elementRefGetterWithDeprecationWarning, "elementRefGetterWithDeprecationWarning");
       function ReactElement(type, key, self2, source, owner, props) {
         self2 = props.ref;
         type = {
@@ -6361,7 +6156,6 @@ var require_react_jsx_runtime_development = __commonJS({
         Object.freeze && (Object.freeze(type.props), Object.freeze(type));
         return type;
       }
-      __name(ReactElement, "ReactElement");
       function jsxDEVImpl(type, config, maybeKey, isStaticChildren, source, self2) {
         if ("string" === typeof type || "function" === typeof type || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_OFFSCREEN_TYPE || "object" === typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE$1 || void 0 !== type.getModuleId)) {
           var children = config.children;
@@ -6415,7 +6209,6 @@ var require_react_jsx_runtime_development = __commonJS({
         );
         return ReactElement(type, children, self2, source, getOwner(), maybeKey);
       }
-      __name(jsxDEVImpl, "jsxDEVImpl");
       function validateChildKeys(node, parentType) {
         if ("object" === typeof node && node && node.$$typeof !== REACT_CLIENT_REFERENCE) {
           if (isArrayImpl(node))
@@ -6430,11 +6223,9 @@ var require_react_jsx_runtime_development = __commonJS({
               isValidElement(node.value) && validateExplicitKey(node.value, parentType);
         }
       }
-      __name(validateChildKeys, "validateChildKeys");
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      __name(isValidElement, "isValidElement");
       function validateExplicitKey(element, parentType) {
         if (element._store && !element._store.validated && null == element.key && (element._store.validated = 1, parentType = getCurrentComponentErrorInfo(parentType), !ownerHasKeyUseWarning[parentType])) {
           ownerHasKeyUseWarning[parentType] = true;
@@ -6454,14 +6245,12 @@ var require_react_jsx_runtime_development = __commonJS({
           ReactSharedInternals.getCurrentStack = prevGetCurrentStack;
         }
       }
-      __name(validateExplicitKey, "validateExplicitKey");
       function getCurrentComponentErrorInfo(parentType) {
         var info = "", owner = getOwner();
         owner && (owner = getComponentNameFromType(owner.type)) && (info = "\n\nCheck the render method of `" + owner + "`.");
         info || (parentType = getComponentNameFromType(parentType)) && (info = "\n\nCheck the top-level render call using <" + parentType + ">.");
         return info;
       }
-      __name(getCurrentComponentErrorInfo, "getCurrentComponentErrorInfo");
       var React2 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
       Symbol.for("react.provider");
       var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE$2 = Symbol.for("react.client.reference"), ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, assign2 = Object.assign, REACT_CLIENT_REFERENCE$1 = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
@@ -6504,9 +6293,9 @@ var init_icons = __esm({
     init_clsx_m();
     init_constants();
     import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
-    iconFillColor = /* @__PURE__ */ __name((theme) => "var(--icon-fill-color)", "iconFillColor");
-    handlerColor = /* @__PURE__ */ __name((theme) => theme === THEME.LIGHT ? open_color_default.white : "#1e1e1e", "handlerColor");
-    createIcon = /* @__PURE__ */ __name((d, opts = 512) => {
+    iconFillColor = (theme) => "var(--icon-fill-color)";
+    handlerColor = (theme) => theme === THEME.LIGHT ? open_color_default.white : "#1e1e1e";
+    createIcon = (d, opts = 512) => {
       const {
         width = 512,
         height = width,
@@ -6527,7 +6316,7 @@ var init_icons = __esm({
           children: typeof d === "string" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { fill: "currentColor", d }) : d
         }
       );
-    }, "createIcon");
+    };
     tablerIconProps = {
       width: 24,
       height: 24,
@@ -8683,8 +8472,7 @@ var init_ellipse = __esm({
     init_point();
     init_utils();
     init_vector();
-    __name(ellipse2, "ellipse");
-    ellipseDistanceFromPoint = /* @__PURE__ */ __name((p, ellipse3) => {
+    ellipseDistanceFromPoint = (p, ellipse3) => {
       const { halfWidth, halfHeight, center } = ellipse3;
       const a2 = halfWidth;
       const b2 = halfHeight;
@@ -8718,8 +8506,7 @@ var init_ellipse = __esm({
         b2 * ty * Math.sign(translatedPoint[1])
       ];
       return pointDistance(pointFromVector(translatedPoint), pointFrom(minX, minY));
-    }, "ellipseDistanceFromPoint");
-    __name(ellipseLineIntersectionPoints, "ellipseLineIntersectionPoints");
+    };
   }
 });
 
@@ -9037,8 +8824,6 @@ var init_utils3 = __esm({
     init_element();
     init_math2();
     init_shapes();
-    __name(deconstructRectanguloidElement, "deconstructRectanguloidElement");
-    __name(deconstructDiamondElement, "deconstructDiamondElement");
   }
 });
 
@@ -9056,7 +8841,7 @@ var init_collision2 = __esm({
     init_math2();
     init_ellipse();
     init_utils3();
-    shouldTestInside = /* @__PURE__ */ __name((element) => {
+    shouldTestInside = (element) => {
       if (element.type === "arrow") {
         return false;
       }
@@ -9068,8 +8853,8 @@ var init_collision2 = __esm({
         return isDraggableFromInside && isPathALoop(element.points);
       }
       return isDraggableFromInside || isImageElement(element);
-    }, "shouldTestInside");
-    intersectElementWithLineSegment = /* @__PURE__ */ __name((element, line3, offset = 0) => {
+    };
+    intersectElementWithLineSegment = (element, line3, offset = 0) => {
       switch (element.type) {
         case "rectangle":
         case "image":
@@ -9086,8 +8871,8 @@ var init_collision2 = __esm({
         default:
           throw new Error(`Unimplemented element type '${element.type}'`);
       }
-    }, "intersectElementWithLineSegment");
-    intersectRectanguloidWithLineSegment = /* @__PURE__ */ __name((element, l2, offset = 0) => {
+    };
+    intersectRectanguloidWithLineSegment = (element, l2, offset = 0) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -9121,8 +8906,8 @@ var init_collision2 = __esm({
       ].filter(
         (p, idx, points) => points.findIndex((d) => pointsEqual(p, d)) === idx
       );
-    }, "intersectRectanguloidWithLineSegment");
-    intersectDiamondWithLineSegment = /* @__PURE__ */ __name((element, l2, offset = 0) => {
+    };
+    intersectDiamondWithLineSegment = (element, l2, offset = 0) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -9143,8 +8928,8 @@ var init_collision2 = __esm({
       ].filter(
         (p, idx, points) => points.findIndex((d) => pointsEqual(p, d)) === idx
       );
-    }, "intersectDiamondWithLineSegment");
-    intersectEllipseWithLineSegment = /* @__PURE__ */ __name((element, l2, offset = 0) => {
+    };
+    intersectEllipseWithLineSegment = (element, l2, offset = 0) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -9155,7 +8940,7 @@ var init_collision2 = __esm({
         ellipse2(center, element.width / 2 + offset, element.height / 2 + offset),
         line2(rotatedA, rotatedB)
       ).map((p) => pointRotateRads(p, center, element.angle));
-    }, "intersectEllipseWithLineSegment");
+    };
   }
 });
 
@@ -9167,7 +8952,7 @@ var init_appState = __esm({
     init_colors();
     init_constants();
     defaultExportScale = EXPORT_SCALES.includes(devicePixelRatio) ? devicePixelRatio : 1;
-    getDefaultAppState = /* @__PURE__ */ __name(() => {
+    getDefaultAppState = () => {
       return {
         showWelcomeScreen: false,
         theme: THEME.LIGHT,
@@ -9268,7 +9053,7 @@ var init_appState = __esm({
         croppingElementId: null,
         searchMatches: []
       };
-    }, "getDefaultAppState");
+    };
     APP_STATE_STORAGE_CONF = /* @__PURE__ */ ((config) => config)({
       showWelcomeScreen: { browser: true, export: false, server: false },
       theme: { browser: true, export: false, server: false },
@@ -9376,7 +9161,7 @@ var init_appState = __esm({
       croppingElementId: { browser: false, export: false, server: false },
       searchMatches: { browser: false, export: false, server: false }
     });
-    _clearAppStateForStorage = /* @__PURE__ */ __name((appState, exportType) => {
+    _clearAppStateForStorage = (appState, exportType) => {
       const stateForExport = {};
       for (const key of Object.keys(appState)) {
         const propConfig = APP_STATE_STORAGE_CONF[key];
@@ -9386,21 +9171,21 @@ var init_appState = __esm({
         }
       }
       return stateForExport;
-    }, "_clearAppStateForStorage");
-    cleanAppStateForExport = /* @__PURE__ */ __name((appState) => {
+    };
+    cleanAppStateForExport = (appState) => {
       return _clearAppStateForStorage(appState, "export");
-    }, "cleanAppStateForExport");
-    clearAppStateForDatabase = /* @__PURE__ */ __name((appState) => {
+    };
+    clearAppStateForDatabase = (appState) => {
       return _clearAppStateForStorage(appState, "server");
-    }, "clearAppStateForDatabase");
-    isEraserActive = /* @__PURE__ */ __name(({
+    };
+    isEraserActive = ({
       activeTool
-    }) => activeTool.type === "eraser", "isEraserActive");
-    isHandToolActive = /* @__PURE__ */ __name(({
+    }) => activeTool.type === "eraser";
+    isHandToolActive = ({
       activeTool
     }) => {
       return activeTool.type === "hand";
-    }, "isHandToolActive");
+    };
   }
 });
 
@@ -9458,7 +9243,7 @@ function ee(e8, t4, u) {
   return l(e8, b(t4, u));
 }
 function ce(e8, t4 = {}) {
-  let { size: u = 16, smoothing: x = 0.5, thinning: h = 0.5, simulatePressure: y = true, easing: n2 = /* @__PURE__ */ __name((r2) => r2, "n"), start: f = {}, end: d = {}, last: D = false } = t4, { cap: S = true, easing: j = /* @__PURE__ */ __name((r2) => r2 * (2 - r2), "j") } = f, { cap: q = true, easing: c = /* @__PURE__ */ __name((r2) => --r2 * r2 * r2 + 1, "c") } = d;
+  let { size: u = 16, smoothing: x = 0.5, thinning: h = 0.5, simulatePressure: y = true, easing: n2 = (r2) => r2, start: f = {}, end: d = {}, last: D = false } = t4, { cap: S = true, easing: j = (r2) => r2 * (2 - r2) } = f, { cap: q = true, easing: c = (r2) => --r2 * r2 * r2 + 1 } = d;
   if (e8.length === 0 || u <= 0) return [];
   let p = e8[e8.length - 1].runningLength, g = f.taper === false ? 0 : f.taper === true ? Math.max(u, p) : f.taper, T = d.taper === false ? 0 : d.taper === true ? Math.max(u, p) : d.taper, te = Math.pow(u * x, 2), _ = [], M = [], H = e8.slice(0, 10).reduce((r2, i2) => {
     let o2 = i2.pressure;
@@ -9551,29 +9336,9 @@ function ae(e8, t4 = {}) {
 var C, xe, pe, V;
 var init_esm = __esm({
   "node_modules/perfect-freehand/dist/esm/index.js"() {
-    __name($, "$");
-    __name(se, "se");
-    __name(l, "l");
-    __name(a, "a");
-    __name(b, "b");
-    __name(he, "he");
-    __name(R, "R");
-    __name(B, "B");
-    __name(ue, "ue");
-    __name(ge, "ge");
-    __name(de, "de");
-    __name(A, "A");
-    __name(G, "G");
-    __name(ie, "ie");
-    __name(L, "L");
-    __name(K, "K");
-    __name(ee, "ee");
     ({ min: C, PI: xe } = Math);
     pe = 0.275;
     V = xe + 1e-4;
-    __name(ce, "ce");
-    __name(me, "me");
-    __name(ae, "ae");
   }
 });
 
@@ -9699,15 +9464,9 @@ var init_errors = __esm({
   "packages/excalidraw/errors.ts"() {
     "use strict";
     InvalidFractionalIndexError = class extends Error {
-      static {
-        __name(this, "InvalidFractionalIndexError");
-      }
       code = "ELEMENT_HAS_INVALID_INDEX";
     };
     WorkerUrlNotDefinedError = class extends Error {
-      static {
-        __name(this, "WorkerUrlNotDefinedError");
-      }
       code;
       constructor(message = "Worker URL is not defined!", code = "WORKER_URL_NOT_DEFINED") {
         super(message);
@@ -9716,9 +9475,6 @@ var init_errors = __esm({
       }
     };
     WorkerInTheMainChunkError = class extends Error {
-      static {
-        __name(this, "WorkerInTheMainChunkError");
-      }
       code;
       constructor(message = "Worker has to be in a separate chunk!", code = "WORKER_IN_THE_MAIN_CHUNK") {
         super(message);
@@ -9737,9 +9493,6 @@ var init_workers = __esm({
     init_errors();
     init_utils2();
     IdleWorker = class {
-      static {
-        __name(this, "IdleWorker");
-      }
       instance;
       constructor(workerUrl) {
         this.instance = new Worker(workerUrl, { type: "module" });
@@ -9750,9 +9503,6 @@ var init_workers = __esm({
       debounceTerminate;
     };
     WorkerPool = class _WorkerPool {
-      static {
-        __name(this, "WorkerPool");
-      }
       idleWorkers = /* @__PURE__ */ new Set();
       workerUrl;
       workerTTL;
@@ -9897,9 +9647,9 @@ var init_woff2_bindings = __esm({
         }
         let arguments_ = [];
         let thisProgram = "./this.program";
-        let quit_ = /* @__PURE__ */ __name(function(status, toThrow) {
+        let quit_ = function(status, toThrow) {
           throw toThrow;
-        }, "quit_");
+        };
         let ENVIRONMENT_IS_WEB = false;
         let ENVIRONMENT_IS_WORKER = false;
         let ENVIRONMENT_IS_NODE = false;
@@ -9922,7 +9672,6 @@ var init_woff2_bindings = __esm({
           }
           return scriptDirectory + path;
         }
-        __name(locateFile, "locateFile");
         let read_;
         let readAsync;
         let readBinary;
@@ -9931,7 +9680,7 @@ var init_woff2_bindings = __esm({
           scriptDirectory = `${__dirname}/`;
           let nodeFS;
           let nodePath;
-          read_ = /* @__PURE__ */ __name(function shell_read(filename, binary) {
+          read_ = function shell_read(filename, binary) {
             let ret;
             if (!nodeFS) {
               nodeFS = __require(["fs"].join());
@@ -9942,15 +9691,15 @@ var init_woff2_bindings = __esm({
             filename = nodePath.normalize(filename);
             ret = nodeFS.readFileSync(filename);
             return binary ? ret : ret.toString();
-          }, "shell_read");
-          readBinary = /* @__PURE__ */ __name(function readBinary2(filename) {
+          };
+          readBinary = function readBinary2(filename) {
             let ret = read_(filename, true);
             if (!ret.buffer) {
               ret = new Uint8Array(ret);
             }
             assert(ret.buffer);
             return ret;
-          }, "readBinary");
+          };
           if (process.argv.length > 1) {
             thisProgram = process.argv[1].replace(/\\/g, "/");
           }
@@ -9961,19 +9710,19 @@ var init_woff2_bindings = __esm({
             }
           });
           process.on("unhandledRejection", abort);
-          quit_ = /* @__PURE__ */ __name(function(status) {
+          quit_ = function(status) {
             process.exit(status);
-          }, "quit_");
+          };
           Module2.inspect = function() {
             return "[Emscripten Module object]";
           };
         } else if (ENVIRONMENT_IS_SHELL) {
           if (typeof read != "undefined") {
-            read_ = /* @__PURE__ */ __name(function shell_read(f) {
+            read_ = function shell_read(f) {
               return read(f);
-            }, "shell_read");
+            };
           }
-          readBinary = /* @__PURE__ */ __name(function readBinary2(f) {
+          readBinary = function readBinary2(f) {
             let data;
             if (typeof readbuffer === "function") {
               return new Uint8Array(readbuffer(f));
@@ -9981,16 +9730,16 @@ var init_woff2_bindings = __esm({
             data = read(f, "binary");
             assert(typeof data === "object");
             return data;
-          }, "readBinary");
+          };
           if (typeof scriptArgs != "undefined") {
             arguments_ = scriptArgs;
           } else if (typeof arguments != "undefined") {
             arguments_ = arguments;
           }
           if (typeof quit === "function") {
-            quit_ = /* @__PURE__ */ __name(function(status) {
+            quit_ = function(status) {
               quit(status);
-            }, "quit_");
+            };
           }
           if (typeof print !== "undefined") {
             if (typeof console === "undefined") {
@@ -10016,38 +9765,38 @@ var init_woff2_bindings = __esm({
           } else {
             scriptDirectory = "";
           }
-          read_ = /* @__PURE__ */ __name(function shell_read(url) {
+          read_ = function shell_read(url) {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", url, false);
             xhr.send(null);
             return xhr.responseText;
-          }, "shell_read");
+          };
           if (ENVIRONMENT_IS_WORKER) {
-            readBinary = /* @__PURE__ */ __name(function readBinary2(url) {
+            readBinary = function readBinary2(url) {
               const xhr = new XMLHttpRequest();
               xhr.open("GET", url, false);
               xhr.responseType = "arraybuffer";
               xhr.send(null);
               return new Uint8Array(xhr.response);
-            }, "readBinary");
+            };
           }
-          readAsync = /* @__PURE__ */ __name(function readAsync2(url, onload, onerror) {
+          readAsync = function readAsync2(url, onload, onerror) {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.responseType = "arraybuffer";
-            xhr.onload = /* @__PURE__ */ __name(function xhr_onload() {
+            xhr.onload = function xhr_onload() {
               if (xhr.status == 200 || xhr.status == 0 && xhr.response) {
                 onload(xhr.response);
                 return;
               }
               onerror();
-            }, "xhr_onload");
+            };
             xhr.onerror = onerror;
             xhr.send(null);
-          }, "readAsync");
-          setWindowTitle = /* @__PURE__ */ __name(function(title) {
+          };
+          setWindowTitle = function(title) {
             document.title = title;
-          }, "setWindowTitle");
+          };
         } else {
           throw new Error("environment detection error");
         }
@@ -10150,11 +9899,11 @@ var init_woff2_bindings = __esm({
             }
           });
         }
-        stackSave = stackRestore = stackAlloc = /* @__PURE__ */ __name(function() {
+        stackSave = stackRestore = stackAlloc = function() {
           abort(
             "cannot use the stack before compiled code is ready to run, and has provided stack access"
           );
-        }, "stackAlloc");
+        };
         function warnOnce(text) {
           if (!warnOnce.shown) {
             warnOnce.shown = {};
@@ -10164,7 +9913,6 @@ var init_woff2_bindings = __esm({
             err2(text);
           }
         }
-        __name(warnOnce, "warnOnce");
         const asm2wasmImports = {
           "f64-rem"(x, y) {
             return x % y;
@@ -10175,9 +9923,9 @@ var init_woff2_bindings = __esm({
         };
         const functionPointers = new Array(0);
         let tempRet0 = 0;
-        const setTempRet0 = /* @__PURE__ */ __name(function(value) {
+        const setTempRet0 = function(value) {
           tempRet0 = value;
-        }, "setTempRet0");
+        };
         let wasmBinary;
         if (Module2.wasmBinary) {
           wasmBinary = Module2.wasmBinary;
@@ -10222,7 +9970,6 @@ var init_woff2_bindings = __esm({
             abort(`Assertion failed: ${text}`);
           }
         }
-        __name(assert, "assert");
         function getCFunc(ident) {
           const func = Module2[`_${ident}`];
           assert(
@@ -10231,7 +9978,6 @@ var init_woff2_bindings = __esm({
           );
           return func;
         }
-        __name(getCFunc, "getCFunc");
         function ccall(ident, returnType, argTypes, args, opts) {
           const toC = {
             string(str) {
@@ -10258,7 +10004,6 @@ var init_woff2_bindings = __esm({
             }
             return ret2;
           }
-          __name(convertReturnValue, "convertReturnValue");
           const func = getCFunc(ident);
           const cArgs = [];
           let stack = 0;
@@ -10283,13 +10028,11 @@ var init_woff2_bindings = __esm({
           }
           return ret;
         }
-        __name(ccall, "ccall");
         function cwrap(ident, returnType, argTypes, opts) {
           return function() {
             return ccall(ident, returnType, argTypes, arguments, opts);
           };
         }
-        __name(cwrap, "cwrap");
         const UTF8Decoder = typeof TextDecoder !== "undefined" ? new TextDecoder("utf8") : void 0;
         function UTF8ArrayToString(u8Array, idx, maxBytesToRead) {
           const endIdx = idx + maxBytesToRead;
@@ -10334,11 +10077,9 @@ var init_woff2_bindings = __esm({
           }
           return str;
         }
-        __name(UTF8ArrayToString, "UTF8ArrayToString");
         function UTF8ToString(ptr, maxBytesToRead) {
           return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : "";
         }
-        __name(UTF8ToString, "UTF8ToString");
         function stringToUTF8Array(str, outU8Array, outIdx, maxBytesToWrite) {
           if (!(maxBytesToWrite > 0)) {
             return 0;
@@ -10389,7 +10130,6 @@ var init_woff2_bindings = __esm({
           outU8Array[outIdx] = 0;
           return outIdx - startIdx;
         }
-        __name(stringToUTF8Array, "stringToUTF8Array");
         function stringToUTF8(str, outPtr, maxBytesToWrite) {
           assert(
             typeof maxBytesToWrite == "number",
@@ -10397,7 +10137,6 @@ var init_woff2_bindings = __esm({
           );
           return stringToUTF8Array(str, HEAPU8, outPtr, maxBytesToWrite);
         }
-        __name(stringToUTF8, "stringToUTF8");
         function lengthBytesUTF8(str) {
           let len = 0;
           for (let i2 = 0; i2 < str.length; ++i2) {
@@ -10417,7 +10156,6 @@ var init_woff2_bindings = __esm({
           }
           return len;
         }
-        __name(lengthBytesUTF8, "lengthBytesUTF8");
         const UTF16Decoder = typeof TextDecoder !== "undefined" ? new TextDecoder("utf-16le") : void 0;
         function writeArrayToMemory(array, buffer2) {
           assert(
@@ -10426,7 +10164,6 @@ var init_woff2_bindings = __esm({
           );
           HEAP8.set(array, buffer2);
         }
-        __name(writeArrayToMemory, "writeArrayToMemory");
         const WASM_PAGE_SIZE = 65536;
         function alignUp(x, multiple) {
           if (x % multiple > 0) {
@@ -10434,7 +10171,6 @@ var init_woff2_bindings = __esm({
           }
           return x;
         }
-        __name(alignUp, "alignUp");
         let buffer;
         let HEAP8;
         let HEAPU8;
@@ -10455,7 +10191,6 @@ var init_woff2_bindings = __esm({
           Module2.HEAPF32 = HEAPF32 = new Float32Array(buf);
           Module2.HEAPF64 = HEAPF64 = new Float64Array(buf);
         }
-        __name(updateGlobalBufferAndViews, "updateGlobalBufferAndViews");
         const STACK_BASE = 434112;
         const STACK_MAX = 5676992;
         const DYNAMIC_BASE = 5676992;
@@ -10508,7 +10243,6 @@ var init_woff2_bindings = __esm({
           HEAPU32[(STACK_MAX >> 2) - 2] = 2310721022;
           HEAP32[0] = 1668509029;
         }
-        __name(writeStackCookie, "writeStackCookie");
         function checkStackCookie() {
           const cookie1 = HEAPU32[(STACK_MAX >> 2) - 1];
           const cookie2 = HEAPU32[(STACK_MAX >> 2) - 2];
@@ -10525,13 +10259,11 @@ var init_woff2_bindings = __esm({
             );
           }
         }
-        __name(checkStackCookie, "checkStackCookie");
         function abortStackOverflow(allocSize) {
           abort(
             `Stack overflow! Attempted to allocate ${allocSize} bytes on the stack, but stack has only ${STACK_MAX - stackSave() + allocSize} bytes available!`
           );
         }
-        __name(abortStackOverflow, "abortStackOverflow");
         (function() {
           const h16 = new Int16Array(1);
           const h8 = new Int8Array(h16.buffer);
@@ -10545,7 +10277,6 @@ var init_woff2_bindings = __esm({
             `Invalid function pointer ${ptr} called with signature '${sig}'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this). Build with ASSERTIONS=2 for more info.`
           );
         }
-        __name(abortFnPtrError, "abortFnPtrError");
         function callRuntimeCallbacks(callbacks) {
           while (callbacks.length > 0) {
             const callback = callbacks.shift();
@@ -10565,7 +10296,6 @@ var init_woff2_bindings = __esm({
             }
           }
         }
-        __name(callRuntimeCallbacks, "callRuntimeCallbacks");
         const __ATPRERUN__ = [];
         const __ATINIT__ = [];
         const __ATMAIN__ = [];
@@ -10583,24 +10313,20 @@ var init_woff2_bindings = __esm({
           }
           callRuntimeCallbacks(__ATPRERUN__);
         }
-        __name(preRun, "preRun");
         function initRuntime() {
           checkStackCookie();
           assert(!runtimeInitialized);
           runtimeInitialized = true;
           callRuntimeCallbacks(__ATINIT__);
         }
-        __name(initRuntime, "initRuntime");
         function preMain() {
           checkStackCookie();
           callRuntimeCallbacks(__ATMAIN__);
         }
-        __name(preMain, "preMain");
         function exitRuntime() {
           checkStackCookie();
           runtimeExited = true;
         }
-        __name(exitRuntime, "exitRuntime");
         function postRun() {
           checkStackCookie();
           if (Module2.postRun) {
@@ -10613,15 +10339,12 @@ var init_woff2_bindings = __esm({
           }
           callRuntimeCallbacks(__ATPOSTRUN__);
         }
-        __name(postRun, "postRun");
         function addOnPreRun(cb) {
           __ATPRERUN__.unshift(cb);
         }
-        __name(addOnPreRun, "addOnPreRun");
         function addOnPostRun(cb) {
           __ATPOSTRUN__.unshift(cb);
         }
-        __name(addOnPostRun, "addOnPostRun");
         assert(
           Math.imul,
           "This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
@@ -10674,7 +10397,6 @@ var init_woff2_bindings = __esm({
             err2("warning: run dependency added without ID");
           }
         }
-        __name(addRunDependency, "addRunDependency");
         function removeRunDependency(id) {
           runDependencies--;
           if (Module2.monitorRunDependencies) {
@@ -10698,7 +10420,6 @@ var init_woff2_bindings = __esm({
             }
           }
         }
-        __name(removeRunDependency, "removeRunDependency");
         Module2.preloadedImages = {};
         Module2.preloadedAudios = {};
         function abort(what) {
@@ -10714,7 +10435,6 @@ var init_woff2_bindings = __esm({
           const output = `abort(${what}) at ${stackTrace()}${extra}`;
           throw output;
         }
-        __name(abort, "abort");
         var FS = {
           error() {
             abort(
@@ -10748,9 +10468,9 @@ var init_woff2_bindings = __esm({
           loadFilesFromDB() {
             FS.error();
           },
-          ErrnoError: /* @__PURE__ */ __name(function ErrnoError() {
+          ErrnoError: function ErrnoError() {
             FS.error();
-          }, "ErrnoError")
+          }
         };
         Module2.FS_createDataFile = FS.createDataFile;
         Module2.FS_createPreloadedFile = FS.createPreloadedFile;
@@ -10758,7 +10478,6 @@ var init_woff2_bindings = __esm({
         function isDataURI(filename) {
           return String.prototype.startsWith ? filename.startsWith(dataURIPrefix) : filename.indexOf(dataURIPrefix) === 0;
         }
-        __name(isDataURI, "isDataURI");
         let wasmBinaryFile = "woff2.wasm";
         if (!isDataURI(wasmBinaryFile)) {
           wasmBinaryFile = locateFile(wasmBinaryFile);
@@ -10776,7 +10495,6 @@ var init_woff2_bindings = __esm({
             abort(err3);
           }
         }
-        __name(getBinary, "getBinary");
         function getBinaryPromise() {
           if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) && typeof fetch === "function") {
             return fetch(wasmBinaryFile, { credentials: "same-origin" }).then((response) => {
@@ -10792,7 +10510,6 @@ var init_woff2_bindings = __esm({
             resolve(getBinary());
           });
         }
-        __name(getBinaryPromise, "getBinaryPromise");
         function createWasm() {
           const info = {
             env: asmLibraryArg,
@@ -10806,7 +10523,6 @@ var init_woff2_bindings = __esm({
             Module2.asm = exports;
             removeRunDependency("wasm-instantiate");
           }
-          __name(receiveInstance, "receiveInstance");
           addRunDependency("wasm-instantiate");
           let trueModule = Module2;
           function receiveInstantiatedSource(output) {
@@ -10817,7 +10533,6 @@ var init_woff2_bindings = __esm({
             trueModule = null;
             receiveInstance(output.instance);
           }
-          __name(receiveInstantiatedSource, "receiveInstantiatedSource");
           function instantiateArrayBuffer(receiver) {
             return getBinaryPromise().then((binary) => {
               return WebAssembly.instantiate(binary, info);
@@ -10826,7 +10541,6 @@ var init_woff2_bindings = __esm({
               abort(reason);
             });
           }
-          __name(instantiateArrayBuffer, "instantiateArrayBuffer");
           function instantiateAsync() {
             if (!wasmBinary && typeof WebAssembly.instantiateStreaming === "function" && !isDataURI(wasmBinaryFile) && typeof fetch === "function" && typeof process === "object" && process.versions && process.versions.node && +process.versions.node.split(".")[0] < 17) {
               fetch(wasmBinaryFile, { credentials: "same-origin" }).then(
@@ -10843,7 +10557,6 @@ var init_woff2_bindings = __esm({
               return instantiateArrayBuffer(receiveInstantiatedSource);
             }
           }
-          __name(instantiateAsync, "instantiateAsync");
           if (Module2.instantiateWasm) {
             try {
               const exports = Module2.instantiateWasm(info, receiveInstance);
@@ -10856,7 +10569,6 @@ var init_woff2_bindings = __esm({
           instantiateAsync();
           return {};
         }
-        __name(createWasm, "createWasm");
         Module2.asm = createWasm;
         __ATINIT__.push({
           func() {
@@ -10895,7 +10607,6 @@ var init_woff2_bindings = __esm({
           }
           return func;
         }
-        __name(demangle, "demangle");
         function demangleAll(text) {
           const regex = /\b__Z[\w\d_]+/g;
           return text.replace(regex, (x) => {
@@ -10903,7 +10614,6 @@ var init_woff2_bindings = __esm({
             return x === y ? x : `${y} [${x}]`;
           });
         }
-        __name(demangleAll, "demangleAll");
         function jsStackTrace() {
           let err3 = new Error();
           if (!err3.stack) {
@@ -10918,7 +10628,6 @@ var init_woff2_bindings = __esm({
           }
           return err3.stack.toString();
         }
-        __name(jsStackTrace, "jsStackTrace");
         function stackTrace() {
           let js = jsStackTrace();
           if (Module2.extraStackTrace) {
@@ -10927,7 +10636,6 @@ ${Module2.extraStackTrace()}`;
           }
           return demangleAll(js);
         }
-        __name(stackTrace, "stackTrace");
         function ___assert_fail(condition, filename, line3, func) {
           abort(
             `Assertion failed: ${UTF8ToString(condition)}, at: ${[
@@ -10937,11 +10645,9 @@ ${Module2.extraStackTrace()}`;
             ]}`
           );
         }
-        __name(___assert_fail, "___assert_fail");
         function ___cxa_allocate_exception(size) {
           return _malloc(size);
         }
-        __name(___cxa_allocate_exception, "___cxa_allocate_exception");
         const ___exception_infos = {};
         let ___exception_last = 0;
         function ___cxa_throw(ptr, type, destructor) {
@@ -10962,13 +10668,10 @@ ${Module2.extraStackTrace()}`;
           }
           throw `${ptr} - Exception catching is disabled, this exception cannot be caught. Compile with -s DISABLE_EXCEPTION_CATCHING=0 or DISABLE_EXCEPTION_CATCHING=2 to catch.`;
         }
-        __name(___cxa_throw, "___cxa_throw");
         function ___lock() {
         }
-        __name(___lock, "___lock");
         function ___unlock() {
         }
-        __name(___unlock, "___unlock");
         var PATH = {
           splitPath(filename) {
             const splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
@@ -11094,11 +10797,9 @@ ${Module2.extraStackTrace()}`;
             return e8.errno;
           }
         }
-        __name(_fd_close, "_fd_close");
         function ___wasi_fd_close() {
           return _fd_close.apply(null, arguments);
         }
-        __name(___wasi_fd_close, "___wasi_fd_close");
         function _fd_seek(fd, offset_low, offset_high, whence, newOffset) {
           try {
             abort(
@@ -11112,11 +10813,9 @@ ${Module2.extraStackTrace()}`;
             return e8.errno;
           }
         }
-        __name(_fd_seek, "_fd_seek");
         function ___wasi_fd_seek() {
           return _fd_seek.apply(null, arguments);
         }
-        __name(___wasi_fd_seek, "___wasi_fd_seek");
         function flush_NO_FILESYSTEM() {
           const fflush = Module2._fflush;
           if (fflush) {
@@ -11130,7 +10829,6 @@ ${Module2.extraStackTrace()}`;
             SYSCALLS.printChar(2, 10);
           }
         }
-        __name(flush_NO_FILESYSTEM, "flush_NO_FILESYSTEM");
         function _fd_write(fd, iov, iovcnt, pnum) {
           try {
             let num = 0;
@@ -11151,11 +10849,9 @@ ${Module2.extraStackTrace()}`;
             return e8.errno;
           }
         }
-        __name(_fd_write, "_fd_write");
         function ___wasi_fd_write() {
           return _fd_write.apply(null, arguments);
         }
-        __name(___wasi_fd_write, "___wasi_fd_write");
         function getShiftFromSize(size) {
           switch (size) {
             case 1:
@@ -11170,7 +10866,6 @@ ${Module2.extraStackTrace()}`;
               throw new TypeError(`Unknown type size: ${size}`);
           }
         }
-        __name(getShiftFromSize, "getShiftFromSize");
         function embind_init_charCodes() {
           const codes = new Array(256);
           for (let i2 = 0; i2 < 256; ++i2) {
@@ -11178,7 +10873,6 @@ ${Module2.extraStackTrace()}`;
           }
           embind_charCodes = codes;
         }
-        __name(embind_init_charCodes, "embind_init_charCodes");
         var embind_charCodes = void 0;
         function readLatin1String(ptr) {
           let ret = "";
@@ -11188,7 +10882,6 @@ ${Module2.extraStackTrace()}`;
           }
           return ret;
         }
-        __name(readLatin1String, "readLatin1String");
         const awaitingDependencies = {};
         const registeredTypes = {};
         const typeDependencies = {};
@@ -11205,7 +10898,6 @@ ${Module2.extraStackTrace()}`;
           }
           return name;
         }
-        __name(makeLegalFunctionName, "makeLegalFunctionName");
         function createNamedFunction(name, body) {
           name = makeLegalFunctionName(name);
           return new Function(
@@ -11216,7 +10908,6 @@ ${Module2.extraStackTrace()}`;
 `
           )(body);
         }
-        __name(createNamedFunction, "createNamedFunction");
         function extendError(baseErrorType, errorName) {
           const errorClass = createNamedFunction(errorName, function(message) {
             this.name = errorName;
@@ -11240,17 +10931,14 @@ ${stack.replace(
           };
           return errorClass;
         }
-        __name(extendError, "extendError");
         let BindingError = void 0;
         function throwBindingError(message) {
           throw new BindingError(message);
         }
-        __name(throwBindingError, "throwBindingError");
         let InternalError = void 0;
         function throwInternalError(message) {
           throw new InternalError(message);
         }
-        __name(throwInternalError, "throwInternalError");
         function whenDependentTypesAreResolved(myTypes, dependentTypes, getTypeConverters) {
           myTypes.forEach((type) => {
             typeDependencies[type] = dependentTypes;
@@ -11264,7 +10952,6 @@ ${stack.replace(
               registerType(myTypes[i2], myTypeConverters[i2]);
             }
           }
-          __name(onComplete, "onComplete");
           const typeConverters = new Array(dependentTypes.length);
           const unregisteredTypes = [];
           let registered = 0;
@@ -11289,7 +10976,6 @@ ${stack.replace(
             onComplete(typeConverters);
           }
         }
-        __name(whenDependentTypesAreResolved, "whenDependentTypesAreResolved");
         function registerType(rawType, registeredInstance, options) {
           options = options || {};
           if (!("argPackAdvance" in registeredInstance)) {
@@ -11319,7 +11005,6 @@ ${stack.replace(
             });
           }
         }
-        __name(registerType, "registerType");
         function __embind_register_bool(rawType, name, size, trueValue, falseValue) {
           const shift = getShiftFromSize(size);
           name = readLatin1String(name);
@@ -11348,7 +11033,6 @@ ${stack.replace(
             destructorFunction: null
           });
         }
-        __name(__embind_register_bool, "__embind_register_bool");
         function ClassHandle_isAliasOf(other) {
           if (!(this instanceof ClassHandle)) {
             return false;
@@ -11370,7 +11054,6 @@ ${stack.replace(
           }
           return leftClass === rightClass && left === right;
         }
-        __name(ClassHandle_isAliasOf, "ClassHandle_isAliasOf");
         function shallowCopyInternalPointer(o2) {
           return {
             count: o2.count,
@@ -11382,19 +11065,15 @@ ${stack.replace(
             smartPtrType: o2.smartPtrType
           };
         }
-        __name(shallowCopyInternalPointer, "shallowCopyInternalPointer");
         function throwInstanceAlreadyDeleted(obj) {
           function getInstanceTypeName(handle) {
             return handle.$$.ptrType.registeredClass.name;
           }
-          __name(getInstanceTypeName, "getInstanceTypeName");
           throwBindingError(`${getInstanceTypeName(obj)} instance already deleted`);
         }
-        __name(throwInstanceAlreadyDeleted, "throwInstanceAlreadyDeleted");
         let finalizationGroup = false;
         function detachFinalizer(handle) {
         }
-        __name(detachFinalizer, "detachFinalizer");
         function runDestructor($$) {
           if ($$.smartPtr) {
             $$.smartPtrType.rawDestructor($$.smartPtr);
@@ -11402,7 +11081,6 @@ ${stack.replace(
             $$.ptrType.registeredClass.rawDestructor($$.ptr);
           }
         }
-        __name(runDestructor, "runDestructor");
         function releaseClassHandle($$) {
           $$.count.value -= 1;
           const toDelete = 0 === $$.count.value;
@@ -11410,12 +11088,11 @@ ${stack.replace(
             runDestructor($$);
           }
         }
-        __name(releaseClassHandle, "releaseClassHandle");
         function attachFinalizer(handle) {
           if ("undefined" === typeof FinalizationGroup) {
-            attachFinalizer = /* @__PURE__ */ __name(function(handle2) {
+            attachFinalizer = function(handle2) {
               return handle2;
-            }, "attachFinalizer");
+            };
             return handle;
           }
           finalizationGroup = new FinalizationGroup((iter) => {
@@ -11428,16 +11105,15 @@ ${stack.replace(
               }
             }
           });
-          attachFinalizer = /* @__PURE__ */ __name(function(handle2) {
+          attachFinalizer = function(handle2) {
             finalizationGroup.register(handle2, handle2.$$, handle2.$$);
             return handle2;
-          }, "attachFinalizer");
-          detachFinalizer = /* @__PURE__ */ __name(function(handle2) {
+          };
+          detachFinalizer = function(handle2) {
             finalizationGroup.unregister(handle2.$$);
-          }, "detachFinalizer");
+          };
           return attachFinalizer(handle);
         }
-        __name(attachFinalizer, "attachFinalizer");
         function ClassHandle_clone() {
           if (!this.$$.ptr) {
             throwInstanceAlreadyDeleted(this);
@@ -11455,7 +11131,6 @@ ${stack.replace(
           clone3.$$.deleteScheduled = false;
           return clone3;
         }
-        __name(ClassHandle_clone, "ClassHandle_clone");
         function ClassHandle_delete() {
           if (!this.$$.ptr) {
             throwInstanceAlreadyDeleted(this);
@@ -11470,11 +11145,9 @@ ${stack.replace(
             this.$$.ptr = void 0;
           }
         }
-        __name(ClassHandle_delete, "ClassHandle_delete");
         function ClassHandle_isDeleted() {
           return !this.$$.ptr;
         }
-        __name(ClassHandle_isDeleted, "ClassHandle_isDeleted");
         let delayFunction = void 0;
         const deletionQueue = [];
         function flushPendingDeletes() {
@@ -11484,7 +11157,6 @@ ${stack.replace(
             obj.delete();
           }
         }
-        __name(flushPendingDeletes, "flushPendingDeletes");
         function ClassHandle_deleteLater() {
           if (!this.$$.ptr) {
             throwInstanceAlreadyDeleted(this);
@@ -11499,7 +11171,6 @@ ${stack.replace(
           this.$$.deleteScheduled = true;
           return this;
         }
-        __name(ClassHandle_deleteLater, "ClassHandle_deleteLater");
         function init_ClassHandle() {
           ClassHandle.prototype.isAliasOf = ClassHandle_isAliasOf;
           ClassHandle.prototype.clone = ClassHandle_clone;
@@ -11507,10 +11178,8 @@ ${stack.replace(
           ClassHandle.prototype.isDeleted = ClassHandle_isDeleted;
           ClassHandle.prototype.deleteLater = ClassHandle_deleteLater;
         }
-        __name(init_ClassHandle, "init_ClassHandle");
         function ClassHandle() {
         }
-        __name(ClassHandle, "ClassHandle");
         const registeredPointers = {};
         function ensureOverloadTable(proto, methodName, humanName) {
           if (void 0 === proto[methodName].overloadTable) {
@@ -11530,7 +11199,6 @@ ${stack.replace(
             proto[methodName].overloadTable[prevFunc.argCount] = prevFunc;
           }
         }
-        __name(ensureOverloadTable, "ensureOverloadTable");
         function exposePublicSymbol(name, value, numArguments) {
           if (Module2.hasOwnProperty(name)) {
             if (void 0 === numArguments || void 0 !== Module2[name].overloadTable && void 0 !== Module2[name].overloadTable[numArguments]) {
@@ -11550,7 +11218,6 @@ ${stack.replace(
             }
           }
         }
-        __name(exposePublicSymbol, "exposePublicSymbol");
         function RegisteredClass(name, constructor, instancePrototype, rawDestructor, baseClass, getActualType, upcast, downcast) {
           this.name = name;
           this.constructor = constructor;
@@ -11562,7 +11229,6 @@ ${stack.replace(
           this.downcast = downcast;
           this.pureVirtualFunctions = [];
         }
-        __name(RegisteredClass, "RegisteredClass");
         function upcastPointer(ptr, ptrClass, desiredClass) {
           while (ptrClass !== desiredClass) {
             if (!ptrClass.upcast) {
@@ -11575,7 +11241,6 @@ ${stack.replace(
           }
           return ptr;
         }
-        __name(upcastPointer, "upcastPointer");
         function constNoSmartPtrRawPointerToWireType(destructors, handle) {
           if (handle === null) {
             if (this.isReference) {
@@ -11601,7 +11266,6 @@ ${stack.replace(
           );
           return ptr;
         }
-        __name(constNoSmartPtrRawPointerToWireType, "constNoSmartPtrRawPointerToWireType");
         function genericPointerToWireType(destructors, handle) {
           let ptr;
           if (handle === null) {
@@ -11673,7 +11337,6 @@ ${stack.replace(
           }
           return ptr;
         }
-        __name(genericPointerToWireType, "genericPointerToWireType");
         function nonConstNoSmartPtrRawPointerToWireType(destructors, handle) {
           if (handle === null) {
             if (this.isReference) {
@@ -11704,30 +11367,25 @@ ${stack.replace(
           );
           return ptr;
         }
-        __name(nonConstNoSmartPtrRawPointerToWireType, "nonConstNoSmartPtrRawPointerToWireType");
         function simpleReadValueFromPointer(pointer) {
           return this.fromWireType(HEAPU32[pointer >> 2]);
         }
-        __name(simpleReadValueFromPointer, "simpleReadValueFromPointer");
         function RegisteredPointer_getPointee(ptr) {
           if (this.rawGetPointee) {
             ptr = this.rawGetPointee(ptr);
           }
           return ptr;
         }
-        __name(RegisteredPointer_getPointee, "RegisteredPointer_getPointee");
         function RegisteredPointer_destructor(ptr) {
           if (this.rawDestructor) {
             this.rawDestructor(ptr);
           }
         }
-        __name(RegisteredPointer_destructor, "RegisteredPointer_destructor");
         function RegisteredPointer_deleteObject(handle) {
           if (handle !== null) {
             handle.delete();
           }
         }
-        __name(RegisteredPointer_deleteObject, "RegisteredPointer_deleteObject");
         function downcastPointer(ptr, ptrClass, desiredClass) {
           if (ptrClass === desiredClass) {
             return ptr;
@@ -11741,11 +11399,9 @@ ${stack.replace(
           }
           return desiredClass.downcast(rv);
         }
-        __name(downcastPointer, "downcastPointer");
         function getInheritedInstanceCount() {
           return Object.keys(registeredInstances).length;
         }
-        __name(getInheritedInstanceCount, "getInheritedInstanceCount");
         function getLiveInheritedInstances() {
           const rv = [];
           for (const k in registeredInstances) {
@@ -11755,21 +11411,18 @@ ${stack.replace(
           }
           return rv;
         }
-        __name(getLiveInheritedInstances, "getLiveInheritedInstances");
         function setDelayFunction(fn) {
           delayFunction = fn;
           if (deletionQueue.length && delayFunction) {
             delayFunction(flushPendingDeletes);
           }
         }
-        __name(setDelayFunction, "setDelayFunction");
         function init_embind() {
           Module2.getInheritedInstanceCount = getInheritedInstanceCount;
           Module2.getLiveInheritedInstances = getLiveInheritedInstances;
           Module2.flushPendingDeletes = flushPendingDeletes;
           Module2.setDelayFunction = setDelayFunction;
         }
-        __name(init_embind, "init_embind");
         var registeredInstances = {};
         function getBasestPointer(class_, ptr) {
           if (ptr === void 0) {
@@ -11781,12 +11434,10 @@ ${stack.replace(
           }
           return ptr;
         }
-        __name(getBasestPointer, "getBasestPointer");
         function getInheritedInstance(class_, ptr) {
           ptr = getBasestPointer(class_, ptr);
           return registeredInstances[ptr];
         }
-        __name(getInheritedInstance, "getInheritedInstance");
         function makeClassHandle(prototype, record) {
           if (!record.ptrType || !record.ptr) {
             throwInternalError("makeClassHandle requires ptr and ptrType");
@@ -11801,7 +11452,6 @@ ${stack.replace(
             Object.create(prototype, { $$: { value: record } })
           );
         }
-        __name(makeClassHandle, "makeClassHandle");
         function RegisteredPointer_fromWireType(ptr) {
           const rawPointer = this.getPointee(ptr);
           if (!rawPointer) {
@@ -11836,7 +11486,6 @@ ${stack.replace(
               ptr
             });
           }
-          __name(makeDefaultHandle, "makeDefaultHandle");
           const actualType = this.registeredClass.getActualType(rawPointer);
           const registeredPointerRecord = registeredPointers[actualType];
           if (!registeredPointerRecord) {
@@ -11869,7 +11518,6 @@ ${stack.replace(
             ptr: dp
           });
         }
-        __name(RegisteredPointer_fromWireType, "RegisteredPointer_fromWireType");
         function init_RegisteredPointer() {
           RegisteredPointer.prototype.getPointee = RegisteredPointer_getPointee;
           RegisteredPointer.prototype.destructor = RegisteredPointer_destructor;
@@ -11878,7 +11526,6 @@ ${stack.replace(
           RegisteredPointer.prototype.deleteObject = RegisteredPointer_deleteObject;
           RegisteredPointer.prototype.fromWireType = RegisteredPointer_fromWireType;
         }
-        __name(init_RegisteredPointer, "init_RegisteredPointer");
         function RegisteredPointer(name, registeredClass, isReference, isConst, isSmartPointer, pointeeType, sharingPolicy, rawGetPointee, rawConstructor, rawShare, rawDestructor) {
           this.name = name;
           this.registeredClass = registeredClass;
@@ -11903,7 +11550,6 @@ ${stack.replace(
             this.toWireType = genericPointerToWireType;
           }
         }
-        __name(RegisteredPointer, "RegisteredPointer");
         function replacePublicSymbol(name, value, numArguments) {
           if (!Module2.hasOwnProperty(name)) {
             throwInternalError("Replacing nonexistant public symbol");
@@ -11915,7 +11561,6 @@ ${stack.replace(
             Module2[name].argCount = numArguments;
           }
         }
-        __name(replacePublicSymbol, "replacePublicSymbol");
         function embind__requireFunction(signature, rawFunction) {
           signature = readLatin1String(signature);
           function makeDynCaller(dynCall) {
@@ -11934,7 +11579,6 @@ ${stack.replace(
               rawFunction
             );
           }
-          __name(makeDynCaller, "makeDynCaller");
           let fp;
           if (Module2[`FUNCTION_TABLE_${signature}`] !== void 0) {
             fp = Module2[`FUNCTION_TABLE_${signature}`][rawFunction];
@@ -11957,7 +11601,6 @@ ${stack.replace(
           }
           return fp;
         }
-        __name(embind__requireFunction, "embind__requireFunction");
         let UnboundTypeError = void 0;
         function getTypeName(type) {
           const ptr = ___getTypeName(type);
@@ -11965,7 +11608,6 @@ ${stack.replace(
           _free(ptr);
           return rv;
         }
-        __name(getTypeName, "getTypeName");
         function throwUnboundTypeError(message, types) {
           const unboundTypes = [];
           const seen = {};
@@ -11983,13 +11625,11 @@ ${stack.replace(
             unboundTypes.push(type);
             seen[type] = true;
           }
-          __name(visit, "visit");
           types.forEach(visit);
           throw new UnboundTypeError(
             `${message}: ${unboundTypes.map(getTypeName).join([", "])}`
           );
         }
-        __name(throwUnboundTypeError, "throwUnboundTypeError");
         function __embind_register_class(rawType, rawPointerType, rawConstPointerType, baseClassRawType, getActualTypeSignature, getActualType, upcastSignature, upcast, downcastSignature, downcast, name, destructorSignature, rawDestructor) {
           name = readLatin1String(name);
           getActualType = embind__requireFunction(
@@ -12089,7 +11729,6 @@ ${stack.replace(
             }
           );
         }
-        __name(__embind_register_class, "__embind_register_class");
         function heap32VectorToArray(count, firstElement) {
           const array = [];
           for (let i2 = 0; i2 < count; i2++) {
@@ -12097,7 +11736,6 @@ ${stack.replace(
           }
           return array;
         }
-        __name(heap32VectorToArray, "heap32VectorToArray");
         function runDestructors(destructors) {
           while (destructors.length) {
             const ptr = destructors.pop();
@@ -12105,7 +11743,6 @@ ${stack.replace(
             del(ptr);
           }
         }
-        __name(runDestructors, "runDestructors");
         function __embind_register_class_constructor(rawClassType, argCount, rawArgTypesAddr, invokerSignature, invoker, rawConstructor) {
           const rawArgTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
           invoker = embind__requireFunction(invokerSignature, invoker);
@@ -12120,14 +11757,14 @@ ${stack.replace(
                 `Cannot register multiple constructors with identical number of parameters (${argCount - 1}) for class '${classType.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`
               );
             }
-            classType.registeredClass.constructor_body[argCount - 1] = /* @__PURE__ */ __name(function unboundTypeHandler() {
+            classType.registeredClass.constructor_body[argCount - 1] = function unboundTypeHandler() {
               throwUnboundTypeError(
                 `Cannot construct ${classType.name} due to unbound types`,
                 rawArgTypes
               );
-            }, "unboundTypeHandler");
+            };
             whenDependentTypesAreResolved([], rawArgTypes, (argTypes) => {
-              classType.registeredClass.constructor_body[argCount - 1] = /* @__PURE__ */ __name(function constructor_body() {
+              classType.registeredClass.constructor_body[argCount - 1] = function constructor_body() {
                 if (arguments.length !== argCount - 1) {
                   throwBindingError(
                     `${humanName} called with ${arguments.length} arguments, expected ${argCount - 1}`
@@ -12142,13 +11779,12 @@ ${stack.replace(
                 const ptr = invoker.apply(null, args);
                 runDestructors(destructors);
                 return argTypes[0].fromWireType(ptr);
-              }, "constructor_body");
+              };
               return [];
             });
             return [];
           });
         }
-        __name(__embind_register_class_constructor, "__embind_register_class_constructor");
         function new_(constructor, argumentList) {
           if (!(constructor instanceof Function)) {
             throw new TypeError(
@@ -12165,7 +11801,6 @@ ${stack.replace(
           const r2 = constructor.apply(obj, argumentList);
           return r2 instanceof Object ? r2 : obj;
         }
-        __name(new_, "new_");
         function craftInvokerFunction(humanName, argTypes, classType, cppInvokerFunc, cppTargetFunc) {
           const argCount = argTypes.length;
           if (argCount < 2) {
@@ -12250,7 +11885,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           const invokerFunction = new_(Function, args1).apply(null, args2);
           return invokerFunction;
         }
-        __name(craftInvokerFunction, "craftInvokerFunction");
         function __embind_register_class_function(rawClassType, methodName, argCount, rawArgTypesAddr, invokerSignature, rawInvoker, context, isPureVirtual) {
           const rawArgTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
           methodName = readLatin1String(methodName);
@@ -12267,7 +11901,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
                 rawArgTypes
               );
             }
-            __name(unboundTypesHandler, "unboundTypesHandler");
             const proto = classType.registeredClass.instancePrototype;
             const method = proto[methodName];
             if (void 0 === method || void 0 === method.overloadTable && method.className !== classType.name && method.argCount === argCount - 2) {
@@ -12297,7 +11930,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             return [];
           });
         }
-        __name(__embind_register_class_function, "__embind_register_class_function");
         const emval_free_list = [];
         const emval_handle_array = [
           {},
@@ -12312,7 +11944,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             emval_free_list.push(handle);
           }
         }
-        __name(__emval_decref, "__emval_decref");
         function count_emval_handles() {
           let count = 0;
           for (let i2 = 5; i2 < emval_handle_array.length; ++i2) {
@@ -12322,7 +11953,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           return count;
         }
-        __name(count_emval_handles, "count_emval_handles");
         function get_first_emval() {
           for (let i2 = 5; i2 < emval_handle_array.length; ++i2) {
             if (emval_handle_array[i2] !== void 0) {
@@ -12331,12 +11961,10 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           return null;
         }
-        __name(get_first_emval, "get_first_emval");
         function init_emval() {
           Module2.count_emval_handles = count_emval_handles;
           Module2.get_first_emval = get_first_emval;
         }
-        __name(init_emval, "init_emval");
         function __emval_register(value) {
           switch (value) {
             case void 0: {
@@ -12358,7 +11986,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             }
           }
         }
-        __name(__emval_register, "__emval_register");
         function __embind_register_emval(rawType, name) {
           name = readLatin1String(name);
           registerType(rawType, {
@@ -12376,7 +12003,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             destructorFunction: null
           });
         }
-        __name(__embind_register_emval, "__embind_register_emval");
         function _embind_repr(v) {
           if (v === null) {
             return "null";
@@ -12387,7 +12013,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           return `${v}`;
         }
-        __name(_embind_repr, "_embind_repr");
         function floatReadValueFromPointer(name, shift) {
           switch (shift) {
             case 2:
@@ -12402,7 +12027,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
               throw new TypeError(`Unknown float type: ${name}`);
           }
         }
-        __name(floatReadValueFromPointer, "floatReadValueFromPointer");
         function __embind_register_float(rawType, name, size) {
           const shift = getShiftFromSize(size);
           name = readLatin1String(name);
@@ -12424,7 +12048,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             destructorFunction: null
           });
         }
-        __name(__embind_register_float, "__embind_register_float");
         function __embind_register_function(name, argCount, rawArgTypesAddr, signature, rawInvoker, fn) {
           const argTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
           name = readLatin1String(name);
@@ -12449,46 +12072,44 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             return [];
           });
         }
-        __name(__embind_register_function, "__embind_register_function");
         function integerReadValueFromPointer(name, shift, signed) {
           switch (shift) {
             case 0:
-              return signed ? /* @__PURE__ */ __name(function readS8FromPointer(pointer) {
+              return signed ? function readS8FromPointer(pointer) {
                 return HEAP8[pointer];
-              }, "readS8FromPointer") : /* @__PURE__ */ __name(function readU8FromPointer(pointer) {
+              } : function readU8FromPointer(pointer) {
                 return HEAPU8[pointer];
-              }, "readU8FromPointer");
+              };
             case 1:
-              return signed ? /* @__PURE__ */ __name(function readS16FromPointer(pointer) {
+              return signed ? function readS16FromPointer(pointer) {
                 return HEAP16[pointer >> 1];
-              }, "readS16FromPointer") : /* @__PURE__ */ __name(function readU16FromPointer(pointer) {
+              } : function readU16FromPointer(pointer) {
                 return HEAPU16[pointer >> 1];
-              }, "readU16FromPointer");
+              };
             case 2:
-              return signed ? /* @__PURE__ */ __name(function readS32FromPointer(pointer) {
+              return signed ? function readS32FromPointer(pointer) {
                 return HEAP32[pointer >> 2];
-              }, "readS32FromPointer") : /* @__PURE__ */ __name(function readU32FromPointer(pointer) {
+              } : function readU32FromPointer(pointer) {
                 return HEAPU32[pointer >> 2];
-              }, "readU32FromPointer");
+              };
             default:
               throw new TypeError(`Unknown integer type: ${name}`);
           }
         }
-        __name(integerReadValueFromPointer, "integerReadValueFromPointer");
         function __embind_register_integer(primitiveType, name, size, minRange, maxRange) {
           name = readLatin1String(name);
           if (maxRange === -1) {
             maxRange = 4294967295;
           }
           const shift = getShiftFromSize(size);
-          let fromWireType = /* @__PURE__ */ __name(function(value) {
+          let fromWireType = function(value) {
             return value;
-          }, "fromWireType");
+          };
           if (minRange === 0) {
             const bitshift = 32 - 8 * size;
-            fromWireType = /* @__PURE__ */ __name(function(value) {
+            fromWireType = function(value) {
               return value << bitshift >>> bitshift;
-            }, "fromWireType");
+            };
           }
           const isUnsignedType = name.indexOf("unsigned") != -1;
           registerType(primitiveType, {
@@ -12518,7 +12139,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             destructorFunction: null
           });
         }
-        __name(__embind_register_integer, "__embind_register_integer");
         function __embind_register_memory_view(rawType, dataTypeIndex, name) {
           const typeMapping = [
             Int8Array,
@@ -12538,7 +12158,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             const data = heap[handle + 1];
             return new TA(heap.buffer, data, size);
           }
-          __name(decodeMemoryView, "decodeMemoryView");
           name = readLatin1String(name);
           registerType(
             rawType,
@@ -12551,7 +12170,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             { ignoreDuplicateRegistrations: true }
           );
         }
-        __name(__embind_register_memory_view, "__embind_register_memory_view");
         function __embind_register_std_string(rawType, name) {
           name = readLatin1String(name);
           const stdStringIsUTF8 = name === "std::string";
@@ -12604,13 +12222,13 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
                 throwBindingError("Cannot pass non-string to std::string");
               }
               if (stdStringIsUTF8 && valueIsOfTypeString) {
-                getLength = /* @__PURE__ */ __name(function() {
+                getLength = function() {
                   return lengthBytesUTF8(value);
-                }, "getLength");
+                };
               } else {
-                getLength = /* @__PURE__ */ __name(function() {
+                getLength = function() {
                   return value.length;
-                }, "getLength");
+                };
               }
               const length = getLength();
               const ptr = _malloc(4 + length + 1);
@@ -12645,20 +12263,19 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             }
           });
         }
-        __name(__embind_register_std_string, "__embind_register_std_string");
         function __embind_register_std_wstring(rawType, charSize, name) {
           name = readLatin1String(name);
           let getHeap;
           let shift;
           if (charSize === 2) {
-            getHeap = /* @__PURE__ */ __name(function() {
+            getHeap = function() {
               return HEAPU16;
-            }, "getHeap");
+            };
             shift = 1;
           } else if (charSize === 4) {
-            getHeap = /* @__PURE__ */ __name(function() {
+            getHeap = function() {
               return HEAPU32;
-            }, "getHeap");
+            };
             shift = 2;
           }
           registerType(rawType, {
@@ -12695,7 +12312,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             }
           });
         }
-        __name(__embind_register_std_wstring, "__embind_register_std_wstring");
         function __embind_register_void(rawType, name) {
           name = readLatin1String(name);
           registerType(rawType, {
@@ -12710,13 +12326,11 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             }
           });
         }
-        __name(__embind_register_void, "__embind_register_void");
         function __emval_incref(handle) {
           if (handle > 4) {
             emval_handle_array[handle].refcount += 1;
           }
         }
-        __name(__emval_incref, "__emval_incref");
         function requireRegisteredType(rawType, humanName) {
           const impl = registeredTypes[rawType];
           if (void 0 === impl) {
@@ -12726,21 +12340,17 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           return impl;
         }
-        __name(requireRegisteredType, "requireRegisteredType");
         function __emval_take_value(type, argv) {
           type = requireRegisteredType(type, "_emval_take_value");
           const v = type.readValueFromPointer(argv);
           return __emval_register(v);
         }
-        __name(__emval_take_value, "__emval_take_value");
         function _abort() {
           abort();
         }
-        __name(_abort, "_abort");
         function _emscripten_get_heap_size() {
           return HEAP8.length;
         }
-        __name(_emscripten_get_heap_size, "_emscripten_get_heap_size");
         function emscripten_realloc_buffer(size) {
           try {
             wasmMemory.grow(size - buffer.byteLength + 65535 >> 16);
@@ -12752,7 +12362,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             );
           }
         }
-        __name(emscripten_realloc_buffer, "emscripten_realloc_buffer");
         function _emscripten_resize_heap(requestedSize) {
           const oldSize = _emscripten_get_heap_size();
           assert(requestedSize > oldSize);
@@ -12790,27 +12399,21 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           return true;
         }
-        __name(_emscripten_resize_heap, "_emscripten_resize_heap");
         function _exit(status) {
           exit(status);
         }
-        __name(_exit, "_exit");
         function _llvm_log2_f32(x) {
           return Math.log(x) / Math.LN2;
         }
-        __name(_llvm_log2_f32, "_llvm_log2_f32");
         function _llvm_log2_f64(a0) {
           return _llvm_log2_f32(a0);
         }
-        __name(_llvm_log2_f64, "_llvm_log2_f64");
         function _llvm_trap() {
           abort("trap!");
         }
-        __name(_llvm_trap, "_llvm_trap");
         function _emscripten_memcpy_big(dest, src, num) {
           HEAPU8.set(HEAPU8.subarray(src, src + num), dest);
         }
-        __name(_emscripten_memcpy_big, "_emscripten_memcpy_big");
         embind_init_charCodes();
         BindingError = Module2.BindingError = extendError(Error, "BindingError");
         InternalError = Module2.InternalError = extendError(Error, "InternalError");
@@ -12825,59 +12428,45 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
         function nullFunc_i(x) {
           abortFnPtrError(x, "i");
         }
-        __name(nullFunc_i, "nullFunc_i");
         function nullFunc_ii(x) {
           abortFnPtrError(x, "ii");
         }
-        __name(nullFunc_ii, "nullFunc_ii");
         function nullFunc_iidiiii(x) {
           abortFnPtrError(x, "iidiiii");
         }
-        __name(nullFunc_iidiiii, "nullFunc_iidiiii");
         function nullFunc_iii(x) {
           abortFnPtrError(x, "iii");
         }
-        __name(nullFunc_iii, "nullFunc_iii");
         function nullFunc_iiii(x) {
           abortFnPtrError(x, "iiii");
         }
-        __name(nullFunc_iiii, "nullFunc_iiii");
         function nullFunc_iiiii(x) {
           abortFnPtrError(x, "iiiii");
         }
-        __name(nullFunc_iiiii, "nullFunc_iiiii");
         function nullFunc_jiji(x) {
           abortFnPtrError(x, "jiji");
         }
-        __name(nullFunc_jiji, "nullFunc_jiji");
         function nullFunc_v(x) {
           abortFnPtrError(x, "v");
         }
-        __name(nullFunc_v, "nullFunc_v");
         function nullFunc_vi(x) {
           abortFnPtrError(x, "vi");
         }
-        __name(nullFunc_vi, "nullFunc_vi");
         function nullFunc_vii(x) {
           abortFnPtrError(x, "vii");
         }
-        __name(nullFunc_vii, "nullFunc_vii");
         function nullFunc_viii(x) {
           abortFnPtrError(x, "viii");
         }
-        __name(nullFunc_viii, "nullFunc_viii");
         function nullFunc_viiii(x) {
           abortFnPtrError(x, "viiii");
         }
-        __name(nullFunc_viiii, "nullFunc_viiii");
         function nullFunc_viiiii(x) {
           abortFnPtrError(x, "viiiii");
         }
-        __name(nullFunc_viiiii, "nullFunc_viiiii");
         function nullFunc_viiiiii(x) {
           abortFnPtrError(x, "viiiiii");
         }
-        __name(nullFunc_viiiiii, "nullFunc_viiiiii");
         const asmGlobalArg = {};
         var asmLibraryArg = {
           ___assert_fail,
@@ -13768,15 +13357,14 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           this.message = `Program terminated with exit(${status})`;
           this.status = status;
         }
-        __name(ExitStatus, "ExitStatus");
-        dependenciesFulfilled = /* @__PURE__ */ __name(function runCaller() {
+        dependenciesFulfilled = function runCaller() {
           if (!calledRun) {
             run();
           }
           if (!calledRun) {
             dependenciesFulfilled = runCaller;
           }
-        }, "runCaller");
+        };
         function run(args) {
           args = args || arguments_;
           if (runDependencies > 0) {
@@ -13806,7 +13394,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             );
             postRun();
           }
-          __name(doRun, "doRun");
           if (Module2.setStatus) {
             Module2.setStatus("Running...");
             setTimeout(() => {
@@ -13820,15 +13407,14 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           checkStackCookie();
         }
-        __name(run, "run");
         Module2.run = run;
         function checkUnflushedContent() {
           const print2 = out;
           const printErr2 = err2;
           let has = false;
-          out = err2 = /* @__PURE__ */ __name(function(x) {
+          out = err2 = function(x) {
             has = true;
-          }, "err");
+          };
           try {
             const flush = flush_NO_FILESYSTEM;
             if (flush) {
@@ -13847,7 +13433,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
             );
           }
         }
-        __name(checkUnflushedContent, "checkUnflushedContent");
         function exit(status, implicit) {
           checkUnflushedContent();
           if (implicit && noExitRuntime && status === 0) {
@@ -13869,7 +13454,6 @@ throwBindingError('function ${humanName} called with ' + arguments.length + ' ar
           }
           quit_(status, new ExitStatus(status));
         }
-        __name(exit, "exit");
         if (Module2.preInit) {
           if (typeof Module2.preInit == "function") {
             Module2.preInit = [Module2.preInit];
@@ -13902,20 +13486,19 @@ var init_woff2_loader = __esm({
     init_woff2_wasm();
     init_woff2_bindings();
     loadedWasm = null;
-    __name(convertFromVecToUint8Array, "convertFromVecToUint8Array");
-    load = /* @__PURE__ */ __name(() => {
+    load = () => {
       return new Promise((resolve, reject2) => {
         try {
           woff2_bindings_default({ wasmBinary: woff2_wasm_default }).then(
             (module) => {
               try {
                 const woff2 = {
-                  compress: /* @__PURE__ */ __name((buffer) => convertFromVecToUint8Array(
+                  compress: (buffer) => convertFromVecToUint8Array(
                     module.woff2Enc(buffer, buffer.byteLength)
-                  ), "compress"),
-                  decompress: /* @__PURE__ */ __name((buffer) => convertFromVecToUint8Array(
+                  ),
+                  decompress: (buffer) => convertFromVecToUint8Array(
                     module.woff2Dec(buffer, buffer.byteLength)
-                  ), "decompress")
+                  )
                 };
                 resolve(woff2);
               } catch (e8) {
@@ -13927,13 +13510,13 @@ var init_woff2_loader = __esm({
           reject2(e8);
         }
       });
-    }, "load");
-    woff2_loader_default = /* @__PURE__ */ __name(() => {
+    };
+    woff2_loader_default = () => {
       if (!loadedWasm) {
         loadedWasm = load();
       }
       return loadedWasm;
-    }, "default");
+    };
   }
 });
 
@@ -14035,7 +13618,6 @@ var harfbuzz_bindings_default;
 var init_harfbuzz_bindings = __esm({
   "packages/excalidraw/subset/harfbuzz/harfbuzz-bindings.ts"() {
     "use strict";
-    __name(subset, "subset");
     harfbuzz_bindings_default = {
       subset
     };
@@ -14050,34 +13632,34 @@ var init_harfbuzz_loader = __esm({
     init_harfbuzz_wasm();
     init_harfbuzz_bindings();
     loadedWasm2 = null;
-    load2 = /* @__PURE__ */ __name(() => {
+    load2 = () => {
       return new Promise(async (resolve, reject2) => {
         try {
           const module = await WebAssembly.instantiate(harfbuzz_wasm_default);
           const harfbuzzJsWasm = module.instance.exports;
           const heapu8 = new Uint8Array(harfbuzzJsWasm.memory.buffer);
           const hbSubset = {
-            subset: /* @__PURE__ */ __name((fontBuffer, codePoints) => {
+            subset: (fontBuffer, codePoints) => {
               return harfbuzz_bindings_default.subset(
                 harfbuzzJsWasm,
                 heapu8,
                 fontBuffer,
                 codePoints
               );
-            }, "subset")
+            }
           };
           resolve(hbSubset);
         } catch (e8) {
           reject2(e8);
         }
       });
-    }, "load");
-    harfbuzz_loader_default = /* @__PURE__ */ __name(() => {
+    };
+    harfbuzz_loader_default = () => {
       if (!loadedWasm2) {
         loadedWasm2 = load2();
       }
       return loadedWasm2;
-    }, "default");
+    };
   }
 });
 
@@ -14098,7 +13680,7 @@ var init_subset_shared_chunk = __esm({
     Commands = {
       Subset: "SUBSET"
     };
-    subsetToBase64 = /* @__PURE__ */ __name(async (arrayBuffer, codePoints) => {
+    subsetToBase64 = async (arrayBuffer, codePoints) => {
       try {
         const buffer = await subsetToBinary(arrayBuffer, codePoints);
         return toBase64(buffer);
@@ -14106,16 +13688,16 @@ var init_subset_shared_chunk = __esm({
         console.error("Skipped glyph subsetting", e8);
         return toBase64(arrayBuffer);
       }
-    }, "subsetToBase64");
-    subsetToBinary = /* @__PURE__ */ __name(async (arrayBuffer, codePoints) => {
+    };
+    subsetToBinary = async (arrayBuffer, codePoints) => {
       const { compress, decompress } = await woff2_loader_default();
       const { subset: subset2 } = await harfbuzz_loader_default();
       const decompressedBinary = decompress(arrayBuffer).buffer;
       const snftSubset = subset2(decompressedBinary, new Set(codePoints));
       const compressedBinary = compress(snftSubset.buffer);
       return compressedBinary.buffer;
-    }, "subsetToBinary");
-    toBase64 = /* @__PURE__ */ __name(async (arrayBuffer) => {
+    };
+    toBase64 = async (arrayBuffer) => {
       let base64;
       if (typeof Buffer !== "undefined") {
         base64 = Buffer.from(arrayBuffer).toString("base64");
@@ -14124,7 +13706,7 @@ var init_subset_shared_chunk = __esm({
         base64 = btoa(byteString);
       }
       return `data:font/woff2;base64,${base64}`;
-    }, "toBase64");
+    };
   }
 });
 
@@ -14164,7 +13746,7 @@ var init_subset_main = __esm({
     init_utils2();
     init_errors();
     shouldUseWorkers = typeof Worker !== "undefined";
-    subsetWoff2GlyphsByCodepoints = /* @__PURE__ */ __name(async (arrayBuffer, codePoints) => {
+    subsetWoff2GlyphsByCodepoints = async (arrayBuffer, codePoints) => {
       const { Commands: Commands2, subsetToBase64: subsetToBase642, toBase64: toBase642 } = await lazyLoadSharedSubsetChunk();
       if (!shouldUseWorkers) {
         return subsetToBase642(arrayBuffer, codePoints);
@@ -14196,23 +13778,23 @@ var init_subset_main = __esm({
           return subsetToBase642(arrayBuffer, codePoints);
         }
       });
-    }, "subsetWoff2GlyphsByCodepoints");
+    };
     subsetWorker = null;
     subsetShared = null;
-    lazyLoadWorkerSubsetChunk = /* @__PURE__ */ __name(async () => {
+    lazyLoadWorkerSubsetChunk = async () => {
       if (!subsetWorker) {
         subsetWorker = Promise.resolve().then(() => (init_subset_worker_chunk(), subset_worker_chunk_exports));
       }
       return subsetWorker;
-    }, "lazyLoadWorkerSubsetChunk");
-    lazyLoadSharedSubsetChunk = /* @__PURE__ */ __name(async () => {
+    };
+    lazyLoadSharedSubsetChunk = async () => {
       if (!subsetShared) {
         subsetShared = Promise.resolve().then(() => (init_subset_shared_chunk(), subset_shared_chunk_exports));
       }
       return subsetShared;
-    }, "lazyLoadSharedSubsetChunk");
+    };
     workerPool = null;
-    getOrCreateWorkerPool = /* @__PURE__ */ __name(() => {
+    getOrCreateWorkerPool = () => {
       if (!workerPool) {
         workerPool = promiseTry(async () => {
           const { WorkerUrl: WorkerUrl2 } = await lazyLoadWorkerSubsetChunk();
@@ -14221,7 +13803,7 @@ var init_subset_main = __esm({
         });
       }
       return workerPool;
-    }, "getOrCreateWorkerPool");
+    };
   }
 });
 
@@ -14234,12 +13816,9 @@ var init_ExcalidrawFontFace = __esm({
     init_FontMetadata();
     init_subset_main();
     ExcalidrawFontFace = class _ExcalidrawFontFace {
-      static {
-        __name(this, "ExcalidrawFontFace");
-      }
       urls;
       fontFace;
-      static ASSETS_FALLBACK_URL = `https://esm.sh/${false ? `${import.meta.env.PKG_NAME}@${import.meta.env.PKG_VERSION}` : "@excalidraw/excalidraw"}/dist/prod/`;
+      static ASSETS_FALLBACK_URL = `https://esm.sh/${"@excalidraw/excalidraw" ? `${"@excalidraw/excalidraw"}@${"0.18.0"}` : "@excalidraw/excalidraw"}/dist/prod/`;
       constructor(family, uri, descriptors) {
         this.urls = _ExcalidrawFontFace.createUrls(uri);
         const sources = this.urls.map((url) => `url(${url}) ${_ExcalidrawFontFace.getFormat(url)}`).join(", ");
@@ -17624,9 +17203,6 @@ var init_Fonts = __esm({
     init_FontMetadata();
     init_textMeasurements();
     Fonts = class _Fonts {
-      static {
-        __name(this, "Fonts");
-      }
       // it's ok to track fonts across multiple instances only once, so let's use
       // a static member to reduce memory footprint
       static loadedFontsCache = /* @__PURE__ */ new Set();
@@ -17653,9 +17229,9 @@ var init_Fonts = __esm({
       /**
        * Get all the font families for the given scene.
        */
-      getSceneFamilies = /* @__PURE__ */ __name(() => {
+      getSceneFamilies = () => {
         return _Fonts.getUniqueFamilies(this.scene.getNonDeletedElements());
-      }, "getSceneFamilies");
+      };
       /**
        * if we load a (new) font, it's likely that text elements using it have
        * already been rendered using a fallback font. Thus, we want invalidate
@@ -17664,7 +17240,7 @@ var init_Fonts = __esm({
        * Invalidates text elements and rerenders scene, provided that at least one
        * of the supplied fontFaces has not already been processed.
        */
-      onLoaded = /* @__PURE__ */ __name((fontFaces) => {
+      onLoaded = (fontFaces) => {
         let shouldBail = true;
         for (const fontFace of fontFaces) {
           const sig = `${fontFace.family}-${fontFace.style}-${fontFace.weight}-${fontFace.unicodeRange}`;
@@ -17692,25 +17268,25 @@ var init_Fonts = __esm({
         if (didUpdate) {
           this.scene.triggerUpdate();
         }
-      }, "onLoaded");
+      };
       /**
        * Load font faces for a given scene and trigger scene update.
        */
-      loadSceneFonts = /* @__PURE__ */ __name(async () => {
+      loadSceneFonts = async () => {
         const sceneFamilies = this.getSceneFamilies();
         const charsPerFamily = _Fonts.getCharsPerFamily(
           this.scene.getNonDeletedElements()
         );
         return _Fonts.loadFontFaces(sceneFamilies, charsPerFamily);
-      }, "loadSceneFonts");
+      };
       /**
        * Load font faces for passed elements - use when the scene is unavailable (i.e. export).
        */
-      static loadElementsFonts = /* @__PURE__ */ __name(async (elements) => {
+      static loadElementsFonts = async (elements) => {
         const fontFamilies = _Fonts.getUniqueFamilies(elements);
         const charsPerFamily = _Fonts.getCharsPerFamily(elements);
         return _Fonts.loadFontFaces(fontFamilies, charsPerFamily);
-      }, "loadElementsFonts");
+      };
       /**
        * Generate CSS @font-face declarations for the given elements.
        */
@@ -17832,11 +17408,11 @@ var init_Fonts = __esm({
         const fonts = {
           registered: /* @__PURE__ */ new Map()
         };
-        const init = /* @__PURE__ */ __name((family, ...fontFacesDescriptors) => {
+        const init = (family, ...fontFacesDescriptors) => {
           const fontFamily = FONT_FAMILY[family] ?? FONT_FAMILY_FALLBACKS[family];
           const metadata = FONT_METADATA[fontFamily] ?? FONT_METADATA[FONT_FAMILY.Excalifont];
           _Fonts.register.call(fonts, family, metadata, ...fontFacesDescriptors);
-        }, "init");
+        };
         init("Cascadia", ...CascadiaFontFaces);
         init("Comic Shanns", ...ComicShannsFontFaces);
         init("Excalifont", ...ExcalifontFontFaces);
@@ -17894,17 +17470,17 @@ var init_Fonts = __esm({
         return Array.from(_Fonts.registered.keys());
       }
     };
-    getVerticalOffset = /* @__PURE__ */ __name((fontFamily, fontSize, lineHeightPx) => {
+    getVerticalOffset = (fontFamily, fontSize, lineHeightPx) => {
       const { unitsPerEm, ascender, descender } = Fonts.registered.get(fontFamily)?.metadata.metrics || FONT_METADATA[FONT_FAMILY.Virgil].metrics;
       const fontSizeEm = fontSize / unitsPerEm;
       const lineGap = (lineHeightPx - fontSizeEm * ascender + fontSizeEm * descender) / 2;
       const verticalOffset = fontSizeEm * ascender + lineGap;
       return verticalOffset;
-    }, "getVerticalOffset");
-    getLineHeight = /* @__PURE__ */ __name((fontFamily) => {
+    };
+    getLineHeight = (fontFamily) => {
       const { lineHeight } = Fonts.registered.get(fontFamily)?.metadata.metrics || FONT_METADATA[FONT_FAMILY.Excalifont].metrics;
       return lineHeight;
-    }, "getLineHeight");
+    };
   }
 });
 
@@ -17923,7 +17499,7 @@ var init_cropElement = __esm({
     "use strict";
     init_math2();
     init_bounds();
-    getUncroppedImageElement = /* @__PURE__ */ __name((element, elementsMap) => {
+    getUncroppedImageElement = (element, elementsMap) => {
       if (element.crop) {
         const { width, height } = getUncroppedWidthAndHeight(element);
         const [x1, y1, x2, y2, cx, cy] = getElementAbsoluteCoords(
@@ -17980,8 +17556,8 @@ var init_cropElement = __esm({
         return uncroppedElement;
       }
       return element;
-    }, "getUncroppedImageElement");
-    getUncroppedWidthAndHeight = /* @__PURE__ */ __name((element) => {
+    };
+    getUncroppedWidthAndHeight = (element) => {
       if (element.crop) {
         const width = element.width / (element.crop.width / element.crop.naturalWidth);
         const height = element.height / (element.crop.height / element.crop.naturalHeight);
@@ -17994,8 +17570,8 @@ var init_cropElement = __esm({
         width: element.width,
         height: element.height
       };
-    }, "getUncroppedWidthAndHeight");
-    adjustCropPosition = /* @__PURE__ */ __name((crop, scale) => {
+    };
+    adjustCropPosition = (crop, scale) => {
       let cropX = crop.x;
       let cropY = crop.y;
       const flipX = scale[0] === -1;
@@ -18010,7 +17586,7 @@ var init_cropElement = __esm({
         cropX,
         cropY
       };
-    }, "adjustCropPosition");
+    };
   }
 });
 
@@ -18032,7 +17608,7 @@ function getFreeDrawSvgPath(element) {
     thinning: 0.6,
     smoothing: 0.5,
     streamline: 0.5,
-    easing: /* @__PURE__ */ __name((t4) => Math.sin(t4 * Math.PI / 2), "easing"),
+    easing: (t4) => Math.sin(t4 * Math.PI / 2),
     // https://easings.net/#easeOutSine
     last: !!element.lastCommittedPoint
     // LastCommittedPoint is added on pointerup
@@ -18081,11 +17657,11 @@ var init_renderElement = __esm({
     init_textMeasurements();
     IMAGE_INVERT_FILTER = "invert(100%) hue-rotate(180deg) saturate(1.25)";
     defaultAppState = getDefaultAppState();
-    isPendingImageElement = /* @__PURE__ */ __name((element, renderConfig) => isInitializedImageElement(element) && !renderConfig.imageCache.has(element.fileId), "isPendingImageElement");
-    shouldResetImageFilter = /* @__PURE__ */ __name((element, renderConfig, appState) => {
+    isPendingImageElement = (element, renderConfig) => isInitializedImageElement(element) && !renderConfig.imageCache.has(element.fileId);
+    shouldResetImageFilter = (element, renderConfig, appState) => {
       return appState.theme === THEME.DARK && isInitializedImageElement(element) && !isPendingImageElement(element, renderConfig) && renderConfig.imageCache.get(element.fileId)?.mimeType !== MIME_TYPES.svg;
-    }, "shouldResetImageFilter");
-    getCanvasPadding = /* @__PURE__ */ __name((element) => {
+    };
+    getCanvasPadding = (element) => {
       switch (element.type) {
         case "freedraw":
           return element.strokeWidth * 12;
@@ -18094,15 +17670,15 @@ var init_renderElement = __esm({
         default:
           return 20;
       }
-    }, "getCanvasPadding");
-    getRenderOpacity = /* @__PURE__ */ __name((element, containingFrame, elementsPendingErasure, pendingNodes, globalAlpha = 1) => {
+    };
+    getRenderOpacity = (element, containingFrame, elementsPendingErasure, pendingNodes, globalAlpha = 1) => {
       let opacity = (containingFrame?.opacity ?? 100) * element.opacity / 1e4 * globalAlpha;
       if (elementsPendingErasure.has(element.id) || pendingNodes && pendingNodes.some((node) => node.id === element.id) || containingFrame && elementsPendingErasure.has(containingFrame.id)) {
         opacity *= ELEMENT_READY_TO_ERASE_OPACITY / 100;
       }
       return opacity;
-    }, "getRenderOpacity");
-    cappedElementCanvasSize = /* @__PURE__ */ __name((element, elementsMap, zoom) => {
+    };
+    cappedElementCanvasSize = (element, elementsMap, zoom) => {
       const AREA_LIMIT = 16777216;
       const WIDTH_HEIGHT_LIMIT = 32767;
       const padding = getCanvasPadding(element);
@@ -18121,8 +17697,8 @@ var init_renderElement = __esm({
       width = Math.floor(width * scale);
       height = Math.floor(height * scale);
       return { width, height, scale };
-    }, "cappedElementCanvasSize");
-    generateElementCanvas = /* @__PURE__ */ __name((element, elementsMap, zoom, renderConfig, appState) => {
+    };
+    generateElementCanvas = (element, elementsMap, zoom, renderConfig, appState) => {
       const canvas = document.createElement("canvas");
       const context = canvas.getContext("2d");
       const padding = getCanvasPadding(element);
@@ -18207,7 +17783,7 @@ var init_renderElement = __esm({
         angle: element.angle,
         imageCrop: isImageElement(element) ? element.crop : null
       };
-    }, "generateElementCanvas");
+    };
     DEFAULT_LINK_SIZE = 14;
     IMAGE_PLACEHOLDER_IMG = document.createElement("img");
     IMAGE_PLACEHOLDER_IMG.src = `data:${MIME_TYPES.svg},${encodeURIComponent(
@@ -18217,7 +17793,7 @@ var init_renderElement = __esm({
     IMAGE_ERROR_PLACEHOLDER_IMG.src = `data:${MIME_TYPES.svg},${encodeURIComponent(
       `<svg viewBox="0 0 668 668" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48ZM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56ZM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48Z" style="fill:#888;fill-rule:nonzero" transform="matrix(.81709 0 0 .81709 124.825 145.825)"/><path d="M256 8C119.034 8 8 119.033 8 256c0 136.967 111.034 248 248 248s248-111.034 248-248S392.967 8 256 8Zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676ZM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676Z" style="fill:#888;fill-rule:nonzero" transform="matrix(.30366 0 0 .30366 506.822 60.065)"/></svg>`
     )}`;
-    drawImagePlaceholder = /* @__PURE__ */ __name((element, context) => {
+    drawImagePlaceholder = (element, context) => {
       context.fillStyle = "#E7E7E7";
       context.fillRect(0, 0, element.width, element.height);
       const imageMinWidthOrHeight = Math.min(element.width, element.height);
@@ -18232,8 +17808,8 @@ var init_renderElement = __esm({
         size,
         size
       );
-    }, "drawImagePlaceholder");
-    drawElementOnCanvas = /* @__PURE__ */ __name((element, rc, context, renderConfig, appState) => {
+    };
+    drawElementOnCanvas = (element, rc, context, renderConfig, appState) => {
       switch (element.type) {
         case "rectangle":
         case "iframe":
@@ -18342,9 +17918,9 @@ var init_renderElement = __esm({
           }
         }
       }
-    }, "drawElementOnCanvas");
+    };
     elementWithCanvasCache = /* @__PURE__ */ new WeakMap();
-    generateElementWithCanvas = /* @__PURE__ */ __name((element, elementsMap, renderConfig, appState) => {
+    generateElementWithCanvas = (element, elementsMap, renderConfig, appState) => {
       const zoom = renderConfig ? appState.zoom : defaultAppState.zoom;
       const prevElementWithCanvas = elementWithCanvasCache.get(element);
       const shouldRegenerateBecauseZoom = prevElementWithCanvas && prevElementWithCanvas.zoomValue !== zoom.value && !appState?.shouldCacheIgnoreZoom;
@@ -18371,8 +17947,8 @@ var init_renderElement = __esm({
         return elementWithCanvas;
       }
       return prevElementWithCanvas;
-    }, "generateElementWithCanvas");
-    drawElementFromCanvas = /* @__PURE__ */ __name((elementWithCanvas, context, renderConfig, appState, allElementsMap) => {
+    };
+    drawElementFromCanvas = (elementWithCanvas, context, renderConfig, appState, allElementsMap) => {
       const element = elementWithCanvas.element;
       const padding = getCanvasPadding(element);
       const zoom = elementWithCanvas.scale;
@@ -18427,8 +18003,8 @@ var init_renderElement = __esm({
         }
       }
       context.restore();
-    }, "drawElementFromCanvas");
-    renderElement = /* @__PURE__ */ __name((element, elementsMap, allElementsMap, rc, context, renderConfig, appState) => {
+    };
+    renderElement = (element, elementsMap, allElementsMap, rc, context, renderConfig, appState) => {
       const reduceAlphaForSelection = appState.openDialog?.name === "elementLinkSelector" && !appState.selectedElementIds[element.id] && !appState.hoveredElementIds[element.id];
       context.globalAlpha = getRenderOpacity(
         element,
@@ -18653,14 +18229,9 @@ var init_renderElement = __esm({
         }
       }
       context.globalAlpha = 1;
-    }, "renderElement");
+    };
     pathsCache = /* @__PURE__ */ new WeakMap([]);
-    __name(generateFreeDrawShape, "generateFreeDrawShape");
-    __name(getFreeDrawPath2D, "getFreeDrawPath2D");
-    __name(getFreeDrawSvgPath, "getFreeDrawSvgPath");
-    __name(med, "med");
     TO_FIXED_PRECISION = /(\s?[A-Z]?,?-?[0-9]*\.[0-9]{0,2})(([0-9]|e|-)*)/g;
-    __name(getSvgPathFromStroke, "getSvgPathFromStroke");
   }
 });
 
@@ -18674,30 +18245,27 @@ var init_ShapeCache = __esm({
     init_Shape();
     init_colors();
     ShapeCache = class _ShapeCache {
-      static {
-        __name(this, "ShapeCache");
-      }
       static rg = new RoughGenerator();
       static cache = /* @__PURE__ */ new WeakMap();
       /**
        * Retrieves shape from cache if available. Use this only if shape
        * is optional and you have a fallback in case it's not cached.
        */
-      static get = /* @__PURE__ */ __name((element) => {
+      static get = (element) => {
         return _ShapeCache.cache.get(
           element
         );
-      }, "get");
-      static set = /* @__PURE__ */ __name((element, shape) => _ShapeCache.cache.set(element, shape), "set");
-      static delete = /* @__PURE__ */ __name((element) => _ShapeCache.cache.delete(element), "delete");
-      static destroy = /* @__PURE__ */ __name(() => {
+      };
+      static set = (element, shape) => _ShapeCache.cache.set(element, shape);
+      static delete = (element) => _ShapeCache.cache.delete(element);
+      static destroy = () => {
         _ShapeCache.cache = /* @__PURE__ */ new WeakMap();
-      }, "destroy");
+      };
       /**
        * Generates & caches shape for element if not already cached, otherwise
        * returns cached shape.
        */
-      static generateElementShape = /* @__PURE__ */ __name((element, renderConfig) => {
+      static generateElementShape = (element, renderConfig) => {
         const cachedShape = renderConfig?.isExporting ? void 0 : _ShapeCache.get(element);
         if (cachedShape !== void 0) {
           return cachedShape;
@@ -18714,7 +18282,7 @@ var init_ShapeCache = __esm({
         );
         _ShapeCache.cache.set(element, shape);
         return shape;
-      }, "generateElementShape");
+      };
     };
   }
 });
@@ -18807,7 +18375,7 @@ var init_shapes = __esm({
         fillable: false
       }
     ];
-    getElementShape = /* @__PURE__ */ __name((element, elementsMap) => {
+    getElementShape = (element, elementsMap) => {
       switch (element.type) {
         case "rectangle":
         case "diamond":
@@ -18847,8 +18415,8 @@ var init_shapes = __esm({
           );
         }
       }
-    }, "getElementShape");
-    getControlPointsForBezierCurve = /* @__PURE__ */ __name((element, endPoint) => {
+    };
+    getControlPointsForBezierCurve = (element, endPoint) => {
       const shape = ShapeCache.generateElementShape(element, null);
       if (!shape) {
         return null;
@@ -18882,14 +18450,14 @@ var init_shapes = __esm({
         index++;
       }
       return controlPoints;
-    }, "getControlPointsForBezierCurve");
-    getBezierXY = /* @__PURE__ */ __name((p0, p1, p2, p3, t4) => {
-      const equation = /* @__PURE__ */ __name((t5, idx) => Math.pow(1 - t5, 3) * p3[idx] + 3 * t5 * Math.pow(1 - t5, 2) * p2[idx] + 3 * Math.pow(t5, 2) * (1 - t5) * p1[idx] + p0[idx] * Math.pow(t5, 3), "equation");
+    };
+    getBezierXY = (p0, p1, p2, p3, t4) => {
+      const equation = (t5, idx) => Math.pow(1 - t5, 3) * p3[idx] + 3 * t5 * Math.pow(1 - t5, 2) * p2[idx] + 3 * Math.pow(t5, 2) * (1 - t5) * p1[idx] + p0[idx] * Math.pow(t5, 3);
       const tx = equation(t4, 0);
       const ty = equation(t4, 1);
       return pointFrom(tx, ty);
-    }, "getBezierXY");
-    getPointsInBezierCurve = /* @__PURE__ */ __name((element, endPoint) => {
+    };
+    getPointsInBezierCurve = (element, endPoint) => {
       const controlPoints = getControlPointsForBezierCurve(element, endPoint);
       if (!controlPoints) {
         return [];
@@ -18913,8 +18481,8 @@ var init_shapes = __esm({
         }
       }
       return pointsOnCurve;
-    }, "getPointsInBezierCurve");
-    getBezierCurveArcLengths = /* @__PURE__ */ __name((element, endPoint) => {
+    };
+    getBezierCurveArcLengths = (element, endPoint) => {
       const arcLengths = [];
       arcLengths[0] = 0;
       const points = getPointsInBezierCurve(element, endPoint);
@@ -18927,12 +18495,12 @@ var init_shapes = __esm({
         index++;
       }
       return arcLengths;
-    }, "getBezierCurveArcLengths");
-    getBezierCurveLength = /* @__PURE__ */ __name((element, endPoint) => {
+    };
+    getBezierCurveLength = (element, endPoint) => {
       const arcLengths = getBezierCurveArcLengths(element, endPoint);
       return arcLengths.at(-1);
-    }, "getBezierCurveLength");
-    mapIntervalToBezierT = /* @__PURE__ */ __name((element, endPoint, interval) => {
+    };
+    mapIntervalToBezierT = (element, endPoint, interval) => {
       const arcLengths = getBezierCurveArcLengths(element, endPoint);
       const pointsCount = arcLengths.length - 1;
       const curveLength = arcLengths.at(-1);
@@ -18955,8 +18523,8 @@ var init_shapes = __esm({
         return index / pointsCount;
       }
       return 1 - (index + (targetLength - arcLengths[index]) / (arcLengths[index + 1] - arcLengths[index])) / pointsCount;
-    }, "mapIntervalToBezierT");
-    aabbForElement = /* @__PURE__ */ __name((element, offset) => {
+    };
+    aabbForElement = (element, offset) => {
       const bbox = {
         minX: element.x,
         minY: element.y,
@@ -19002,9 +18570,9 @@ var init_shapes = __esm({
         ];
       }
       return bounds;
-    }, "aabbForElement");
-    pointInsideBounds = /* @__PURE__ */ __name((p, bounds) => p[0] > bounds[0] && p[0] < bounds[2] && p[1] > bounds[1] && p[1] < bounds[3], "pointInsideBounds");
-    getCornerRadius = /* @__PURE__ */ __name((x, element) => {
+    };
+    pointInsideBounds = (p, bounds) => p[0] > bounds[0] && p[0] < bounds[2] && p[1] > bounds[1] && p[1] < bounds[3];
+    getCornerRadius = (x, element) => {
       if (element.roundness?.type === ROUNDNESS.PROPORTIONAL_RADIUS || element.roundness?.type === ROUNDNESS.LEGACY) {
         return x * DEFAULT_PROPORTIONAL_RADIUS;
       }
@@ -19017,15 +18585,15 @@ var init_shapes = __esm({
         return fixedRadiusSize;
       }
       return 0;
-    }, "getCornerRadius");
-    isPathALoop = /* @__PURE__ */ __name((points, zoomValue = 1) => {
+    };
+    isPathALoop = (points, zoomValue = 1) => {
       if (points.length >= 3) {
         const [first, last] = [points[0], points[points.length - 1]];
         const distance3 = pointDistance(first, last);
         return distance3 <= LINE_CONFIRM_THRESHOLD / zoomValue;
       }
       return false;
-    }, "isPathALoop");
+    };
   }
 });
 
@@ -19040,7 +18608,7 @@ var init_heading = __esm({
     HEADING_DOWN = [0, 1];
     HEADING_LEFT = [-1, 0];
     HEADING_UP = [0, -1];
-    headingForDiamond = /* @__PURE__ */ __name((a2, b2) => {
+    headingForDiamond = (a2, b2) => {
       const angle = radiansToDegrees(
         Math.atan2(b2[1] - a2[1], b2[0] - a2[0])
       );
@@ -19052,8 +18620,8 @@ var init_heading = __esm({
         return HEADING_DOWN;
       }
       return HEADING_LEFT;
-    }, "headingForDiamond");
-    vectorToHeading = /* @__PURE__ */ __name((vec) => {
+    };
+    vectorToHeading = (vec) => {
       const [x, y] = vec;
       const absX = Math.abs(x);
       const absY = Math.abs(y);
@@ -19065,12 +18633,12 @@ var init_heading = __esm({
         return HEADING_DOWN;
       }
       return HEADING_UP;
-    }, "vectorToHeading");
-    headingForPoint = /* @__PURE__ */ __name((p, o2) => vectorToHeading(vectorFromPoint(p, o2)), "headingForPoint");
-    headingForPointIsHorizontal = /* @__PURE__ */ __name((p, o2) => headingIsHorizontal(headingForPoint(p, o2)), "headingForPointIsHorizontal");
-    compareHeading = /* @__PURE__ */ __name((a2, b2) => a2[0] === b2[0] && a2[1] === b2[1], "compareHeading");
-    headingIsHorizontal = /* @__PURE__ */ __name((a2) => compareHeading(a2, HEADING_RIGHT) || compareHeading(a2, HEADING_LEFT), "headingIsHorizontal");
-    headingForPointFromElement = /* @__PURE__ */ __name((element, aabb, p) => {
+    };
+    headingForPoint = (p, o2) => vectorToHeading(vectorFromPoint(p, o2));
+    headingForPointIsHorizontal = (p, o2) => headingIsHorizontal(headingForPoint(p, o2));
+    compareHeading = (a2, b2) => a2[0] === b2[0] && a2[1] === b2[1];
+    headingIsHorizontal = (a2) => compareHeading(a2, HEADING_RIGHT) || compareHeading(a2, HEADING_LEFT);
+    headingForPointFromElement = (element, aabb, p) => {
       const SEARCH_CONE_MULTIPLIER = 2;
       const midPoint = getCenterForBounds(aabb);
       if (element.type === "diamond") {
@@ -19164,11 +18732,11 @@ var init_heading = __esm({
         [bottomRight, bottomLeft, midPoint],
         p
       ) ? HEADING_DOWN : HEADING_LEFT;
-    }, "headingForPointFromElement");
-    flipHeading = /* @__PURE__ */ __name((h) => [
+    };
+    flipHeading = (h) => [
       h[0] === 0 ? 0 : h[0] > 0 ? -1 : 1,
       h[1] === 0 ? 0 : h[1] > 0 ? -1 : 1
-    ], "flipHeading");
+    ];
   }
 });
 
@@ -19180,7 +18748,7 @@ var init_distance = __esm({
     init_math2();
     init_ellipse();
     init_utils3();
-    distanceToBindableElement = /* @__PURE__ */ __name((element, p) => {
+    distanceToBindableElement = (element, p) => {
       switch (element.type) {
         case "rectangle":
         case "image":
@@ -19195,8 +18763,8 @@ var init_distance = __esm({
         case "ellipse":
           return distanceToEllipseElement(element, p);
       }
-    }, "distanceToBindableElement");
-    distanceToRectanguloidElement = /* @__PURE__ */ __name((element, p) => {
+    };
+    distanceToRectanguloidElement = (element, p) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -19207,8 +18775,8 @@ var init_distance = __esm({
         ...sides.map((s2) => distanceToLineSegment(rotatedPoint, s2)),
         ...corners.map((a2) => curvePointDistance(a2, rotatedPoint)).filter((d) => d !== null)
       );
-    }, "distanceToRectanguloidElement");
-    distanceToDiamondElement = /* @__PURE__ */ __name((element, p) => {
+    };
+    distanceToDiamondElement = (element, p) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -19219,8 +18787,8 @@ var init_distance = __esm({
         ...sides.map((s2) => distanceToLineSegment(rotatedPoint, s2)),
         ...curves.map((a2) => curvePointDistance(a2, rotatedPoint)).filter((d) => d !== null)
       );
-    }, "distanceToDiamondElement");
-    distanceToEllipseElement = /* @__PURE__ */ __name((element, p) => {
+    };
+    distanceToEllipseElement = (element, p) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -19230,7 +18798,7 @@ var init_distance = __esm({
         pointRotateRads(p, center, -element.angle),
         ellipse2(center, element.width / 2, element.height / 2)
       );
-    }, "distanceToEllipseElement");
+    };
   }
 });
 
@@ -19252,13 +18820,13 @@ var init_binding = __esm({
     init_math2();
     init_collision2();
     init_distance();
-    isBindingEnabled = /* @__PURE__ */ __name((appState) => {
+    isBindingEnabled = (appState) => {
       return appState.isBindingEnabled;
-    }, "isBindingEnabled");
+    };
     FIXED_BINDING_DISTANCE = 5;
     BINDING_HIGHLIGHT_THICKNESS = 10;
     BINDING_HIGHLIGHT_OFFSET = 4;
-    getNonDeletedElements = /* @__PURE__ */ __name((scene, ids) => {
+    getNonDeletedElements = (scene, ids) => {
       const result = [];
       ids.forEach((id) => {
         const element = scene.getNonDeletedElement(id);
@@ -19267,8 +18835,8 @@ var init_binding = __esm({
         }
       });
       return result;
-    }, "getNonDeletedElements");
-    bindOrUnbindLinearElement = /* @__PURE__ */ __name((linearElement, startBindingElement, endBindingElement, elementsMap, scene) => {
+    };
+    bindOrUnbindLinearElement = (linearElement, startBindingElement, endBindingElement, elementsMap, scene) => {
       const boundToElementIds = /* @__PURE__ */ new Set();
       const unboundFromElementIds = /* @__PURE__ */ new Set();
       bindOrUnbindLinearElementEdge(
@@ -19299,8 +18867,8 @@ var init_binding = __esm({
           )
         });
       });
-    }, "bindOrUnbindLinearElement");
-    bindOrUnbindLinearElementEdge = /* @__PURE__ */ __name((linearElement, bindableElement, otherEdgeBindableElement, startOrEnd, boundToElementIds, unboundFromElementIds, elementsMap) => {
+    };
+    bindOrUnbindLinearElementEdge = (linearElement, bindableElement, otherEdgeBindableElement, startOrEnd, boundToElementIds, unboundFromElementIds, elementsMap) => {
       if (bindableElement === "keep") {
         return;
       }
@@ -19332,8 +18900,8 @@ var init_binding = __esm({
         bindLinearElement(linearElement, bindableElement, startOrEnd, elementsMap);
         boundToElementIds.add(bindableElement.id);
       }
-    }, "bindOrUnbindLinearElementEdge");
-    normalizePointBinding = /* @__PURE__ */ __name((binding, hoveredElement) => {
+    };
+    normalizePointBinding = (binding, hoveredElement) => {
       let gap = binding.gap;
       const maxGap = maxBindingGap(
         hoveredElement,
@@ -19347,8 +18915,8 @@ var init_binding = __esm({
         ...binding,
         gap
       };
-    }, "normalizePointBinding");
-    bindLinearElement = /* @__PURE__ */ __name((linearElement, hoveredElement, startOrEnd, elementsMap) => {
+    };
+    bindLinearElement = (linearElement, hoveredElement, startOrEnd, elementsMap) => {
       if (!isArrowElement(linearElement)) {
         return;
       }
@@ -19387,20 +18955,20 @@ var init_binding = __esm({
           })
         });
       }
-    }, "bindLinearElement");
-    isLinearElementSimpleAndAlreadyBoundOnOppositeEdge = /* @__PURE__ */ __name((linearElement, bindableElement, startOrEnd) => {
+    };
+    isLinearElementSimpleAndAlreadyBoundOnOppositeEdge = (linearElement, bindableElement, startOrEnd) => {
       const otherBinding = linearElement[startOrEnd === "start" ? "endBinding" : "startBinding"];
       return isLinearElementSimpleAndAlreadyBound(
         linearElement,
         otherBinding?.elementId,
         bindableElement
       );
-    }, "isLinearElementSimpleAndAlreadyBoundOnOppositeEdge");
-    isLinearElementSimpleAndAlreadyBound = /* @__PURE__ */ __name((linearElement, alreadyBoundToId, bindableElement) => {
+    };
+    isLinearElementSimpleAndAlreadyBound = (linearElement, alreadyBoundToId, bindableElement) => {
       return alreadyBoundToId === bindableElement.id && isLinearElementSimple(linearElement);
-    }, "isLinearElementSimpleAndAlreadyBound");
-    isLinearElementSimple = /* @__PURE__ */ __name((linearElement) => linearElement.points.length < 3, "isLinearElementSimple");
-    unbindLinearElement = /* @__PURE__ */ __name((linearElement, startOrEnd) => {
+    };
+    isLinearElementSimple = (linearElement) => linearElement.points.length < 3;
+    unbindLinearElement = (linearElement, startOrEnd) => {
       const field = startOrEnd === "start" ? "startBinding" : "endBinding";
       const binding = linearElement[field];
       if (binding == null) {
@@ -19408,8 +18976,8 @@ var init_binding = __esm({
       }
       mutateElement(linearElement, { [field]: null });
       return binding.elementId;
-    }, "unbindLinearElement");
-    getHoveredElementForBinding = /* @__PURE__ */ __name((pointerCoords, elements, elementsMap, zoom, fullShape, considerAllElements) => {
+    };
+    getHoveredElementForBinding = (pointerCoords, elements, elementsMap, zoom, fullShape, considerAllElements) => {
       if (considerAllElements) {
         let cullRest = false;
         const candidateElements = getAllElementsAtPositionForBinding(
@@ -19463,8 +19031,8 @@ var init_binding = __esm({
         )
       );
       return hoveredElement;
-    }, "getHoveredElementForBinding");
-    getElementAtPositionForBinding = /* @__PURE__ */ __name((elements, isAtPositionFn) => {
+    };
+    getElementAtPositionForBinding = (elements, isAtPositionFn) => {
       let hitElement = null;
       for (let index = elements.length - 1; index >= 0; --index) {
         const element = elements[index];
@@ -19477,8 +19045,8 @@ var init_binding = __esm({
         }
       }
       return hitElement;
-    }, "getElementAtPositionForBinding");
-    getAllElementsAtPositionForBinding = /* @__PURE__ */ __name((elements, isAtPositionFn) => {
+    };
+    getAllElementsAtPositionForBinding = (elements, isAtPositionFn) => {
       const elementsAtPosition = [];
       for (let index = elements.length - 1; index >= 0; --index) {
         const element = elements[index];
@@ -19490,8 +19058,8 @@ var init_binding = __esm({
         }
       }
       return elementsAtPosition;
-    }, "getAllElementsAtPositionForBinding");
-    calculateFocusAndGap = /* @__PURE__ */ __name((linearElement, hoveredElement, startOrEnd, elementsMap) => {
+    };
+    calculateFocusAndGap = (linearElement, hoveredElement, startOrEnd, elementsMap) => {
       const direction = startOrEnd === "start" ? -1 : 1;
       const edgePointIndex = direction === -1 ? 0 : linearElement.points.length - 1;
       const adjacentPointIndex = edgePointIndex - direction;
@@ -19509,8 +19077,8 @@ var init_binding = __esm({
         focus: determineFocusDistance(hoveredElement, adjacentPoint, edgePoint),
         gap: Math.max(1, distanceToBindableElement(hoveredElement, edgePoint))
       };
-    }, "calculateFocusAndGap");
-    getHeadingForElbowArrowSnap = /* @__PURE__ */ __name((p, otherPoint, bindableElement, aabb, elementsMap, origPoint, zoom) => {
+    };
+    getHeadingForElbowArrowSnap = (p, otherPoint, bindableElement, aabb, elementsMap, origPoint, zoom) => {
       const otherPointHeading = vectorToHeading(vectorFromPoint(otherPoint, p));
       if (!bindableElement || !aabb) {
         return otherPointHeading;
@@ -19533,8 +19101,8 @@ var init_binding = __esm({
         );
       }
       return headingForPointFromElement(bindableElement, aabb, p);
-    }, "getHeadingForElbowArrowSnap");
-    getDistanceForBinding = /* @__PURE__ */ __name((point, bindableElement, elementsMap, zoom) => {
+    };
+    getDistanceForBinding = (point, bindableElement, elementsMap, zoom) => {
       const distance3 = distanceToBindableElement(bindableElement, point);
       const bindDistance = maxBindingGap(
         bindableElement,
@@ -19543,8 +19111,8 @@ var init_binding = __esm({
         zoom
       );
       return distance3 > bindDistance ? null : distance3;
-    }, "getDistanceForBinding");
-    bindPointToSnapToElementOutline = /* @__PURE__ */ __name((arrow, bindableElement, startOrEnd) => {
+    };
+    bindPointToSnapToElementOutline = (arrow, bindableElement, startOrEnd) => {
       const aabb = bindableElement && aabbForElement(bindableElement);
       const localP = arrow.points[startOrEnd === "start" ? 0 : arrow.points.length - 1];
       const globalP = pointFrom(
@@ -19591,8 +19159,8 @@ var init_binding = __esm({
         }
       }
       return p;
-    }, "bindPointToSnapToElementOutline");
-    headingToMidBindPoint = /* @__PURE__ */ __name((p, bindableElement, aabb) => {
+    };
+    headingToMidBindPoint = (p, bindableElement, aabb) => {
       const center = getCenterForBounds(aabb);
       const heading = vectorToHeading(vectorFromPoint(p, center));
       switch (true) {
@@ -19621,8 +19189,8 @@ var init_binding = __esm({
             bindableElement.angle
           );
       }
-    }, "headingToMidBindPoint");
-    avoidRectangularCorner = /* @__PURE__ */ __name((element, p) => {
+    };
+    avoidRectangularCorner = (element, p) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -19694,8 +19262,8 @@ var init_binding = __esm({
         );
       }
       return p;
-    }, "avoidRectangularCorner");
-    snapToMid = /* @__PURE__ */ __name((element, p, tolerance = 0.05) => {
+    };
+    snapToMid = (element, p, tolerance = 0.05) => {
       const { x, y, width, height, angle } = element;
       const center = pointFrom(
         x + width / 2 - 0.1,
@@ -19730,8 +19298,8 @@ var init_binding = __esm({
         );
       }
       return p;
-    }, "snapToMid");
-    calculateFixedPointForElbowArrowBinding = /* @__PURE__ */ __name((linearElement, hoveredElement, startOrEnd, elementsMap) => {
+    };
+    calculateFixedPointForElbowArrowBinding = (linearElement, hoveredElement, startOrEnd, elementsMap) => {
       const bounds = [
         hoveredElement.x,
         hoveredElement.y,
@@ -19758,13 +19326,13 @@ var init_binding = __esm({
           (nonRotatedSnappedGlobalPoint[1] - hoveredElement.y) / hoveredElement.height
         ])
       };
-    }, "calculateFixedPointForElbowArrowBinding");
-    bindingBorderTest = /* @__PURE__ */ __name((element, { x, y }, elementsMap, zoom, fullShape) => {
+    };
+    bindingBorderTest = (element, { x, y }, elementsMap, zoom, fullShape) => {
       const threshold = maxBindingGap(element, element.width, element.height, zoom);
       const shape = getElementShape(element, elementsMap);
       return isPointOnShape(pointFrom(x, y), shape, threshold) || fullShape === true && pointInsideBounds(pointFrom(x, y), aabbForElement(element));
-    }, "bindingBorderTest");
-    maxBindingGap = /* @__PURE__ */ __name((element, elementWidth, elementHeight, zoom) => {
+    };
+    maxBindingGap = (element, elementWidth, elementHeight, zoom) => {
       const zoomValue = zoom?.value && zoom.value < 1 ? zoom.value : 1;
       const shapeRatio = element.type === "diamond" ? 1 / Math.sqrt(2) : 1;
       const smallerDimension = shapeRatio * Math.min(elementWidth, elementHeight);
@@ -19775,8 +19343,8 @@ var init_binding = __esm({
         // keep in sync with the zoomed highlight
         BINDING_HIGHLIGHT_THICKNESS / zoomValue + BINDING_HIGHLIGHT_OFFSET
       );
-    }, "maxBindingGap");
-    determineFocusDistance = /* @__PURE__ */ __name((element, a2, b2) => {
+    };
+    determineFocusDistance = (element, a2, b2) => {
       const center = pointFrom(
         element.x + element.width / 2,
         element.y + element.height / 2
@@ -19881,8 +19449,8 @@ var init_binding = __esm({
       ).sort((g, h) => Math.abs(g) - Math.abs(h));
       const signedDistanceRatio = ordered[0] ?? 0;
       return signedDistanceRatio;
-    }, "determineFocusDistance");
-    getGlobalFixedPointForBindableElement = /* @__PURE__ */ __name((fixedPointRatio, element) => {
+    };
+    getGlobalFixedPointForBindableElement = (fixedPointRatio, element) => {
       const [fixedX, fixedY] = normalizeFixedPoint(fixedPointRatio);
       return pointRotateRads(
         pointFrom(
@@ -19895,15 +19463,15 @@ var init_binding = __esm({
         ),
         element.angle
       );
-    }, "getGlobalFixedPointForBindableElement");
-    normalizeFixedPoint = /* @__PURE__ */ __name((fixedPoint) => {
+    };
+    normalizeFixedPoint = (fixedPoint) => {
       if (fixedPoint && (Math.abs(fixedPoint[0] - 0.5) < 1e-4 || Math.abs(fixedPoint[1] - 0.5) < 1e-4)) {
         return fixedPoint.map(
           (ratio) => Math.abs(ratio - 0.5) < 1e-4 ? 0.5001 : ratio
         );
       }
       return fixedPoint;
-    }, "normalizeFixedPoint");
+    };
   }
 });
 
@@ -19921,7 +19489,7 @@ var canChangeRoundness;
 var init_comparisons = __esm({
   "packages/excalidraw/scene/comparisons.ts"() {
     "use strict";
-    canChangeRoundness = /* @__PURE__ */ __name((type) => type === "rectangle" || type === "iframe" || type === "embeddable" || type === "line" || type === "diamond" || type === "image", "canChangeRoundness");
+    canChangeRoundness = (type) => type === "rectangle" || type === "iframe" || type === "embeddable" || type === "line" || type === "diamond" || type === "image";
   }
 });
 
@@ -19932,15 +19500,15 @@ var init_normalize2 = __esm({
     "use strict";
     init_math2();
     init_constants();
-    getNormalizedZoom = /* @__PURE__ */ __name((zoom) => {
+    getNormalizedZoom = (zoom) => {
       return clamp(round(zoom, 6), MIN_ZOOM, MAX_ZOOM);
-    }, "getNormalizedZoom");
-    getNormalizedGridSize = /* @__PURE__ */ __name((gridStep) => {
+    };
+    getNormalizedGridSize = (gridStep) => {
       return clamp(Math.round(gridStep), 1, 100);
-    }, "getNormalizedGridSize");
-    getNormalizedGridStep = /* @__PURE__ */ __name((gridStep) => {
+    };
+    getNormalizedGridStep = (gridStep) => {
       return clamp(Math.round(gridStep), 1, 100);
-    }, "getNormalizedGridStep");
+    };
   }
 });
 
@@ -19967,7 +19535,7 @@ var init_groups = __esm({
       let lastSelectedElements = null;
       let lastElements = null;
       let lastReturnValue = null;
-      const _selectGroups = /* @__PURE__ */ __name((selectedElements, elements, appState, prevAppState) => {
+      const _selectGroups = (selectedElements, elements, appState, prevAppState) => {
         if (lastReturnValue !== void 0 && elements === lastElements && selectedElements === lastSelectedElements && appState.editingGroupId === lastReturnValue?.editingGroupId) {
           return lastReturnValue;
         }
@@ -20025,8 +19593,8 @@ var init_groups = __esm({
           )
         };
         return lastReturnValue;
-      }, "_selectGroups");
-      const selectGroupsForSelectedElements2 = /* @__PURE__ */ __name((appState, elements, prevAppState, app) => {
+      };
+      const selectGroupsForSelectedElements2 = (appState, elements, prevAppState, app) => {
         const selectedElements = app ? app.scene.getSelectedElements({
           selectedElementIds: appState.selectedElementIds,
           // supplying elements explicitly in case we're passed non-state elements
@@ -20043,7 +19611,7 @@ var init_groups = __esm({
           };
         }
         return _selectGroups(selectedElements, elements, appState, prevAppState);
-      }, "selectGroupsForSelectedElements");
+      };
       selectGroupsForSelectedElements2.clearCache = () => {
         lastElements = null;
         lastSelectedElements = null;
@@ -20051,8 +19619,8 @@ var init_groups = __esm({
       };
       return selectGroupsForSelectedElements2;
     }();
-    isElementInGroup = /* @__PURE__ */ __name((element, groupId) => element.groupIds.includes(groupId), "isElementInGroup");
-    getElementsInGroup = /* @__PURE__ */ __name((elements, groupId) => {
+    isElementInGroup = (element, groupId) => element.groupIds.includes(groupId);
+    getElementsInGroup = (elements, groupId) => {
       const elementsInGroup = [];
       for (const element of elements.values()) {
         if (isElementInGroup(element, groupId)) {
@@ -20060,7 +19628,7 @@ var init_groups = __esm({
         }
       }
       return elementsInGroup;
-    }, "getElementsInGroup");
+    };
   }
 });
 
@@ -20076,7 +19644,7 @@ var init_snapping = __esm({
     init_groups();
     init_keys();
     init_selection();
-    getGridPoint = /* @__PURE__ */ __name((x, y, gridSize) => {
+    getGridPoint = (x, y, gridSize) => {
       if (gridSize) {
         return [
           Math.round(x / gridSize) * gridSize,
@@ -20084,7 +19652,7 @@ var init_snapping = __esm({
         ];
       }
       return [x, y];
-    }, "getGridPoint");
+    };
   }
 });
 
@@ -20110,9 +19678,6 @@ var init_linearElementEditor = __esm({
     init_shape();
     editorMidPointsCache = { version: null, points: [], zoom: null };
     LinearElementEditor = class _LinearElementEditor {
-      static {
-        __name(this, "LinearElementEditor");
-      }
       elementId;
       /** indices */
       selectedPointsIndices;
@@ -20367,7 +19932,7 @@ var init_linearElementEditor = __esm({
           pointerOffset: { x: 0, y: 0 }
         };
       }
-      static getEditorMidPoints = /* @__PURE__ */ __name((element, elementsMap, appState) => {
+      static getEditorMidPoints = (element, elementsMap, appState) => {
         const boundText = getBoundTextElement(element, elementsMap);
         if (!isElbowArrow(element) && !appState.editingLinearElement && element.points.length > 2 && !boundText) {
           return [];
@@ -20381,8 +19946,8 @@ var init_linearElementEditor = __esm({
           appState
         );
         return editorMidPointsCache.points;
-      }, "getEditorMidPoints");
-      static updateEditorMidPointsCache = /* @__PURE__ */ __name((element, elementsMap, appState) => {
+      };
+      static updateEditorMidPointsCache = (element, elementsMap, appState) => {
         const points = _LinearElementEditor.getPointsGlobalCoordinates(
           element,
           elementsMap
@@ -20414,8 +19979,8 @@ var init_linearElementEditor = __esm({
         editorMidPointsCache.points = midpoints;
         editorMidPointsCache.version = element.version;
         editorMidPointsCache.zoom = appState.zoom.value;
-      }, "updateEditorMidPointsCache");
-      static getSegmentMidpointHitCoords = /* @__PURE__ */ __name((linearElementEditor, scenePointer, appState, elementsMap) => {
+      };
+      static getSegmentMidpointHitCoords = (linearElementEditor, scenePointer, appState, elementsMap) => {
         const { elementId } = linearElementEditor;
         const element = _LinearElementEditor.getElement(elementId, elementsMap);
         if (!element) {
@@ -20467,7 +20032,7 @@ var init_linearElementEditor = __esm({
           index++;
         }
         return null;
-      }, "getSegmentMidpointHitCoords");
+      };
       static isSegmentTooShort(element, startPoint, endPoint, index, zoom) {
         if (isElbowArrow(element)) {
           if (index >= 0 && index < element.points.length) {
@@ -21077,7 +20642,7 @@ var init_linearElementEditor = __esm({
           -element.angle
         );
       }
-      static getBoundTextElementPosition = /* @__PURE__ */ __name((element, boundTextElement, elementsMap) => {
+      static getBoundTextElementPosition = (element, boundTextElement, elementsMap) => {
         const points = _LinearElementEditor.getPointsGlobalCoordinates(
           element,
           elementsMap
@@ -21115,8 +20680,8 @@ var init_linearElementEditor = __esm({
           y = midSegmentMidpoint[1] - boundTextElement.height / 2;
         }
         return { x, y };
-      }, "getBoundTextElementPosition");
-      static getMinMaxXYWithBoundText = /* @__PURE__ */ __name((element, elementsMap, elementBounds, boundTextElement) => {
+      };
+      static getMinMaxXYWithBoundText = (element, elementsMap, elementBounds, boundTextElement) => {
         let [x1, y1, x2, y2] = elementBounds;
         const cx = (x1 + x2) / 2;
         const cy = (y1 + y2) / 2;
@@ -21198,8 +20763,8 @@ var init_linearElementEditor = __esm({
           y2 = Math.max(y2, counterRotateBoundTextBottomLeft[1]);
         }
         return [x1, y1, x2, y2, cx, cy];
-      }, "getMinMaxXYWithBoundText");
-      static getElementAbsoluteCoords = /* @__PURE__ */ __name((element, elementsMap, includeBoundText = false) => {
+      };
+      static getElementAbsoluteCoords = (element, elementsMap, includeBoundText = false) => {
         let coords;
         let x1;
         let y1;
@@ -21245,7 +20810,7 @@ var init_linearElementEditor = __esm({
           );
         }
         return coords;
-      }, "getElementAbsoluteCoords");
+      };
       static moveFixedSegment(linearElement, index, x, y, elementsMap) {
         const element = _LinearElementEditor.getElement(
           linearElement.elementId,
@@ -21313,13 +20878,13 @@ var init_linearElementEditor = __esm({
         mutateElement(element, {}, true);
       }
     };
-    normalizeSelectedPoints = /* @__PURE__ */ __name((points) => {
+    normalizeSelectedPoints = (points) => {
       let nextPoints = [
         ...new Set(points.filter((p) => p !== null && p !== -1))
       ];
       nextPoints = nextPoints.sort((a2, b2) => a2 - b2);
       return nextPoints.length ? nextPoints : null;
-    }, "normalizeSelectedPoints");
+    };
   }
 });
 
@@ -21329,11 +20894,11 @@ var init_containerCache = __esm({
   "packages/excalidraw/element/containerCache.ts"() {
     "use strict";
     originalContainerCache = {};
-    resetOriginalContainerCache = /* @__PURE__ */ __name((id) => {
+    resetOriginalContainerCache = (id) => {
       if (originalContainerCache[id]) {
         delete originalContainerCache[id];
       }
-    }, "resetOriginalContainerCache");
+    };
   }
 });
 
@@ -21351,7 +20916,7 @@ var init_textElement = __esm({
     init_linearElementEditor();
     init_containerCache();
     init_textMeasurements();
-    handleBindTextResize = /* @__PURE__ */ __name((container, elementsMap, transformHandleType, shouldMaintainAspectRatio = false) => {
+    handleBindTextResize = (container, elementsMap, transformHandleType, shouldMaintainAspectRatio = false) => {
       const boundTextElementId = getBoundTextElementId(container);
       if (!boundTextElementId) {
         return;
@@ -21408,8 +20973,8 @@ var init_textElement = __esm({
           );
         }
       }
-    }, "handleBindTextResize");
-    computeBoundTextPosition = /* @__PURE__ */ __name((container, boundTextElement, elementsMap) => {
+    };
+    computeBoundTextPosition = (container, boundTextElement, elementsMap) => {
       if (isArrowElement(container)) {
         return LinearElementEditor.getBoundTextElementPosition(
           container,
@@ -21437,11 +21002,11 @@ var init_textElement = __esm({
         x = containerCoords.x + (maxContainerWidth / 2 - boundTextElement.width / 2);
       }
       return { x, y };
-    }, "computeBoundTextPosition");
-    getBoundTextElementId = /* @__PURE__ */ __name((container) => {
+    };
+    getBoundTextElementId = (container) => {
       return container?.boundElements?.length ? container?.boundElements?.find((ele) => ele.type === "text")?.id || null : null;
-    }, "getBoundTextElementId");
-    getBoundTextElement = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    getBoundTextElement = (element, elementsMap) => {
       if (!element) {
         return null;
       }
@@ -21450,8 +21015,8 @@ var init_textElement = __esm({
         return elementsMap.get(boundTextElementId) || null;
       }
       return null;
-    }, "getBoundTextElement");
-    getContainerElement = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    getContainerElement = (element, elementsMap) => {
       if (!element) {
         return null;
       }
@@ -21459,8 +21024,8 @@ var init_textElement = __esm({
         return elementsMap.get(element.containerId) || null;
       }
       return null;
-    }, "getContainerElement");
-    getContainerCoords = /* @__PURE__ */ __name((container) => {
+    };
+    getContainerCoords = (container) => {
       let offsetX = BOUND_TEXT_PADDING;
       let offsetY = BOUND_TEXT_PADDING;
       if (container.type === "ellipse") {
@@ -21475,8 +21040,8 @@ var init_textElement = __esm({
         x: container.x + offsetX,
         y: container.y + offsetY
       };
-    }, "getContainerCoords");
-    computeContainerDimensionForBoundText = /* @__PURE__ */ __name((dimension, containerType) => {
+    };
+    computeContainerDimensionForBoundText = (dimension, containerType) => {
       dimension = Math.ceil(dimension);
       const padding = BOUND_TEXT_PADDING * 2;
       if (containerType === "ellipse") {
@@ -21489,8 +21054,8 @@ var init_textElement = __esm({
         return 2 * (dimension + padding);
       }
       return dimension + padding;
-    }, "computeContainerDimensionForBoundText");
-    getBoundTextMaxWidth = /* @__PURE__ */ __name((container, boundTextElement) => {
+    };
+    getBoundTextMaxWidth = (container, boundTextElement) => {
       const { width } = container;
       if (isArrowElement(container)) {
         const minWidth = (boundTextElement?.fontSize ?? DEFAULT_FONT_SIZE) * ARROW_LABEL_FONT_SIZE_TO_MIN_WIDTH_RATIO;
@@ -21503,8 +21068,8 @@ var init_textElement = __esm({
         return Math.round(width / 2) - BOUND_TEXT_PADDING * 2;
       }
       return width - BOUND_TEXT_PADDING * 2;
-    }, "getBoundTextMaxWidth");
-    getBoundTextMaxHeight = /* @__PURE__ */ __name((container, boundTextElement) => {
+    };
+    getBoundTextMaxHeight = (container, boundTextElement) => {
       const { height } = container;
       if (isArrowElement(container)) {
         const containerHeight = height - BOUND_TEXT_PADDING * 8 * 2;
@@ -21520,7 +21085,7 @@ var init_textElement = __esm({
         return Math.round(height / 2) - BOUND_TEXT_PADDING * 2;
       }
       return height - BOUND_TEXT_PADDING * 2;
-    }, "getBoundTextMaxHeight");
+    };
   }
 });
 
@@ -21533,7 +21098,7 @@ var init_withinBounds = __esm({
     init_bounds();
     init_utils2();
     init_math2();
-    getNonLinearElementRelativePoints = /* @__PURE__ */ __name((element) => {
+    getNonLinearElementRelativePoints = (element) => {
       if (element.type === "diamond") {
         return [
           pointFrom(element.width / 2, 0),
@@ -21548,14 +21113,14 @@ var init_withinBounds = __esm({
         pointFrom(0 + element.width, element.height),
         pointFrom(0, element.height)
       ];
-    }, "getNonLinearElementRelativePoints");
-    getElementRelativePoints = /* @__PURE__ */ __name((element) => {
+    };
+    getElementRelativePoints = (element) => {
       if (isLinearElement(element) || isFreeDrawElement(element)) {
         return element.points;
       }
       return getNonLinearElementRelativePoints(element);
-    }, "getElementRelativePoints");
-    getMinMaxPoints = /* @__PURE__ */ __name((points) => {
+    };
+    getMinMaxPoints = (points) => {
       const ret = points.reduce(
         (limits, [x, y]) => {
           limits.minY = Math.min(limits.minY, y);
@@ -21576,8 +21141,8 @@ var init_withinBounds = __esm({
       ret.cx = (ret.maxX + ret.minX) / 2;
       ret.cy = (ret.maxY + ret.minY) / 2;
       return ret;
-    }, "getMinMaxPoints");
-    getRotatedBBox = /* @__PURE__ */ __name((element) => {
+    };
+    getRotatedBBox = (element) => {
       const points = getElementRelativePoints(element);
       const { cx, cy } = getMinMaxPoints(points);
       const centerPoint = pointFrom(cx, cy);
@@ -21591,8 +21156,8 @@ var init_withinBounds = __esm({
         maxX + element.x,
         maxY + element.y
       ];
-    }, "getRotatedBBox");
-    isElementInsideBBox = /* @__PURE__ */ __name((element, bbox, eitherDirection = false) => {
+    };
+    isElementInsideBBox = (element, bbox, eitherDirection = false) => {
       const elementBBox = getRotatedBBox(element);
       const elementInsideBbox = bbox[0] <= elementBBox[0] && bbox[2] >= elementBBox[2] && bbox[1] <= elementBBox[1] && bbox[3] >= elementBBox[3];
       if (!eitherDirection) {
@@ -21602,8 +21167,8 @@ var init_withinBounds = __esm({
         return true;
       }
       return elementBBox[0] <= bbox[0] && elementBBox[2] >= bbox[2] && elementBBox[1] <= bbox[1] && elementBBox[3] >= bbox[3];
-    }, "isElementInsideBBox");
-    elementPartiallyOverlapsWithOrContainsBBox = /* @__PURE__ */ __name((element, bbox) => {
+    };
+    elementPartiallyOverlapsWithOrContainsBBox = (element, bbox) => {
       const elementBBox = getRotatedBBox(element);
       return (rangeIncludesValue(elementBBox[0], rangeInclusive(bbox[0], bbox[2])) || rangeIncludesValue(
         bbox[0],
@@ -21612,8 +21177,8 @@ var init_withinBounds = __esm({
         bbox[1],
         rangeInclusive(elementBBox[1], elementBBox[3])
       ));
-    }, "elementPartiallyOverlapsWithOrContainsBBox");
-    elementsOverlappingBBox = /* @__PURE__ */ __name(({
+    };
+    elementsOverlappingBBox = ({
       elements,
       bounds,
       type,
@@ -21655,7 +21220,7 @@ var init_withinBounds = __esm({
         }
       }
       return elements.filter((element) => includedElementSet.has(element.id));
-    }, "elementsOverlappingBBox");
+    };
   }
 });
 
@@ -21693,13 +21258,7 @@ var init_bbox = __esm({
   "packages/utils/bbox.ts"() {
     "use strict";
     init_math2();
-    __name(getBBox, "getBBox");
-    __name(doBBoxesIntersect, "doBBoxesIntersect");
     EPSILON2 = 1e-6;
-    __name(isPointOnLine, "isPointOnLine");
-    __name(isPointRightOfLine, "isPointRightOfLine");
-    __name(isLineSegmentTouchingOrCrossingLine, "isLineSegmentTouchingOrCrossingLine");
-    __name(doLineSegmentsIntersect, "doLineSegmentsIntersect");
   }
 });
 
@@ -21739,24 +21298,23 @@ var init_frame = __esm({
     init_utils4();
     init_typeChecks();
     init_math2();
-    __name(isElementIntersectingFrame, "isElementIntersectingFrame");
-    isElementContainingFrame = /* @__PURE__ */ __name((element, frame, elementsMap) => {
+    isElementContainingFrame = (element, frame, elementsMap) => {
       return getElementsWithinSelection([frame], element, elementsMap).some(
         (e8) => e8.id === frame.id
       );
-    }, "isElementContainingFrame");
-    elementsAreInFrameBounds = /* @__PURE__ */ __name((elements, frame, elementsMap) => {
+    };
+    elementsAreInFrameBounds = (elements, frame, elementsMap) => {
       const [frameX1, frameY1, frameX2, frameY2] = getElementAbsoluteCoords(
         frame,
         elementsMap
       );
       const [elementX1, elementY1, elementX2, elementY2] = getCommonBounds(elements);
       return frameX1 <= elementX1 && frameY1 <= elementY1 && frameX2 >= elementX2 && frameY2 >= elementY2;
-    }, "elementsAreInFrameBounds");
-    elementOverlapsWithFrame = /* @__PURE__ */ __name((element, frame, elementsMap) => {
+    };
+    elementOverlapsWithFrame = (element, frame, elementsMap) => {
       return elementsAreInFrameBounds([element], frame, elementsMap) || isElementIntersectingFrame(element, frame, elementsMap) || isElementContainingFrame(element, frame, elementsMap);
-    }, "elementOverlapsWithFrame");
-    getFrameChildren = /* @__PURE__ */ __name((allElements, frameId) => {
+    };
+    getFrameChildren = (allElements, frameId) => {
       const frameChildren = [];
       for (const element of allElements.values()) {
         if (element.frameId === frameId) {
@@ -21764,44 +21322,44 @@ var init_frame = __esm({
         }
       }
       return frameChildren;
-    }, "getFrameChildren");
-    getFrameLikeElements = /* @__PURE__ */ __name((allElements) => {
+    };
+    getFrameLikeElements = (allElements) => {
       return allElements.filter(
         (element) => isFrameLikeElement(element)
       );
-    }, "getFrameLikeElements");
-    getRootElements = /* @__PURE__ */ __name((allElements) => {
+    };
+    getRootElements = (allElements) => {
       const frameElements = arrayToMap(getFrameLikeElements(allElements));
       return allElements.filter(
         (element) => frameElements.has(element.id) || !element.frameId || !frameElements.has(element.frameId)
       );
-    }, "getRootElements");
-    getContainingFrame = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    getContainingFrame = (element, elementsMap) => {
       if (!element.frameId) {
         return null;
       }
       return elementsMap.get(element.frameId) || null;
-    }, "getContainingFrame");
-    getTargetFrame = /* @__PURE__ */ __name((element, elementsMap, appState) => {
+    };
+    getTargetFrame = (element, elementsMap, appState) => {
       const _element = isTextElement(element) ? getContainerElement(element, elementsMap) || element : element;
       if (_element.frameId && appState.selectedElementIds[_element.id] && appState.selectedElementIds[_element.frameId]) {
         return getContainingFrame(_element, elementsMap);
       }
       return appState.selectedElementIds[_element.id] && appState.selectedElementsAreBeingDragged ? appState.frameToHighlight : getContainingFrame(_element, elementsMap);
-    }, "getTargetFrame");
-    isElementInFrame = /* @__PURE__ */ __name((element, allElementsMap, appState, opts) => {
+    };
+    isElementInFrame = (element, allElementsMap, appState, opts) => {
       const frame = opts?.targetFrame ?? getTargetFrame(element, allElementsMap, appState);
       if (!frame) {
         return false;
       }
       const _element = isTextElement(element) ? getContainerElement(element, allElementsMap) || element : element;
-      const setGroupsInFrame = /* @__PURE__ */ __name((isInFrame) => {
+      const setGroupsInFrame = (isInFrame) => {
         if (opts?.checkedGroups) {
           _element.groupIds.forEach((groupId) => {
             opts.checkedGroups?.set(groupId, isInFrame);
           });
         }
-      }, "setGroupsInFrame");
+      };
       if (
         // if the element is not selected, or it is selected but not being dragged,
         // frame membership won't update, so return true
@@ -21851,8 +21409,8 @@ var init_frame = __esm({
         }
       }
       return false;
-    }, "isElementInFrame");
-    shouldApplyFrameClip = /* @__PURE__ */ __name((element, frame, appState, elementsMap, checkedGroups) => {
+    };
+    shouldApplyFrameClip = (element, frame, appState, elementsMap, checkedGroups) => {
       if (!appState.frameRendering || !appState.frameRendering.clip) {
         return false;
       }
@@ -21882,17 +21440,17 @@ var init_frame = __esm({
         return shouldClip;
       }
       return false;
-    }, "shouldApplyFrameClip");
-    getFrameLikeTitle = /* @__PURE__ */ __name((element) => {
+    };
+    getFrameLikeTitle = (element) => {
       return element.name === null ? isFrameElement(element) ? "Frame" : "AI Frame" : element.name;
-    }, "getFrameLikeTitle");
-    getElementsOverlappingFrame = /* @__PURE__ */ __name((elements, frame) => {
+    };
+    getElementsOverlappingFrame = (elements, frame) => {
       return elementsOverlappingBBox({
         elements,
         bounds: frame,
         type: "overlap"
       }).filter((el) => !el.frameId || el.frameId === frame.id);
-    }, "getElementsOverlappingFrame");
+    };
   }
 });
 
@@ -21906,7 +21464,7 @@ var init_selection = __esm({
     init_frame();
     init_utils2();
     init_sizeHelpers();
-    excludeElementsInFramesFromSelection = /* @__PURE__ */ __name((selectedElements) => {
+    excludeElementsInFramesFromSelection = (selectedElements) => {
       const framesInSelection = /* @__PURE__ */ new Set();
       selectedElements.forEach((element) => {
         if (isFrameLikeElement(element)) {
@@ -21919,8 +21477,8 @@ var init_selection = __esm({
         }
         return true;
       });
-    }, "excludeElementsInFramesFromSelection");
-    getElementsWithinSelection = /* @__PURE__ */ __name((elements, selection, elementsMap, excludeElementsInFrames = true) => {
+    };
+    getElementsWithinSelection = (elements, selection, elementsMap, excludeElementsInFrames = true) => {
       const [selectionX1, selectionY1, selectionX2, selectionY2] = getElementAbsoluteCoords(selection, elementsMap);
       let elementsInSelection = elements.filter((element) => {
         let [elementX1, elementY1, elementX2, elementY2] = getElementBounds(
@@ -21949,12 +21507,12 @@ var init_selection = __esm({
         return true;
       });
       return elementsInSelection;
-    }, "getElementsWithinSelection");
+    };
     isSomeElementSelected = function() {
       let lastElements = null;
       let lastSelectedElementIds = null;
       let isSelected = null;
-      const ret = /* @__PURE__ */ __name((elements, appState) => {
+      const ret = (elements, appState) => {
         if (isSelected != null && elements === lastElements && appState.selectedElementIds === lastSelectedElementIds) {
           return isSelected;
         }
@@ -21964,7 +21522,7 @@ var init_selection = __esm({
         lastElements = elements;
         lastSelectedElementIds = appState.selectedElementIds;
         return isSelected;
-      }, "ret");
+      };
       ret.clearCache = () => {
         lastElements = null;
         lastSelectedElementIds = null;
@@ -21972,7 +21530,7 @@ var init_selection = __esm({
       };
       return ret;
     }();
-    getSelectedElements = /* @__PURE__ */ __name((elements, appState, opts) => {
+    getSelectedElements = (elements, appState, opts) => {
       const addedElements = /* @__PURE__ */ new Set();
       const selectedElements = [];
       for (const element of elements.values()) {
@@ -22000,13 +21558,13 @@ var init_selection = __esm({
         return elementsToInclude;
       }
       return selectedElements;
-    }, "getSelectedElements");
-    makeNextSelectedElementIds = /* @__PURE__ */ __name((nextSelectedElementIds, prevState) => {
+    };
+    makeNextSelectedElementIds = (nextSelectedElementIds, prevState) => {
       if (isShallowEqual(prevState.selectedElementIds, nextSelectedElementIds)) {
         return prevState.selectedElementIds;
       }
       return nextSelectedElementIds;
-    }, "makeNextSelectedElementIds");
+    };
   }
 });
 
@@ -22021,7 +21579,7 @@ var nanoid;
 var init_index_browser = __esm({
   "packages/excalidraw/node_modules/nanoid/index.browser.js"() {
     init_url_alphabet();
-    nanoid = /* @__PURE__ */ __name((size = 21) => crypto.getRandomValues(new Uint8Array(size)).reduce((id, byte) => {
+    nanoid = (size = 21) => crypto.getRandomValues(new Uint8Array(size)).reduce((id, byte) => {
       byte &= 63;
       if (byte < 36) {
         id += byte.toString(36);
@@ -22033,7 +21591,7 @@ var init_index_browser = __esm({
         id += "_";
       }
       return id;
-    }, ""), "nanoid");
+    }, "");
   }
 });
 
@@ -22047,8 +21605,8 @@ var init_random = __esm({
     init_utils2();
     random2 = new Random(Date.now());
     testIdBase = 0;
-    randomInteger = /* @__PURE__ */ __name(() => Math.floor(random2.next() * 2 ** 31), "randomInteger");
-    randomId = /* @__PURE__ */ __name(() => isTestEnv() ? `id${testIdBase++}` : nanoid(), "randomId");
+    randomInteger = () => Math.floor(random2.next() * 2 ** 31);
+    randomId = () => isTestEnv() ? `id${testIdBase++}` : nanoid();
   }
 });
 
@@ -22264,15 +21822,6 @@ var BASE_62_DIGITS;
 var init_src = __esm({
   "node_modules/fractional-indexing/src/index.js"() {
     BASE_62_DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    __name(midpoint, "midpoint");
-    __name(validateInteger, "validateInteger");
-    __name(getIntegerLength, "getIntegerLength");
-    __name(getIntegerPart, "getIntegerPart");
-    __name(validateOrderKey, "validateOrderKey");
-    __name(incrementInteger, "incrementInteger");
-    __name(decrementInteger, "decrementInteger");
-    __name(generateKeyBetween, "generateKeyBetween");
-    __name(generateNKeysBetween, "generateNKeysBetween");
   }
 });
 
@@ -22287,14 +21836,14 @@ var init_fractionalIndex = __esm({
     init_typeChecks();
     init_textElement();
     init_utils2();
-    validateFractionalIndices = /* @__PURE__ */ __name((elements, {
+    validateFractionalIndices = (elements, {
       shouldThrow = false,
       includeBoundTextValidation = false,
       ignoreLogs,
       reconciliationContext
     }) => {
       const errorMessages = [];
-      const stringifyElement = /* @__PURE__ */ __name((element) => `${element?.index}:${element?.id}:${element?.type}:${element?.isDeleted}:${element?.version}:${element?.versionNonce}`, "stringifyElement");
+      const stringifyElement = (element) => `${element?.index}:${element?.id}:${element?.type}:${element?.isDeleted}:${element?.version}:${element?.versionNonce}`;
       const indices = elements.map((x) => x.index);
       for (const [i2, index] of indices.entries()) {
         const predecessorIndex = indices[i2 - 1];
@@ -22344,8 +21893,8 @@ var init_fractionalIndex = __esm({
           throw error;
         }
       }
-    }, "validateFractionalIndices");
-    syncMovedIndices = /* @__PURE__ */ __name((elements, movedElements) => {
+    };
+    syncMovedIndices = (elements, movedElements) => {
       try {
         const indicesGroups = getMovedIndicesGroups(elements, movedElements);
         const elementsUpdates = generateIndices(elements, indicesGroups);
@@ -22368,16 +21917,16 @@ var init_fractionalIndex = __esm({
         syncInvalidIndices(elements);
       }
       return elements;
-    }, "syncMovedIndices");
-    syncInvalidIndices = /* @__PURE__ */ __name((elements) => {
+    };
+    syncInvalidIndices = (elements) => {
       const indicesGroups = getInvalidIndicesGroups(elements);
       const elementsUpdates = generateIndices(elements, indicesGroups);
       for (const [element, update] of elementsUpdates) {
         mutateElement(element, update, false);
       }
       return elements;
-    }, "syncInvalidIndices");
-    getMovedIndicesGroups = /* @__PURE__ */ __name((elements, movedElements) => {
+    };
+    getMovedIndicesGroups = (elements, movedElements) => {
       const indicesGroups = [];
       let i2 = 0;
       while (i2 < elements.length) {
@@ -22396,14 +21945,14 @@ var init_fractionalIndex = __esm({
         }
       }
       return indicesGroups;
-    }, "getMovedIndicesGroups");
-    getInvalidIndicesGroups = /* @__PURE__ */ __name((elements) => {
+    };
+    getInvalidIndicesGroups = (elements) => {
       const indicesGroups = [];
       let lowerBound = void 0;
       let upperBound = void 0;
       let lowerBoundIndex = -1;
       let upperBoundIndex = 0;
-      const getLowerBound = /* @__PURE__ */ __name((index) => {
+      const getLowerBound = (index) => {
         const lowerBound2 = elements[lowerBoundIndex] ? elements[lowerBoundIndex].index : void 0;
         const candidate = elements[index - 1]?.index;
         if (!lowerBound2 && candidate || // first lowerBound
@@ -22411,8 +21960,8 @@ var init_fractionalIndex = __esm({
           return [candidate, index - 1];
         }
         return [lowerBound2, lowerBoundIndex];
-      }, "getLowerBound");
-      const getUpperBound = /* @__PURE__ */ __name((index) => {
+      };
+      const getUpperBound = (index) => {
         const upperBound2 = elements[upperBoundIndex] ? elements[upperBoundIndex].index : void 0;
         if (upperBound2 && index < upperBoundIndex) {
           return [upperBound2, upperBoundIndex];
@@ -22426,7 +21975,7 @@ var init_fractionalIndex = __esm({
           }
         }
         return [void 0, i3];
-      }, "getUpperBound");
+      };
       let i2 = 0;
       while (i2 < elements.length) {
         const current = elements[i2].index;
@@ -22452,8 +22001,8 @@ var init_fractionalIndex = __esm({
         }
       }
       return indicesGroups;
-    }, "getInvalidIndicesGroups");
-    isValidFractionalIndex = /* @__PURE__ */ __name((index, predecessor, successor) => {
+    };
+    isValidFractionalIndex = (index, predecessor, successor) => {
       if (!index) {
         return false;
       }
@@ -22467,8 +22016,8 @@ var init_fractionalIndex = __esm({
         return predecessor < index;
       }
       return !!index;
-    }, "isValidFractionalIndex");
-    generateIndices = /* @__PURE__ */ __name((elements, indicesGroups) => {
+    };
+    generateIndices = (elements, indicesGroups) => {
       const elementsUpdates = /* @__PURE__ */ new Map();
       for (const indices of indicesGroups) {
         const lowerBoundIndex = indices.shift();
@@ -22486,7 +22035,7 @@ var init_fractionalIndex = __esm({
         }
       }
       return elementsUpdates;
-    }, "generateIndices");
+    };
   }
 });
 
@@ -22505,7 +22054,7 @@ var init_Scene = __esm({
     init_utils2();
     init_constants();
     init_groups();
-    getNonDeletedElements2 = /* @__PURE__ */ __name((allElements) => {
+    getNonDeletedElements2 = (allElements) => {
       const elementsMap = /* @__PURE__ */ new Map();
       const elements = [];
       for (const element of allElements) {
@@ -22518,13 +22067,13 @@ var init_Scene = __esm({
         }
       }
       return { elementsMap, elements };
-    }, "getNonDeletedElements");
+    };
     validateIndicesThrottled = (0, import_lodash.default)(
       (elements) => {
-        if (import.meta.env.DEV || import.meta.env.MODE === ENV.TEST || window?.DEBUG_FRACTIONAL_INDICES) {
+        if (import.meta.env.DEV || "production" === ENV.TEST || window?.DEBUG_FRACTIONAL_INDICES) {
           validateFractionalIndices(elements, {
             // throw only in dev & test, to remain functional on `DEBUG_FRACTIONAL_INDICES`
-            shouldThrow: import.meta.env.DEV || import.meta.env.MODE === ENV.TEST,
+            shouldThrow: import.meta.env.DEV || "production" === ENV.TEST,
             includeBoundTextValidation: true
           });
         }
@@ -22532,24 +22081,21 @@ var init_Scene = __esm({
       1e3 * 60,
       { leading: true, trailing: false }
     );
-    hashSelectionOpts = /* @__PURE__ */ __name((opts) => {
+    hashSelectionOpts = (opts) => {
       const keys = ["includeBoundTextElement", "includeElementsInFrames"];
       let hash = "";
       for (const key of keys) {
         hash += `${key}:${opts[key] ? "1" : "0"}`;
       }
       return hash;
-    }, "hashSelectionOpts");
-    isIdKey = /* @__PURE__ */ __name((elementKey) => {
+    };
+    isIdKey = (elementKey) => {
       if (typeof elementKey === "string") {
         return true;
       }
       return false;
-    }, "isIdKey");
+    };
     Scene = class _Scene {
-      static {
-        __name(this, "Scene");
-      }
       // ---------------------------------------------------------------------------
       // static methods/props
       // ---------------------------------------------------------------------------
@@ -22765,21 +22311,21 @@ var init_Scene = __esm({
         syncMovedIndices(nextElements, arrayToMap(elements));
         this.replaceAllElements(nextElements);
       }
-      insertElement = /* @__PURE__ */ __name((element) => {
+      insertElement = (element) => {
         const index = element.frameId ? this.getElementIndex(element.frameId) : this.elements.length;
         this.insertElementAtIndex(element, index);
-      }, "insertElement");
-      insertElements = /* @__PURE__ */ __name((elements) => {
+      };
+      insertElements = (elements) => {
         if (!elements.length) {
           return;
         }
         const index = elements[0]?.frameId ? this.getElementIndex(elements[0].frameId) : this.elements.length;
         this.insertElementsAtIndex(elements, index);
-      }, "insertElements");
+      };
       getElementIndex(elementId) {
         return this.elements.findIndex((element) => element.id === elementId);
       }
-      getContainerElement = /* @__PURE__ */ __name((element) => {
+      getContainerElement = (element) => {
         if (!element) {
           return null;
         }
@@ -22787,15 +22333,15 @@ var init_Scene = __esm({
           return this.getElement(element.containerId) || null;
         }
         return null;
-      }, "getContainerElement");
-      getElementsFromId = /* @__PURE__ */ __name((id) => {
+      };
+      getElementsFromId = (id) => {
         const elementsMap = this.getNonDeletedElementsMap();
         const el = elementsMap.get(id);
         if (el) {
           return [el];
         }
         return getElementsInGroup(elementsMap, id);
-      }, "getElementsFromId");
+      };
     };
     Scene_default = Scene;
   }
@@ -22807,15 +22353,15 @@ var init_points = __esm({
   "packages/excalidraw/points.ts"() {
     "use strict";
     init_math2();
-    getSizeFromPoints = /* @__PURE__ */ __name((points) => {
+    getSizeFromPoints = (points) => {
       const xs = points.map((point) => point[0]);
       const ys = points.map((point) => point[1]);
       return {
         width: Math.max(...xs) - Math.min(...xs),
         height: Math.max(...ys) - Math.min(...ys)
       };
-    }, "getSizeFromPoints");
-    rescalePoints = /* @__PURE__ */ __name((dimension, newSize, points, normalize2) => {
+    };
+    rescalePoints = (dimension, newSize, points, normalize2) => {
       const coordinates = points.map((point) => point[dimension]);
       const maxCoordinate = Math.max(...coordinates);
       const minCoordinate = Math.min(...coordinates);
@@ -22846,7 +22392,7 @@ var init_points = __esm({
         )
       );
       return nextPoints;
-    }, "rescalePoints");
+    };
   }
 });
 
@@ -22858,9 +22404,6 @@ var init_binaryheap = __esm({
     BinaryHeap = class {
       constructor(scoreFunction) {
         this.scoreFunction = scoreFunction;
-      }
-      static {
-        __name(this, "BinaryHeap");
       }
       content = [];
       sinkDown(idx) {
@@ -22966,7 +22509,7 @@ var init_elbowArrow = __esm({
     init_distance();
     DEDUP_TRESHOLD = 1;
     BASE_PADDING = 40;
-    handleSegmentRenormalization = /* @__PURE__ */ __name((arrow, elementsMap) => {
+    handleSegmentRenormalization = (arrow, elementsMap) => {
       const nextFixedSegments = arrow.fixedSegments ? arrow.fixedSegments.slice() : null;
       if (nextFixedSegments) {
         const _nextPoints = [];
@@ -23089,8 +22632,8 @@ var init_elbowArrow = __esm({
         startIsSpecial: arrow.startIsSpecial,
         endIsSpecial: arrow.endIsSpecial
       };
-    }, "handleSegmentRenormalization");
-    handleSegmentRelease = /* @__PURE__ */ __name((arrow, fixedSegments, elementsMap) => {
+    };
+    handleSegmentRelease = (arrow, fixedSegments, elementsMap) => {
       const newFixedSegmentIndices = fixedSegments.map((segment) => segment.index);
       const oldFixedSegmentIndices = arrow.fixedSegments?.map((segment) => segment.index) ?? [];
       const deletedSegmentIdx = oldFixedSegmentIndices.findIndex(
@@ -23225,8 +22768,8 @@ var init_elbowArrow = __esm({
         false,
         false
       );
-    }, "handleSegmentRelease");
-    handleSegmentMove = /* @__PURE__ */ __name((arrow, fixedSegments, startHeading, endHeading, hoveredStartElement, hoveredEndElement) => {
+    };
+    handleSegmentMove = (arrow, fixedSegments, startHeading, endHeading, hoveredStartElement, hoveredEndElement) => {
       const activelyModifiedSegmentIdx = fixedSegments.map((segment, i2) => {
         if (arrow.fixedSegments == null || arrow.fixedSegments[i2] === void 0 || arrow.fixedSegments[i2].index !== segment.index) {
           return i2;
@@ -23373,8 +22916,8 @@ var init_elbowArrow = __esm({
         false
         // If you move a segment, there is no special point anymore
       );
-    }, "handleSegmentMove");
-    handleEndpointDrag = /* @__PURE__ */ __name((arrow, updatedPoints, fixedSegments, startHeading, endHeading, startGlobalPoint, endGlobalPoint, hoveredStartElement, hoveredEndElement) => {
+    };
+    handleEndpointDrag = (arrow, updatedPoints, fixedSegments, startHeading, endHeading, startGlobalPoint, endGlobalPoint, hoveredStartElement, hoveredEndElement) => {
       let startIsSpecial = arrow.startIsSpecial ?? null;
       let endIsSpecial = arrow.endIsSpecial ?? null;
       const globalUpdatedPoints = updatedPoints.map(
@@ -23505,9 +23048,9 @@ var init_elbowArrow = __esm({
         startIsSpecial,
         endIsSpecial
       );
-    }, "handleEndpointDrag");
+    };
     MAX_POS = 1e6;
-    updateElbowArrowPoints = /* @__PURE__ */ __name((arrow, elementsMap, updates, options) => {
+    updateElbowArrowPoints = (arrow, elementsMap, updates, options) => {
       if (arrow.points.length < 2) {
         return { points: updates.points ?? arrow.points };
       }
@@ -23650,8 +23193,8 @@ var init_elbowArrow = __esm({
         hoveredStartElement,
         hoveredEndElement
       );
-    }, "updateElbowArrowPoints");
-    getElbowArrowData = /* @__PURE__ */ __name((arrow, elementsMap, nextPoints, startElement, endElement, options) => {
+    };
+    getElbowArrowData = (arrow, elementsMap, nextPoints, startElement, endElement, options) => {
       const origStartGlobalPoint = pointTranslate(nextPoints[0], vector(arrow.x, arrow.y));
       const origEndGlobalPoint = pointTranslate(nextPoints[nextPoints.length - 1], vector(arrow.x, arrow.y));
       let hoveredStartElement = startElement;
@@ -23806,8 +23349,8 @@ var init_elbowArrow = __esm({
         startElementBounds,
         endElementBounds
       };
-    }, "getElbowArrowData");
-    routeElbowArrow = /* @__PURE__ */ __name((arrow, elbowArrowData) => {
+    };
+    routeElbowArrow = (arrow, elbowArrowData) => {
       const {
         dynamicAABBs,
         startDonglePosition,
@@ -23856,8 +23399,8 @@ var init_elbowArrow = __esm({
         return points;
       }
       return null;
-    }, "routeElbowArrow");
-    offsetFromHeading = /* @__PURE__ */ __name((heading, head, side) => {
+    };
+    offsetFromHeading = (heading, head, side) => {
       switch (heading) {
         case HEADING_UP:
           return [head, side, side, side];
@@ -23867,8 +23410,8 @@ var init_elbowArrow = __esm({
           return [side, side, head, side];
       }
       return [side, side, side, head];
-    }, "offsetFromHeading");
-    astar = /* @__PURE__ */ __name((start2, end, grid, startHeading, endHeading, aabbs) => {
+    };
+    astar = (start2, end, grid, startHeading, endHeading, aabbs) => {
       const bendMultiplier = m_dist(start2.pos, end.pos);
       const open = new BinaryHeap((node) => node.f);
       open.push(start2);
@@ -23928,8 +23471,8 @@ var init_elbowArrow = __esm({
         }
       }
       return null;
-    }, "astar");
-    pathTo = /* @__PURE__ */ __name((start2, node) => {
+    };
+    pathTo = (start2, node) => {
       let curr = node;
       const path = [];
       while (curr.parent) {
@@ -23938,9 +23481,9 @@ var init_elbowArrow = __esm({
       }
       path.unshift(start2);
       return path;
-    }, "pathTo");
-    m_dist = /* @__PURE__ */ __name((a2, b2) => Math.abs(a2[0] - b2[0]) + Math.abs(a2[1] - b2[1]), "m_dist");
-    generateDynamicAABBs = /* @__PURE__ */ __name((a2, b2, common2, startDifference, endDifference, disableSideHack, startElementBounds, endElementBounds) => {
+    };
+    m_dist = (a2, b2) => Math.abs(a2[0] - b2[0]) + Math.abs(a2[1] - b2[1]);
+    generateDynamicAABBs = (a2, b2, common2, startDifference, endDifference, disableSideHack, startElementBounds, endElementBounds) => {
       const startEl = startElementBounds ?? a2;
       const endEl = endElementBounds ?? b2;
       const [startUp, startRight, startDown, startLeft] = startDifference ?? [
@@ -24035,8 +23578,8 @@ var init_elbowArrow = __esm({
         }
       }
       return [first, second];
-    }, "generateDynamicAABBs");
-    calculateGrid = /* @__PURE__ */ __name((aabbs, start2, startHeading, end, endHeading, common2) => {
+    };
+    calculateGrid = (aabbs, start2, startHeading, end, endHeading, common2) => {
       const horizontal = /* @__PURE__ */ new Set();
       const vertical = /* @__PURE__ */ new Set();
       if (startHeading === HEADING_LEFT || startHeading === HEADING_RIGHT) {
@@ -24079,8 +23622,8 @@ var init_elbowArrow = __esm({
           )
         )
       };
-    }, "calculateGrid");
-    getDonglePosition = /* @__PURE__ */ __name((bounds, heading, p) => {
+    };
+    getDonglePosition = (bounds, heading, p) => {
       switch (heading) {
         case HEADING_UP:
           return pointFrom(p[0], bounds[1]);
@@ -24090,8 +23633,8 @@ var init_elbowArrow = __esm({
           return pointFrom(p[0], bounds[3]);
       }
       return pointFrom(bounds[0], p[1]);
-    }, "getDonglePosition");
-    estimateSegmentCount = /* @__PURE__ */ __name((start2, end, startHeading, endHeading) => {
+    };
+    estimateSegmentCount = (start2, end, startHeading, endHeading) => {
       if (endHeading === HEADING_RIGHT) {
         switch (startHeading) {
           case HEADING_RIGHT: {
@@ -24199,20 +23742,20 @@ var init_elbowArrow = __esm({
         }
       }
       return 0;
-    }, "estimateSegmentCount");
-    getNeighbors = /* @__PURE__ */ __name(([col, row], grid) => [
+    };
+    getNeighbors = ([col, row], grid) => [
       gridNodeFromAddr([col, row - 1], grid),
       gridNodeFromAddr([col + 1, row], grid),
       gridNodeFromAddr([col, row + 1], grid),
       gridNodeFromAddr([col - 1, row], grid)
-    ], "getNeighbors");
-    gridNodeFromAddr = /* @__PURE__ */ __name(([col, row], grid) => {
+    ];
+    gridNodeFromAddr = ([col, row], grid) => {
       if (col < 0 || col >= grid.col || row < 0 || row >= grid.row) {
         return null;
       }
       return grid.data[row * grid.col + col] ?? null;
-    }, "gridNodeFromAddr");
-    pointToGridNode = /* @__PURE__ */ __name((point, grid) => {
+    };
+    pointToGridNode = (point, grid) => {
       for (let col = 0; col < grid.col; col++) {
         for (let row = 0; row < grid.row; row++) {
           const candidate = gridNodeFromAddr([col, row], grid);
@@ -24222,21 +23765,21 @@ var init_elbowArrow = __esm({
         }
       }
       return null;
-    }, "pointToGridNode");
-    commonAABB = /* @__PURE__ */ __name((aabbs) => [
+    };
+    commonAABB = (aabbs) => [
       Math.min(...aabbs.map((aabb) => aabb[0])),
       Math.min(...aabbs.map((aabb) => aabb[1])),
       Math.max(...aabbs.map((aabb) => aabb[2])),
       Math.max(...aabbs.map((aabb) => aabb[3]))
-    ], "commonAABB");
-    getBindableElementForId = /* @__PURE__ */ __name((id, elementsMap) => {
+    ];
+    getBindableElementForId = (id, elementsMap) => {
       const element = elementsMap.get(id);
       if (element && isBindableElement(element)) {
         return element;
       }
       return null;
-    }, "getBindableElementForId");
-    normalizeArrowElementUpdate = /* @__PURE__ */ __name((global2, nextFixedSegments, startIsSpecial, endIsSpecial) => {
+    };
+    normalizeArrowElementUpdate = (global2, nextFixedSegments, startIsSpecial, endIsSpecial) => {
       const offsetX = global2[0][0];
       const offsetY = global2[0][1];
       let points = global2.map(
@@ -24268,8 +23811,8 @@ var init_elbowArrow = __esm({
         startIsSpecial,
         endIsSpecial
       };
-    }, "normalizeArrowElementUpdate");
-    getElbowArrowCornerPoints = /* @__PURE__ */ __name((points) => {
+    };
+    getElbowArrowCornerPoints = (points) => {
       if (points.length > 1) {
         let previousHorizontal = Math.abs(points[0][1] - points[1][1]) < Math.abs(points[0][0] - points[1][0]);
         return points.filter((p, idx) => {
@@ -24287,8 +23830,8 @@ var init_elbowArrow = __esm({
         });
       }
       return points;
-    }, "getElbowArrowCornerPoints");
-    removeElbowArrowShortSegments = /* @__PURE__ */ __name((points) => {
+    };
+    removeElbowArrowShortSegments = (points) => {
       if (points.length >= 4) {
         return points.filter((p, idx) => {
           if (idx === 0 || idx === points.length - 1) {
@@ -24300,8 +23843,8 @@ var init_elbowArrow = __esm({
         });
       }
       return points;
-    }, "removeElbowArrowShortSegments");
-    neighborIndexToHeading = /* @__PURE__ */ __name((idx) => {
+    };
+    neighborIndexToHeading = (idx) => {
       switch (idx) {
         case 0:
           return HEADING_UP;
@@ -24311,8 +23854,8 @@ var init_elbowArrow = __esm({
           return HEADING_DOWN;
       }
       return HEADING_LEFT;
-    }, "neighborIndexToHeading");
-    getGlobalPoint = /* @__PURE__ */ __name((arrow, startOrEnd, fixedPointRatio, initialPoint, boundElement, hoveredElement, isDragging) => {
+    };
+    getGlobalPoint = (arrow, startOrEnd, fixedPointRatio, initialPoint, boundElement, hoveredElement, isDragging) => {
       if (isDragging) {
         if (hoveredElement) {
           const snapPoint = bindPointToSnapToElementOutline(
@@ -24334,8 +23877,8 @@ var init_elbowArrow = __esm({
         ) > 0.01 ? bindPointToSnapToElementOutline(arrow, boundElement, startOrEnd) : fixedGlobalPoint;
       }
       return initialPoint;
-    }, "getGlobalPoint");
-    getBindPointHeading = /* @__PURE__ */ __name((p, otherPoint, elementsMap, hoveredElement, origPoint) => getHeadingForElbowArrowSnap(
+    };
+    getBindPointHeading = (p, otherPoint, elementsMap, hoveredElement, origPoint) => getHeadingForElbowArrowSnap(
       p,
       otherPoint,
       hoveredElement,
@@ -24345,8 +23888,8 @@ var init_elbowArrow = __esm({
       ),
       elementsMap,
       origPoint
-    ), "getBindPointHeading");
-    getHoveredElement = /* @__PURE__ */ __name((origPoint, elementsMap, elements, zoom) => {
+    );
+    getHoveredElement = (origPoint, elementsMap, elements, zoom) => {
       return getHoveredElementForBinding(
         tupleToCoors(origPoint),
         elements,
@@ -24355,11 +23898,11 @@ var init_elbowArrow = __esm({
         true,
         true
       );
-    }, "getHoveredElement");
-    gridAddressesEqual = /* @__PURE__ */ __name((a2, b2) => a2[0] === b2[0] && a2[1] === b2[1], "gridAddressesEqual");
-    validateElbowPoints = /* @__PURE__ */ __name((points, tolerance = DEDUP_TRESHOLD) => points.slice(1).map(
+    };
+    gridAddressesEqual = (a2, b2) => a2[0] === b2[0] && a2[1] === b2[1];
+    validateElbowPoints = (points, tolerance = DEDUP_TRESHOLD) => points.slice(1).map(
       (p, i2) => Math.abs(p[0] - points[i2][0]) < tolerance || Math.abs(p[1] - points[i2][1]) < tolerance
-    ).every(Boolean), "validateElbowPoints");
+    ).every(Boolean);
   }
 });
 
@@ -24375,7 +23918,7 @@ var init_mutateElement = __esm({
     init_ShapeCache();
     init_typeChecks();
     init_elbowArrow();
-    mutateElement = /* @__PURE__ */ __name((element, updates, informMutation = true, options) => {
+    mutateElement = (element, updates, informMutation = true, options) => {
       let didChange = false;
       const { points, fixedSegments, fileId, startBinding, endBinding } = updates;
       if (isElbowArrow(element) && (Object.keys(updates).length === 0 || // normalization case
@@ -24459,8 +24002,8 @@ var init_mutateElement = __esm({
         Scene_default.getScene(element)?.triggerUpdate();
       }
       return element;
-    }, "mutateElement");
-    newElementWith = /* @__PURE__ */ __name((element, updates, force = false) => {
+    };
+    newElementWith = (element, updates, force = false) => {
       let didChange = false;
       for (const key in updates) {
         const value = updates[key];
@@ -24482,13 +24025,13 @@ var init_mutateElement = __esm({
         version: element.version + 1,
         versionNonce: randomInteger()
       };
-    }, "newElementWith");
-    bumpVersion = /* @__PURE__ */ __name((element, version) => {
+    };
+    bumpVersion = (element, version) => {
       element.version = (version ?? element.version) + 1;
       element.versionNonce = randomInteger();
       element.updated = getUpdatedTimestamp();
       return element;
-    }, "bumpVersion");
+    };
   }
 });
 
@@ -24502,13 +24045,13 @@ var init_sizeHelpers = __esm({
     init_constants();
     init_bounds();
     init_utils2();
-    isInvisiblySmallElement = /* @__PURE__ */ __name((element) => {
+    isInvisiblySmallElement = (element) => {
       if (isLinearElement(element) || isFreeDrawElement(element)) {
         return element.points.length < 2;
       }
       return element.width === 0 && element.height === 0;
-    }, "isInvisiblySmallElement");
-    getLockedLinearCursorAlignSize = /* @__PURE__ */ __name((originX, originY, x, y) => {
+    };
+    getLockedLinearCursorAlignSize = (originX, originY, x, y) => {
       let width = x - originX;
       let height = y - originY;
       const lockedAngle = Math.round(Math.atan(height / width) / SHIFT_LOCKING_ANGLE) * SHIFT_LOCKING_ANGLE;
@@ -24529,8 +24072,8 @@ var init_sizeHelpers = __esm({
         height = intersectY - originY;
       }
       return { width, height };
-    }, "getLockedLinearCursorAlignSize");
-    getNormalizedDimensions = /* @__PURE__ */ __name((element) => {
+    };
+    getNormalizedDimensions = (element) => {
       const ret = {
         width: element.width,
         height: element.height,
@@ -24548,7 +24091,7 @@ var init_sizeHelpers = __esm({
         ret.y = element.y - nextHeight;
       }
       return ret;
-    }, "getNormalizedDimensions");
+    };
   }
 });
 
@@ -24568,7 +24111,7 @@ var init_newElement = __esm({
     init_constants();
     init_fonts();
     init_textMeasurements();
-    _newElementBase = /* @__PURE__ */ __name((type, {
+    _newElementBase = (type, {
       x,
       y,
       strokeColor = DEFAULT_ELEMENT_PROPS.strokeColor,
@@ -24630,14 +24173,14 @@ var init_newElement = __esm({
         customData: rest.customData
       };
       return element;
-    }, "_newElementBase");
-    getTextElementPositionOffsets = /* @__PURE__ */ __name((opts, metrics) => {
+    };
+    getTextElementPositionOffsets = (opts, metrics) => {
       return {
         x: opts.textAlign === "center" ? metrics.width / 2 : opts.textAlign === "right" ? metrics.width : 0,
         y: opts.verticalAlign === "middle" ? metrics.height / 2 : 0
       };
-    }, "getTextElementPositionOffsets");
-    newTextElement = /* @__PURE__ */ __name((opts) => {
+    };
+    newTextElement = (opts) => {
       const fontFamily = opts.fontFamily || DEFAULT_FONT_FAMILY;
       const fontSize = opts.fontSize || DEFAULT_FONT_SIZE;
       const lineHeight = opts.lineHeight || getLineHeight(fontFamily);
@@ -24674,8 +24217,8 @@ var init_newElement = __esm({
         {}
       );
       return textElement;
-    }, "newTextElement");
-    getAdjustedDimensions = /* @__PURE__ */ __name((element, elementsMap, nextText) => {
+    };
+    getAdjustedDimensions = (element, elementsMap, nextText) => {
       let { width: nextWidth, height: nextHeight } = measureText(
         nextText,
         getFontString(element),
@@ -24732,8 +24275,8 @@ var init_newElement = __esm({
         x: Number.isFinite(x) ? x : element.x,
         y: Number.isFinite(y) ? y : element.y
       };
-    }, "getAdjustedDimensions");
-    adjustXYWithRotation = /* @__PURE__ */ __name((sides, x, y, angle, deltaX1, deltaY1, deltaX2, deltaY2) => {
+    };
+    adjustXYWithRotation = (sides, x, y, angle, deltaX1, deltaY1, deltaX2, deltaY2) => {
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
       if (sides.e && sides.w) {
@@ -24763,8 +24306,8 @@ var init_newElement = __esm({
         y += deltaY2 * (1 - cos);
       }
       return [x, y];
-    }, "adjustXYWithRotation");
-    refreshTextDimensions = /* @__PURE__ */ __name((textElement, container, elementsMap, text = textElement.text) => {
+    };
+    refreshTextDimensions = (textElement, container, elementsMap, text = textElement.text) => {
       if (textElement.isDeleted) {
         return;
       }
@@ -24777,7 +24320,7 @@ var init_newElement = __esm({
       }
       const dimensions = getAdjustedDimensions(textElement, elementsMap, text);
       return { text, ...dimensions };
-    }, "refreshTextDimensions");
+    };
   }
 });
 
@@ -24850,7 +24393,7 @@ var init_showSelectedShapeActions = __esm({
 });
 
 // packages/excalidraw/element/index.ts
-var getNonDeletedElements3, isNonDeletedElement, _clearElements, clearElementsForDatabase, clearElementsForExport;
+var hashString, getNonDeletedElements3, isNonDeletedElement, _clearElements, clearElementsForDatabase, clearElementsForExport;
 var init_element = __esm({
   "packages/excalidraw/element/index.ts"() {
     "use strict";
@@ -24866,13 +24409,21 @@ var init_element = __esm({
     init_textElement();
     init_sizeHelpers();
     init_showSelectedShapeActions();
-    getNonDeletedElements3 = /* @__PURE__ */ __name((elements) => elements.filter((element) => !element.isDeleted), "getNonDeletedElements");
-    isNonDeletedElement = /* @__PURE__ */ __name((element) => !element.isDeleted, "isNonDeletedElement");
-    _clearElements = /* @__PURE__ */ __name((elements) => getNonDeletedElements3(elements).map(
+    hashString = (s2) => {
+      let hash = 5381;
+      for (let i2 = 0; i2 < s2.length; i2++) {
+        const char = s2.charCodeAt(i2);
+        hash = (hash << 5) + hash + char;
+      }
+      return hash >>> 0;
+    };
+    getNonDeletedElements3 = (elements) => elements.filter((element) => !element.isDeleted);
+    isNonDeletedElement = (element) => !element.isDeleted;
+    _clearElements = (elements) => getNonDeletedElements3(elements).map(
       (element) => isLinearElementType(element.type) ? { ...element, lastCommittedPoint: null } : element
-    ), "_clearElements");
-    clearElementsForDatabase = /* @__PURE__ */ __name((elements) => _clearElements(elements), "clearElementsForDatabase");
-    clearElementsForExport = /* @__PURE__ */ __name((elements) => _clearElements(elements), "clearElementsForExport");
+    );
+    clearElementsForDatabase = (elements) => _clearElements(elements);
+    clearElementsForExport = (elements) => _clearElements(elements);
   }
 });
 
@@ -24924,11 +24475,6 @@ function simplifyPoints2(points, start2, end, epsilon, newPoints) {
 }
 var init_lib4 = __esm({
   "packages/excalidraw/node_modules/points-on-curve/lib/index.js"() {
-    __name(distanceSq2, "distanceSq");
-    __name(distanceToSegmentSq2, "distanceToSegmentSq");
-    __name(lerp2, "lerp");
-    __name(simplify2, "simplify");
-    __name(simplifyPoints2, "simplifyPoints");
   }
 });
 
@@ -24961,10 +24507,9 @@ var init_Shape = __esm({
     init_math2();
     init_shapes();
     init_heading();
-    getDashArrayDashed = /* @__PURE__ */ __name((strokeWidth) => [8, 8 + strokeWidth], "getDashArrayDashed");
-    getDashArrayDotted = /* @__PURE__ */ __name((strokeWidth) => [1.5, 6 + strokeWidth], "getDashArrayDotted");
-    __name(adjustRoughness, "adjustRoughness");
-    generateRoughOptions = /* @__PURE__ */ __name((element, continuousPath = false) => {
+    getDashArrayDashed = (strokeWidth) => [8, 8 + strokeWidth];
+    getDashArrayDotted = (strokeWidth) => [1.5, 6 + strokeWidth];
+    generateRoughOptions = (element, continuousPath = false) => {
       const options = {
         seed: element.seed,
         strokeLineDash: element.strokeStyle === "dashed" ? getDashArrayDashed(element.strokeWidth) : element.strokeStyle === "dotted" ? getDashArrayDotted(element.strokeWidth) : void 0,
@@ -25010,8 +24555,8 @@ var init_Shape = __esm({
           throw new Error(`Unimplemented type ${element.type}`);
         }
       }
-    }, "generateRoughOptions");
-    modifyIframeLikeForRoughOptions = /* @__PURE__ */ __name((element, isExporting, embedsValidationStatus) => {
+    };
+    modifyIframeLikeForRoughOptions = (element, isExporting, embedsValidationStatus) => {
       if (isIframeLikeElement(element) && (isExporting || isEmbeddableElement(element) && embedsValidationStatus?.get(element.id) !== true) && isTransparent(element.backgroundColor) && isTransparent(element.strokeColor)) {
         return {
           ...element,
@@ -25027,8 +24572,8 @@ var init_Shape = __esm({
         };
       }
       return element;
-    }, "modifyIframeLikeForRoughOptions");
-    getArrowheadShapes = /* @__PURE__ */ __name((element, shape, position, arrowhead, generator, options, canvasBackgroundColor) => {
+    };
+    getArrowheadShapes = (element, shape, position, arrowhead, generator, options, canvasBackgroundColor) => {
       const arrowheadPoints = getArrowheadPoints(
         element,
         shape,
@@ -25038,13 +24583,13 @@ var init_Shape = __esm({
       if (arrowheadPoints === null) {
         return [];
       }
-      const generateCrowfootOne = /* @__PURE__ */ __name((arrowheadPoints2, options2) => {
+      const generateCrowfootOne = (arrowheadPoints2, options2) => {
         if (arrowheadPoints2 === null) {
           return [];
         }
         const [, , x3, y3, x4, y4] = arrowheadPoints2;
         return [generator.line(x3, y3, x4, y4, options2)];
-      }, "generateCrowfootOne");
+      };
       switch (arrowhead) {
         case "dot":
         case "circle":
@@ -25129,8 +24674,8 @@ var init_Shape = __esm({
           ];
         }
       }
-    }, "getArrowheadShapes");
-    _generateElementShape = /* @__PURE__ */ __name((element, generator, {
+    };
+    _generateElementShape = (element, generator, {
       isExporting,
       canvasBackgroundColor,
       embedsValidationStatus
@@ -25312,8 +24857,8 @@ var init_Shape = __esm({
           return null;
         }
       }
-    }, "_generateElementShape");
-    generateElbowArrowShape = /* @__PURE__ */ __name((points, radius) => {
+    };
+    generateElbowArrowShape = (points, radius) => {
       const subpoints = [];
       for (let i2 = 1; i2 < points.length - 1; i2 += 1) {
         const prev = points[i2 - 1];
@@ -25359,7 +24904,7 @@ var init_Shape = __esm({
       }
       d.push(`L ${points[points.length - 1][0]} ${points[points.length - 1][1]}`);
       return d.join(" ");
-    }, "generateElbowArrowShape");
+    };
   }
 });
 
@@ -25379,9 +24924,6 @@ var init_bounds = __esm({
     init_math2();
     init_shape();
     ElementBounds = class _ElementBounds {
-      static {
-        __name(this, "ElementBounds");
-      }
       static boundsCache = /* @__PURE__ */ new WeakMap();
       static getBounds(element, elementsMap) {
         const cachedBounds = _ElementBounds.boundsCache.get(element);
@@ -25485,7 +25027,7 @@ var init_bounds = __esm({
         return bounds;
       }
     };
-    getElementAbsoluteCoords = /* @__PURE__ */ __name((element, elementsMap, includeBoundText = false) => {
+    getElementAbsoluteCoords = (element, elementsMap, includeBoundText = false) => {
       if (isFreeDrawElement(element)) {
         return getFreeDrawElementAbsoluteCoords(element);
       } else if (isLinearElement(element)) {
@@ -25520,8 +25062,8 @@ var init_bounds = __esm({
         element.x + element.width / 2,
         element.y + element.height / 2
       ];
-    }, "getElementAbsoluteCoords");
-    getElementLineSegments = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    getElementLineSegments = (element, elementsMap) => {
       const [x1, y1, x2, y2, cx, cy] = getElementAbsoluteCoords(
         element,
         elementsMap
@@ -25595,8 +25137,8 @@ var init_bounds = __esm({
         lineSegment(ne, w),
         lineSegment(se2, w)
       ];
-    }, "getElementLineSegments");
-    getDiamondPoints = /* @__PURE__ */ __name((element) => {
+    };
+    getDiamondPoints = (element) => {
       const topX = Math.floor(element.width / 2) + 1;
       const topY = 0;
       const rightX = element.width;
@@ -25606,12 +25148,12 @@ var init_bounds = __esm({
       const leftX = 0;
       const leftY = rightY;
       return [topX, topY, rightX, rightY, bottomX, bottomY, leftX, leftY];
-    }, "getDiamondPoints");
-    getBezierValueForT = /* @__PURE__ */ __name((t4, p0, p1, p2, p3) => {
+    };
+    getBezierValueForT = (t4, p0, p1, p2, p3) => {
       const oneMinusT = 1 - t4;
       return Math.pow(oneMinusT, 3) * p0 + 3 * Math.pow(oneMinusT, 2) * t4 * p1 + 3 * oneMinusT * Math.pow(t4, 2) * p2 + Math.pow(t4, 3) * p3;
-    }, "getBezierValueForT");
-    solveQuadratic = /* @__PURE__ */ __name((p0, p1, p2, p3) => {
+    };
+    solveQuadratic = (p0, p1, p2, p3) => {
       const i2 = p1 - p0;
       const j = p2 - p1;
       const k = p3 - p2;
@@ -25640,8 +25182,8 @@ var init_bounds = __esm({
         s2 = getBezierValueForT(t22, p0, p1, p2, p3);
       }
       return [s1, s2];
-    }, "solveQuadratic");
-    getCubicBezierCurveBound = /* @__PURE__ */ __name((p0, p1, p2, p3) => {
+    };
+    getCubicBezierCurveBound = (p0, p1, p2, p3) => {
       const solX = solveQuadratic(p0[0], p1[0], p2[0], p3[0]);
       const solY = solveQuadratic(p0[1], p1[1], p2[1], p3[1]);
       let minX = Math.min(p0[0], p3[0]);
@@ -25659,8 +25201,8 @@ var init_bounds = __esm({
         maxY = Math.max(maxY, ...ys);
       }
       return [minX, minY, maxX, maxY];
-    }, "getCubicBezierCurveBound");
-    getMinMaxXYFromCurvePathOps = /* @__PURE__ */ __name((ops, transformXY) => {
+    };
+    getMinMaxXYFromCurvePathOps = (ops, transformXY) => {
       let currentP = pointFrom(0, 0);
       const { minX, minY, maxX, maxY } = ops.reduce(
         (limits, { op, data }) => {
@@ -25695,8 +25237,8 @@ var init_bounds = __esm({
         { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
       );
       return [minX, minY, maxX, maxY];
-    }, "getMinMaxXYFromCurvePathOps");
-    getBoundsFromPoints = /* @__PURE__ */ __name((points) => {
+    };
+    getBoundsFromPoints = (points) => {
       let minX = Infinity;
       let minY = Infinity;
       let maxX = -Infinity;
@@ -25708,16 +25250,16 @@ var init_bounds = __esm({
         maxY = Math.max(maxY, y);
       }
       return [minX, minY, maxX, maxY];
-    }, "getBoundsFromPoints");
-    getFreeDrawElementAbsoluteCoords = /* @__PURE__ */ __name((element) => {
+    };
+    getFreeDrawElementAbsoluteCoords = (element) => {
       const [minX, minY, maxX, maxY] = getBoundsFromPoints(element.points);
       const x1 = minX + element.x;
       const y1 = minY + element.y;
       const x2 = maxX + element.x;
       const y2 = maxY + element.y;
       return [x1, y1, x2, y2, (x1 + x2) / 2, (y1 + y2) / 2];
-    }, "getFreeDrawElementAbsoluteCoords");
-    getArrowheadSize = /* @__PURE__ */ __name((arrowhead) => {
+    };
+    getArrowheadSize = (arrowhead) => {
       switch (arrowhead) {
         case "arrow":
           return 25;
@@ -25731,8 +25273,8 @@ var init_bounds = __esm({
         default:
           return 15;
       }
-    }, "getArrowheadSize");
-    getArrowheadAngle = /* @__PURE__ */ __name((arrowhead) => {
+    };
+    getArrowheadAngle = (arrowhead) => {
       switch (arrowhead) {
         case "bar":
           return 90;
@@ -25741,8 +25283,8 @@ var init_bounds = __esm({
         default:
           return 25;
       }
-    }, "getArrowheadAngle");
-    getArrowheadPoints = /* @__PURE__ */ __name((element, shape, position, arrowhead) => {
+    };
+    getArrowheadPoints = (element, shape, position, arrowhead) => {
       if (shape.length < 1) {
         return null;
       }
@@ -25765,7 +25307,7 @@ var init_bounds = __esm({
       } else if (prevOp.op === "bcurveTo") {
         p0 = pointFrom(prevOp.data[4], prevOp.data[5]);
       }
-      const equation = /* @__PURE__ */ __name((t4, idx) => Math.pow(1 - t4, 3) * p3[idx] + 3 * t4 * Math.pow(1 - t4, 2) * p2[idx] + 3 * Math.pow(t4, 2) * (1 - t4) * p1[idx] + p0[idx] * Math.pow(t4, 3), "equation");
+      const equation = (t4, idx) => Math.pow(1 - t4, 3) * p3[idx] + 3 * t4 * Math.pow(1 - t4, 2) * p2[idx] + 3 * Math.pow(t4, 2) * (1 - t4) * p1[idx] + p0[idx] * Math.pow(t4, 3);
       const [x2, y2] = position === "start" ? p0 : p3;
       const [x1, y1] = [equation(0.3, 0), equation(0.3, 1)];
       const distance3 = Math.hypot(x2 - x1, y2 - y1);
@@ -25831,8 +25373,8 @@ var init_bounds = __esm({
         return [x2, y2, x3, y3, ox, oy, x4, y4];
       }
       return [x2, y2, x3, y3, x4, y4];
-    }, "getArrowheadPoints");
-    generateLinearElementShape = /* @__PURE__ */ __name((element) => {
+    };
+    generateLinearElementShape = (element) => {
       const generator = rough_default.generator();
       const options = generateRoughOptions(element);
       const method = (() => {
@@ -25848,8 +25390,8 @@ var init_bounds = __esm({
         element.points,
         options
       );
-    }, "generateLinearElementShape");
-    getLinearElementRotatedBounds = /* @__PURE__ */ __name((element, cx, cy, elementsMap) => {
+    };
+    getLinearElementRotatedBounds = (element, cx, cy, elementsMap) => {
       const boundTextElement = getBoundTextElement(element, elementsMap);
       if (element.points.length < 2) {
         const [pointX, pointY] = element.points[0];
@@ -25878,11 +25420,11 @@ var init_bounds = __esm({
       const cachedShape = ShapeCache.get(element)?.[0];
       const shape = cachedShape ?? generateLinearElementShape(element);
       const ops = getCurvePathOps(shape);
-      const transformXY = /* @__PURE__ */ __name(([x, y]) => pointRotateRads(
+      const transformXY = ([x, y]) => pointRotateRads(
         pointFrom(element.x + x, element.y + y),
         pointFrom(cx, cy),
         element.angle
-      ), "transformXY");
+      );
       const res = getMinMaxXYFromCurvePathOps(ops, transformXY);
       let coords = [res[0], res[1], res[2], res[3]];
       if (boundTextElement) {
@@ -25900,11 +25442,11 @@ var init_bounds = __esm({
         ];
       }
       return coords;
-    }, "getLinearElementRotatedBounds");
-    getElementBounds = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    getElementBounds = (element, elementsMap) => {
       return ElementBounds.getBounds(element, elementsMap);
-    }, "getElementBounds");
-    getCommonBounds = /* @__PURE__ */ __name((elements, elementsMap) => {
+    };
+    getCommonBounds = (elements, elementsMap) => {
       if (!elements.length) {
         return [0, 0, 0, 0];
       }
@@ -25921,8 +25463,8 @@ var init_bounds = __esm({
         maxY = Math.max(maxY, y2);
       });
       return [minX, minY, maxX, maxY];
-    }, "getCommonBounds");
-    getResizedElementAbsoluteCoords = /* @__PURE__ */ __name((element, nextWidth, nextHeight, normalizePoints) => {
+    };
+    getResizedElementAbsoluteCoords = (element, nextWidth, nextHeight, normalizePoints) => {
       if (!(isLinearElement(element) || isFreeDrawElement(element))) {
         return [
           element.x,
@@ -25956,8 +25498,8 @@ var init_bounds = __esm({
         maxX + element.x,
         maxY + element.y
       ];
-    }, "getResizedElementAbsoluteCoords");
-    getElementPointsCoords = /* @__PURE__ */ __name((element, points) => {
+    };
+    getElementPointsCoords = (element, points) => {
       const gen = rough_default.generator();
       const curve3 = element.roundness == null ? gen.linearPath(
         points,
@@ -25971,11 +25513,11 @@ var init_bounds = __esm({
         maxX + element.x,
         maxY + element.y
       ];
-    }, "getElementPointsCoords");
-    getCenterForBounds = /* @__PURE__ */ __name((bounds) => pointFrom(
+    };
+    getCenterForBounds = (bounds) => pointFrom(
       bounds[0] + (bounds[2] - bounds[0]) / 2,
       bounds[1] + (bounds[3] - bounds[1]) / 2
-    ), "getCenterForBounds");
+    );
   }
 });
 
@@ -25994,13 +25536,11 @@ var require_dist = __commonJS({
     function isRelativeUrlWithoutProtocol(url) {
       return relativeFirstCharacters.indexOf(url[0]) > -1;
     }
-    __name(isRelativeUrlWithoutProtocol, "isRelativeUrlWithoutProtocol");
     function decodeHtmlCharacters(str) {
       return str.replace(htmlEntitiesRegex, function(match, dec) {
         return String.fromCharCode(dec);
       });
     }
-    __name(decodeHtmlCharacters, "decodeHtmlCharacters");
     function sanitizeUrl2(url) {
       var sanitizedUrl = decodeHtmlCharacters(url || "").replace(htmlCtrlEntityRegex, "").replace(ctrlCharactersRegex, "").trim();
       if (!sanitizedUrl) {
@@ -26019,25 +25559,36 @@ var require_dist = __commonJS({
       }
       return sanitizedUrl;
     }
-    __name(sanitizeUrl2, "sanitizeUrl");
     exports.sanitizeUrl = sanitizeUrl2;
   }
 });
 
 // packages/excalidraw/data/url.ts
-var import_sanitize_url, normalizeLink;
+var import_sanitize_url, normalizeLink, toValidURL;
 var init_url = __esm({
   "packages/excalidraw/data/url.ts"() {
     "use strict";
     import_sanitize_url = __toESM(require_dist(), 1);
     init_utils2();
-    normalizeLink = /* @__PURE__ */ __name((link) => {
+    normalizeLink = (link) => {
       link = link.trim();
       if (!link) {
         return link;
       }
       return (0, import_sanitize_url.sanitizeUrl)(escapeDoubleQuotes(link));
-    }, "normalizeLink");
+    };
+    toValidURL = (link) => {
+      link = normalizeLink(link);
+      if (link.startsWith("/")) {
+        return `${location.origin}${link}`;
+      }
+      try {
+        new URL(link);
+      } catch {
+        return "about:blank";
+      }
+      return link;
+    };
   }
 });
 
@@ -26047,10 +25598,10 @@ var init_register = __esm({
   "packages/excalidraw/actions/register.ts"() {
     "use strict";
     actions = [];
-    register = /* @__PURE__ */ __name((action) => {
+    register = (action) => {
       actions = actions.concat(action);
       return action;
-    }, "register");
+    };
   }
 });
 
@@ -26071,19 +25622,19 @@ var init_cursor = __esm({
     laserPointerCursorDataURL_darkMode = `data:${MIME_TYPES.svg},${encodeURIComponent(
       `${laserPointerCursorSVG_tag}${laserPointerCursorBackgroundSVG}${laserPointerCursorIconSVG}</svg>`
     )}`;
-    resetCursor = /* @__PURE__ */ __name((interactiveCanvas) => {
+    resetCursor = (interactiveCanvas) => {
       if (interactiveCanvas) {
         interactiveCanvas.style.cursor = "";
       }
-    }, "resetCursor");
-    setCursor = /* @__PURE__ */ __name((interactiveCanvas, cursor) => {
+    };
+    setCursor = (interactiveCanvas, cursor) => {
       if (interactiveCanvas) {
         interactiveCanvas.style.cursor = cursor;
       }
-    }, "setCursor");
-    setEraserCursor = /* @__PURE__ */ __name((interactiveCanvas, theme) => {
+    };
+    setEraserCursor = (interactiveCanvas, theme) => {
       const cursorImageSizePx = 20;
-      const drawCanvas = /* @__PURE__ */ __name(() => {
+      const drawCanvas = () => {
         const isDarkTheme = theme === THEME.DARK;
         eraserCanvasCache = document.createElement("canvas");
         eraserCanvasCache.theme = theme;
@@ -26104,7 +25655,7 @@ var init_cursor = __esm({
         context.strokeStyle = isDarkTheme ? open_color_default.white : open_color_default.black;
         context.stroke();
         previewDataURL = eraserCanvasCache.toDataURL(MIME_TYPES.svg);
-      }, "drawCanvas");
+      };
       if (!eraserCanvasCache || eraserCanvasCache.theme !== theme) {
         drawCanvas();
       }
@@ -26112,8 +25663,8 @@ var init_cursor = __esm({
         interactiveCanvas,
         `url(${previewDataURL}) ${cursorImageSizePx / 2} ${cursorImageSizePx / 2}, auto`
       );
-    }, "setEraserCursor");
-    setCursorForShape = /* @__PURE__ */ __name((interactiveCanvas, appState) => {
+    };
+    setCursorForShape = (interactiveCanvas, appState) => {
       if (!interactiveCanvas) {
         return;
       }
@@ -26131,7 +25682,7 @@ var init_cursor = __esm({
       } else if (appState.activeTool.type !== "image") {
         interactiveCanvas.style.cursor = CURSOR_TYPE.AUTO;
       }
-    }, "setCursorForShape");
+    };
   }
 });
 
@@ -26207,7 +25758,7 @@ var init_store = __esm({
 });
 
 // packages/excalidraw/element/embeddable.ts
-var createPlaceholderEmbeddableLabel, actionSetEmbeddableAsActiveTool;
+var embeddedLinkCache, RE_YOUTUBE, RE_VIMEO, RE_FIGMA, RE_GH_GIST, RE_TWITTER, RE_VALTOWN, RE_REDDIT, ALLOWED_DOMAINS, ALLOW_SAME_ORIGIN, createSrcDoc, getEmbedLink, createPlaceholderEmbeddableLabel, actionSetEmbeddableAsActiveTool, matchHostname;
 var init_embeddable = __esm({
   "packages/excalidraw/element/embeddable.ts"() {
     "use strict";
@@ -26219,7 +25770,215 @@ var init_embeddable = __esm({
     init_textWrapping();
     init_typeChecks();
     init_store();
-    createPlaceholderEmbeddableLabel = /* @__PURE__ */ __name((element) => {
+    embeddedLinkCache = /* @__PURE__ */ new Map();
+    RE_YOUTUBE = /^(?:http(?:s)?:\/\/)?(?:www\.)?youtu(?:be\.com|\.be)\/(embed\/|watch\?v=|shorts\/|playlist\?list=|embed\/videoseries\?list=)?([a-zA-Z0-9_-]+)(?:\?t=|&t=|\?start=|&start=)?([a-zA-Z0-9_-]+)?[^\s]*$/;
+    RE_VIMEO = /^(?:http(?:s)?:\/\/)?(?:(?:w){3}\.)?(?:player\.)?vimeo\.com\/(?:video\/)?([^?\s]+)(?:\?.*)?$/;
+    RE_FIGMA = /^https:\/\/(?:www\.)?figma\.com/;
+    RE_GH_GIST = /^https:\/\/gist\.github\.com\/([\w_-]+)\/([\w_-]+)/;
+    RE_TWITTER = /(?:https?:\/\/)?(?:(?:w){3}\.)?(?:twitter|x)\.com\/[^/]+\/status\/(\d+)/;
+    RE_VALTOWN = /^https:\/\/(?:www\.)?val\.town\/(v|embed)\/[a-zA-Z_$][0-9a-zA-Z_$]+\.[a-zA-Z_$][0-9a-zA-Z_$]+/;
+    RE_REDDIT = /^(?:http(?:s)?:\/\/)?(?:www\.)?reddit\.com\/r\/([a-zA-Z0-9_]+)\/comments\/([a-zA-Z0-9_]+)\/([a-zA-Z0-9_]+)\/?(?:\?[^#\s]*)?(?:#[^\s]*)?$/;
+    ALLOWED_DOMAINS = /* @__PURE__ */ new Set([
+      "youtube.com",
+      "youtu.be",
+      "vimeo.com",
+      "player.vimeo.com",
+      "figma.com",
+      "link.excalidraw.com",
+      "gist.github.com",
+      "twitter.com",
+      "x.com",
+      "*.simplepdf.eu",
+      "stackblitz.com",
+      "val.town",
+      "giphy.com",
+      "reddit.com"
+    ]);
+    ALLOW_SAME_ORIGIN = /* @__PURE__ */ new Set([
+      "youtube.com",
+      "youtu.be",
+      "vimeo.com",
+      "player.vimeo.com",
+      "figma.com",
+      "twitter.com",
+      "x.com",
+      "*.simplepdf.eu",
+      "stackblitz.com",
+      "reddit.com"
+    ]);
+    createSrcDoc = (body) => {
+      return `<html><body>${body}</body></html>`;
+    };
+    getEmbedLink = (link) => {
+      if (!link) {
+        return null;
+      }
+      if (embeddedLinkCache.has(link)) {
+        return embeddedLinkCache.get(link);
+      }
+      const originalLink = link;
+      const allowSameOrigin = ALLOW_SAME_ORIGIN.has(
+        matchHostname(link, ALLOW_SAME_ORIGIN) || ""
+      );
+      let type = "generic";
+      let aspectRatio = { w: 560, h: 840 };
+      const ytLink = link.match(RE_YOUTUBE);
+      if (ytLink?.[2]) {
+        const time = ytLink[3] ? `&start=${ytLink[3]}` : ``;
+        const isPortrait = link.includes("shorts");
+        type = "video";
+        switch (ytLink[1]) {
+          case "embed/":
+          case "watch?v=":
+          case "shorts/":
+            link = `https://www.youtube.com/embed/${ytLink[2]}?enablejsapi=1${time}`;
+            break;
+          case "playlist?list=":
+          case "embed/videoseries?list=":
+            link = `https://www.youtube.com/embed/videoseries?list=${ytLink[2]}&enablejsapi=1${time}`;
+            break;
+          default:
+            link = `https://www.youtube.com/embed/${ytLink[2]}?enablejsapi=1${time}`;
+            break;
+        }
+        aspectRatio = isPortrait ? { w: 315, h: 560 } : { w: 560, h: 315 };
+        embeddedLinkCache.set(originalLink, {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        });
+        return {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        };
+      }
+      const vimeoLink = link.match(RE_VIMEO);
+      if (vimeoLink?.[1]) {
+        const target = vimeoLink?.[1];
+        const error = !/^\d+$/.test(target) ? new URIError("Invalid embed link format") : void 0;
+        type = "video";
+        link = `https://player.vimeo.com/video/${target}?api=1`;
+        aspectRatio = { w: 560, h: 315 };
+        embeddedLinkCache.set(originalLink, {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        });
+        return {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          error,
+          sandbox: { allowSameOrigin }
+        };
+      }
+      const figmaLink = link.match(RE_FIGMA);
+      if (figmaLink) {
+        type = "generic";
+        link = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(
+          link
+        )}`;
+        aspectRatio = { w: 550, h: 550 };
+        embeddedLinkCache.set(originalLink, {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        });
+        return {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        };
+      }
+      const valLink = link.match(RE_VALTOWN);
+      if (valLink) {
+        link = valLink[1] === "embed" ? valLink[0] : valLink[0].replace("/v", "/embed");
+        embeddedLinkCache.set(originalLink, {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        });
+        return {
+          link,
+          intrinsicSize: aspectRatio,
+          type,
+          sandbox: { allowSameOrigin }
+        };
+      }
+      if (RE_TWITTER.test(link)) {
+        const postId = link.match(RE_TWITTER)[1];
+        const safeURL = escapeDoubleQuotes(
+          `https://twitter.com/x/status/${postId}`
+        );
+        const ret = {
+          type: "document",
+          srcdoc: (theme) => createSrcDoc(
+            `<blockquote class="twitter-tweet" data-dnt="true" data-theme="${theme}"><a href="${safeURL}"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"><\/script>`
+          ),
+          intrinsicSize: { w: 480, h: 480 },
+          sandbox: { allowSameOrigin }
+        };
+        embeddedLinkCache.set(originalLink, ret);
+        return ret;
+      }
+      if (RE_REDDIT.test(link)) {
+        const [, page, postId, title] = link.match(RE_REDDIT);
+        const safeURL = escapeDoubleQuotes(
+          `https://reddit.com/r/${page}/comments/${postId}/${title}`
+        );
+        const ret = {
+          type: "document",
+          srcdoc: (theme) => createSrcDoc(
+            `<blockquote class="reddit-embed-bq" data-embed-theme="${theme}"><a href="${safeURL}"></a><br></blockquote><script async="" src="https://embed.reddit.com/widgets.js" charset="UTF-8"><\/script>`
+          ),
+          intrinsicSize: { w: 480, h: 480 },
+          sandbox: { allowSameOrigin }
+        };
+        embeddedLinkCache.set(originalLink, ret);
+        return ret;
+      }
+      if (RE_GH_GIST.test(link)) {
+        const [, user, gistId] = link.match(RE_GH_GIST);
+        const safeURL = escapeDoubleQuotes(
+          `https://gist.github.com/${user}/${gistId}`
+        );
+        const ret = {
+          type: "document",
+          srcdoc: () => createSrcDoc(`
+          <script src="${safeURL}.js"><\/script>
+          <style type="text/css">
+            * { margin: 0px; }
+            table, .gist { height: 100%; }
+            .gist .gist-file { height: calc(100vh - 2px); padding: 0px; display: grid; grid-template-rows: 1fr auto; }
+          </style>
+        `),
+          intrinsicSize: { w: 550, h: 720 },
+          sandbox: { allowSameOrigin }
+        };
+        embeddedLinkCache.set(link, ret);
+        return ret;
+      }
+      embeddedLinkCache.set(link, {
+        link,
+        intrinsicSize: aspectRatio,
+        type,
+        sandbox: { allowSameOrigin }
+      });
+      return {
+        link,
+        intrinsicSize: aspectRatio,
+        type,
+        sandbox: { allowSameOrigin }
+      };
+    };
+    createPlaceholderEmbeddableLabel = (element) => {
       let text;
       if (isIframeElement(element)) {
         text = "IFrame element";
@@ -26247,13 +26006,13 @@ var init_embeddable = __esm({
         verticalAlign: VERTICAL_ALIGN.MIDDLE,
         angle: element.angle ?? 0
       });
-    }, "createPlaceholderEmbeddableLabel");
+    };
     actionSetEmbeddableAsActiveTool = register({
       name: "setEmbeddableAsActiveTool",
       trackEvent: { category: "toolbar" },
       target: "Tool",
       label: "toolBar.embeddable",
-      perform: /* @__PURE__ */ __name((elements, appState, _, app) => {
+      perform: (elements, appState, _, app) => {
         const nextActiveTool = updateActiveTool(appState, {
           type: "embeddable"
         });
@@ -26271,12 +26030,38 @@ var init_embeddable = __esm({
           },
           captureUpdate: CaptureUpdateAction.EVENTUALLY
         };
-      }, "perform")
+      }
     });
+    matchHostname = (url, allowedHostnames) => {
+      try {
+        const { hostname } = new URL(url);
+        const bareDomain = hostname.replace(/^www\./, "");
+        if (allowedHostnames instanceof Set) {
+          if (ALLOWED_DOMAINS.has(bareDomain)) {
+            return bareDomain;
+          }
+          const bareDomainWithFirstSubdomainWildcarded = bareDomain.replace(
+            /^([^.]+)/,
+            "*"
+          );
+          if (ALLOWED_DOMAINS.has(bareDomainWithFirstSubdomainWildcarded)) {
+            return bareDomainWithFirstSubdomainWildcarded;
+          }
+          return null;
+        }
+        const bareAllowedHostname = allowedHostnames.replace(/^www\./, "");
+        if (bareDomain === bareAllowedHostname) {
+          return bareAllowedHostname;
+        }
+      } catch (error) {
+      }
+      return null;
+    };
   }
 });
 
 // packages/excalidraw/renderer/staticSvgScene.ts
+var roughSVGDrawWithPrecision, maybeWrapNodesInFrameClipPath, renderElementToSvg, renderSceneToSvg;
 var init_staticSvgScene = __esm({
   "packages/excalidraw/renderer/staticSvgScene.ts"() {
     "use strict";
@@ -26295,6 +26080,539 @@ var init_staticSvgScene = __esm({
     init_shapes();
     init_cropElement();
     init_textMeasurements();
+    roughSVGDrawWithPrecision = (rsvg, drawable, precision) => {
+      if (typeof precision === "undefined") {
+        return rsvg.draw(drawable);
+      }
+      const pshape = {
+        sets: drawable.sets,
+        shape: drawable.shape,
+        options: { ...drawable.options, fixedDecimalPlaceDigits: precision }
+      };
+      return rsvg.draw(pshape);
+    };
+    maybeWrapNodesInFrameClipPath = (element, root, nodes, frameRendering, elementsMap) => {
+      if (!frameRendering.enabled || !frameRendering.clip) {
+        return null;
+      }
+      const frame = getContainingFrame(element, elementsMap);
+      if (frame) {
+        const g = root.ownerDocument.createElementNS(SVG_NS, "g");
+        g.setAttributeNS(SVG_NS, "clip-path", `url(#${frame.id})`);
+        nodes.forEach((node) => g.appendChild(node));
+        return g;
+      }
+      return null;
+    };
+    renderElementToSvg = (element, elementsMap, rsvg, svgRoot, files, offsetX, offsetY, renderConfig) => {
+      const offset = { x: offsetX, y: offsetY };
+      const [x1, y1, x2, y2] = getElementAbsoluteCoords(element, elementsMap);
+      let cx = (x2 - x1) / 2 - (element.x - x1);
+      let cy = (y2 - y1) / 2 - (element.y - y1);
+      if (isTextElement(element)) {
+        const container = getContainerElement(element, elementsMap);
+        if (isArrowElement(container)) {
+          const [x12, y12, x22, y22] = getElementAbsoluteCoords(container, elementsMap);
+          const boundTextCoords = LinearElementEditor.getBoundTextElementPosition(
+            container,
+            element,
+            elementsMap
+          );
+          cx = (x22 - x12) / 2 - (boundTextCoords.x - x12);
+          cy = (y22 - y12) / 2 - (boundTextCoords.y - y12);
+          offsetX = offsetX + boundTextCoords.x - element.x;
+          offsetY = offsetY + boundTextCoords.y - element.y;
+        }
+      }
+      const degree = 180 * element.angle / Math.PI;
+      let root = svgRoot;
+      if (element.link) {
+        const anchorTag = svgRoot.ownerDocument.createElementNS(SVG_NS, "a");
+        anchorTag.setAttribute("href", normalizeLink(element.link));
+        root.appendChild(anchorTag);
+        root = anchorTag;
+      }
+      const addToRoot = (node, element2) => {
+        if (isTestEnv()) {
+          node.setAttribute("data-id", element2.id);
+        }
+        root.appendChild(node);
+      };
+      const opacity = (getContainingFrame(element, elementsMap)?.opacity ?? 100) * element.opacity / 1e4;
+      switch (element.type) {
+        case "selection": {
+          throw new Error("Selection rendering is not supported for SVG");
+        }
+        case "rectangle":
+        case "diamond":
+        case "ellipse": {
+          const shape = ShapeCache.generateElementShape(element, null);
+          const node = roughSVGDrawWithPrecision(
+            rsvg,
+            shape,
+            MAX_DECIMALS_FOR_SVG_EXPORT
+          );
+          if (opacity !== 1) {
+            node.setAttribute("stroke-opacity", `${opacity}`);
+            node.setAttribute("fill-opacity", `${opacity}`);
+          }
+          node.setAttribute("stroke-linecap", "round");
+          node.setAttribute(
+            "transform",
+            `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+          );
+          const g = maybeWrapNodesInFrameClipPath(
+            element,
+            root,
+            [node],
+            renderConfig.frameRendering,
+            elementsMap
+          );
+          addToRoot(g || node, element);
+          break;
+        }
+        case "iframe":
+        case "embeddable": {
+          const shape = ShapeCache.generateElementShape(element, renderConfig);
+          const node = roughSVGDrawWithPrecision(
+            rsvg,
+            shape,
+            MAX_DECIMALS_FOR_SVG_EXPORT
+          );
+          const opacity2 = element.opacity / 100;
+          if (opacity2 !== 1) {
+            node.setAttribute("stroke-opacity", `${opacity2}`);
+            node.setAttribute("fill-opacity", `${opacity2}`);
+          }
+          node.setAttribute("stroke-linecap", "round");
+          node.setAttribute(
+            "transform",
+            `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+          );
+          addToRoot(node, element);
+          const label = createPlaceholderEmbeddableLabel(element);
+          renderElementToSvg(
+            label,
+            elementsMap,
+            rsvg,
+            root,
+            files,
+            label.x + offset.x - element.x,
+            label.y + offset.y - element.y,
+            renderConfig
+          );
+          const embeddableNode = roughSVGDrawWithPrecision(
+            rsvg,
+            shape,
+            MAX_DECIMALS_FOR_SVG_EXPORT
+          );
+          embeddableNode.setAttribute("stroke-linecap", "round");
+          embeddableNode.setAttribute(
+            "transform",
+            `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+          );
+          while (embeddableNode.firstChild) {
+            embeddableNode.removeChild(embeddableNode.firstChild);
+          }
+          const radius = getCornerRadius(
+            Math.min(element.width, element.height),
+            element
+          );
+          const embedLink = getEmbedLink(toValidURL(element.link || ""));
+          if (renderConfig.renderEmbeddables === false || embedLink?.type === "document") {
+            const anchorTag = svgRoot.ownerDocument.createElementNS(SVG_NS, "a");
+            anchorTag.setAttribute("href", normalizeLink(element.link || ""));
+            anchorTag.setAttribute("target", "_blank");
+            anchorTag.setAttribute("rel", "noopener noreferrer");
+            anchorTag.style.borderRadius = `${radius}px`;
+            embeddableNode.appendChild(anchorTag);
+          } else {
+            const foreignObject = svgRoot.ownerDocument.createElementNS(
+              SVG_NS,
+              "foreignObject"
+            );
+            foreignObject.style.width = `${element.width}px`;
+            foreignObject.style.height = `${element.height}px`;
+            foreignObject.style.border = "none";
+            const div = foreignObject.ownerDocument.createElementNS(SVG_NS, "div");
+            div.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+            div.style.width = "100%";
+            div.style.height = "100%";
+            const iframe = div.ownerDocument.createElement("iframe");
+            iframe.src = embedLink?.link ?? "";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.style.borderRadius = `${radius}px`;
+            iframe.style.top = "0";
+            iframe.style.left = "0";
+            iframe.allowFullscreen = true;
+            div.appendChild(iframe);
+            foreignObject.appendChild(div);
+            embeddableNode.appendChild(foreignObject);
+          }
+          addToRoot(embeddableNode, element);
+          break;
+        }
+        case "line":
+        case "arrow": {
+          const boundText = getBoundTextElement(element, elementsMap);
+          const maskPath = svgRoot.ownerDocument.createElementNS(SVG_NS, "mask");
+          if (boundText) {
+            maskPath.setAttribute("id", `mask-${element.id}`);
+            const maskRectVisible = svgRoot.ownerDocument.createElementNS(
+              SVG_NS,
+              "rect"
+            );
+            offsetX = offsetX || 0;
+            offsetY = offsetY || 0;
+            maskRectVisible.setAttribute("x", "0");
+            maskRectVisible.setAttribute("y", "0");
+            maskRectVisible.setAttribute("fill", "#fff");
+            maskRectVisible.setAttribute(
+              "width",
+              `${element.width + 100 + offsetX}`
+            );
+            maskRectVisible.setAttribute(
+              "height",
+              `${element.height + 100 + offsetY}`
+            );
+            maskPath.appendChild(maskRectVisible);
+            const maskRectInvisible = svgRoot.ownerDocument.createElementNS(
+              SVG_NS,
+              "rect"
+            );
+            const boundTextCoords = LinearElementEditor.getBoundTextElementPosition(
+              element,
+              boundText,
+              elementsMap
+            );
+            const maskX = offsetX + boundTextCoords.x - element.x;
+            const maskY = offsetY + boundTextCoords.y - element.y;
+            maskRectInvisible.setAttribute("x", maskX.toString());
+            maskRectInvisible.setAttribute("y", maskY.toString());
+            maskRectInvisible.setAttribute("fill", "#000");
+            maskRectInvisible.setAttribute("width", `${boundText.width}`);
+            maskRectInvisible.setAttribute("height", `${boundText.height}`);
+            maskRectInvisible.setAttribute("opacity", "1");
+            maskPath.appendChild(maskRectInvisible);
+          }
+          const group = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+          if (boundText) {
+            group.setAttribute("mask", `url(#mask-${element.id})`);
+          }
+          group.setAttribute("stroke-linecap", "round");
+          const shapes = ShapeCache.generateElementShape(element, renderConfig);
+          shapes.forEach((shape) => {
+            const node = roughSVGDrawWithPrecision(
+              rsvg,
+              shape,
+              MAX_DECIMALS_FOR_SVG_EXPORT
+            );
+            if (opacity !== 1) {
+              node.setAttribute("stroke-opacity", `${opacity}`);
+              node.setAttribute("fill-opacity", `${opacity}`);
+            }
+            node.setAttribute(
+              "transform",
+              `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+            );
+            if (element.type === "line" && isPathALoop(element.points) && element.backgroundColor !== "transparent") {
+              node.setAttribute("fill-rule", "evenodd");
+            }
+            group.appendChild(node);
+          });
+          const g = maybeWrapNodesInFrameClipPath(
+            element,
+            root,
+            [group, maskPath],
+            renderConfig.frameRendering,
+            elementsMap
+          );
+          if (g) {
+            addToRoot(g, element);
+            root.appendChild(g);
+          } else {
+            addToRoot(group, element);
+            root.append(maskPath);
+          }
+          break;
+        }
+        case "freedraw": {
+          const backgroundFillShape = ShapeCache.generateElementShape(
+            element,
+            renderConfig
+          );
+          const node = backgroundFillShape ? roughSVGDrawWithPrecision(
+            rsvg,
+            backgroundFillShape,
+            MAX_DECIMALS_FOR_SVG_EXPORT
+          ) : svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+          if (opacity !== 1) {
+            node.setAttribute("stroke-opacity", `${opacity}`);
+            node.setAttribute("fill-opacity", `${opacity}`);
+          }
+          node.setAttribute(
+            "transform",
+            `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+          );
+          node.setAttribute("stroke", "none");
+          const path = svgRoot.ownerDocument.createElementNS(SVG_NS, "path");
+          path.setAttribute("fill", element.strokeColor);
+          path.setAttribute("d", getFreeDrawSvgPath(element));
+          node.appendChild(path);
+          const g = maybeWrapNodesInFrameClipPath(
+            element,
+            root,
+            [node],
+            renderConfig.frameRendering,
+            elementsMap
+          );
+          addToRoot(g || node, element);
+          break;
+        }
+        case "image": {
+          const width = Math.round(element.width);
+          const height = Math.round(element.height);
+          const fileData = isInitializedImageElement(element) && files[element.fileId];
+          if (fileData) {
+            const { reuseImages = true } = renderConfig;
+            let symbolId = `image-${fileData.id}`;
+            let uncroppedWidth = element.width;
+            let uncroppedHeight = element.height;
+            if (element.crop) {
+              ({ width: uncroppedWidth, height: uncroppedHeight } = getUncroppedWidthAndHeight(element));
+              symbolId = `image-crop-${fileData.id}-${hashString(
+                `${uncroppedWidth}x${uncroppedHeight}`
+              )}`;
+            }
+            if (!reuseImages) {
+              symbolId = `image-${element.id}`;
+            }
+            let symbol = svgRoot.querySelector(`#${symbolId}`);
+            if (!symbol) {
+              symbol = svgRoot.ownerDocument.createElementNS(SVG_NS, "symbol");
+              symbol.id = symbolId;
+              const image = svgRoot.ownerDocument.createElementNS(SVG_NS, "image");
+              image.setAttribute("href", fileData.dataURL);
+              image.setAttribute("preserveAspectRatio", "none");
+              if (element.crop || !reuseImages) {
+                image.setAttribute("width", `${uncroppedWidth}`);
+                image.setAttribute("height", `${uncroppedHeight}`);
+              } else {
+                image.setAttribute("width", "100%");
+                image.setAttribute("height", "100%");
+              }
+              symbol.appendChild(image);
+              (root.querySelector("defs") || root).prepend(symbol);
+            }
+            const use = svgRoot.ownerDocument.createElementNS(SVG_NS, "use");
+            use.setAttribute("href", `#${symbolId}`);
+            if (renderConfig.exportWithDarkMode && fileData.mimeType !== MIME_TYPES.svg) {
+              use.setAttribute("filter", IMAGE_INVERT_FILTER);
+            }
+            let normalizedCropX = 0;
+            let normalizedCropY = 0;
+            if (element.crop) {
+              const { width: uncroppedWidth2, height: uncroppedHeight2 } = getUncroppedWidthAndHeight(element);
+              normalizedCropX = element.crop.x / (element.crop.naturalWidth / uncroppedWidth2);
+              normalizedCropY = element.crop.y / (element.crop.naturalHeight / uncroppedHeight2);
+            }
+            const adjustedCenterX = cx + normalizedCropX;
+            const adjustedCenterY = cy + normalizedCropY;
+            use.setAttribute("width", `${width + normalizedCropX}`);
+            use.setAttribute("height", `${height + normalizedCropY}`);
+            use.setAttribute("opacity", `${opacity}`);
+            if (element.scale[0] !== 1 || element.scale[1] !== 1) {
+              use.setAttribute(
+                "transform",
+                `translate(${adjustedCenterX} ${adjustedCenterY}) scale(${element.scale[0]} ${element.scale[1]}) translate(${-adjustedCenterX} ${-adjustedCenterY})`
+              );
+            }
+            const g = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+            if (element.crop) {
+              const mask = svgRoot.ownerDocument.createElementNS(SVG_NS, "mask");
+              mask.setAttribute("id", `mask-image-crop-${element.id}`);
+              mask.setAttribute("fill", "#fff");
+              const maskRect = svgRoot.ownerDocument.createElementNS(
+                SVG_NS,
+                "rect"
+              );
+              maskRect.setAttribute("x", `${normalizedCropX}`);
+              maskRect.setAttribute("y", `${normalizedCropY}`);
+              maskRect.setAttribute("width", `${width}`);
+              maskRect.setAttribute("height", `${height}`);
+              mask.appendChild(maskRect);
+              root.appendChild(mask);
+              g.setAttribute("mask", `url(#${mask.id})`);
+            }
+            g.appendChild(use);
+            g.setAttribute(
+              "transform",
+              `translate(${offsetX - normalizedCropX} ${offsetY - normalizedCropY}) rotate(${degree} ${adjustedCenterX} ${adjustedCenterY})`
+            );
+            if (element.roundness) {
+              const clipPath = svgRoot.ownerDocument.createElementNS(
+                SVG_NS,
+                "clipPath"
+              );
+              clipPath.id = `image-clipPath-${element.id}`;
+              const clipRect = svgRoot.ownerDocument.createElementNS(
+                SVG_NS,
+                "rect"
+              );
+              const radius = getCornerRadius(
+                Math.min(element.width, element.height),
+                element
+              );
+              clipRect.setAttribute("width", `${element.width}`);
+              clipRect.setAttribute("height", `${element.height}`);
+              clipRect.setAttribute("rx", `${radius}`);
+              clipRect.setAttribute("ry", `${radius}`);
+              clipPath.appendChild(clipRect);
+              addToRoot(clipPath, element);
+              g.setAttributeNS(SVG_NS, "clip-path", `url(#${clipPath.id})`);
+            }
+            const clipG = maybeWrapNodesInFrameClipPath(
+              element,
+              root,
+              [g],
+              renderConfig.frameRendering,
+              elementsMap
+            );
+            addToRoot(clipG || g, element);
+          }
+          break;
+        }
+        // frames are not rendered and only acts as a container
+        case "frame":
+        case "magicframe": {
+          if (renderConfig.frameRendering.enabled && renderConfig.frameRendering.outline) {
+            const rect = document.createElementNS(SVG_NS, "rect");
+            rect.setAttribute(
+              "transform",
+              `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+            );
+            rect.setAttribute("width", `${element.width}px`);
+            rect.setAttribute("height", `${element.height}px`);
+            rect.setAttribute("rx", FRAME_STYLE.radius.toString());
+            rect.setAttribute("ry", FRAME_STYLE.radius.toString());
+            rect.setAttribute("fill", "none");
+            rect.setAttribute("stroke", FRAME_STYLE.strokeColor);
+            rect.setAttribute("stroke-width", FRAME_STYLE.strokeWidth.toString());
+            addToRoot(rect, element);
+          }
+          break;
+        }
+        default: {
+          if (isTextElement(element)) {
+            const node = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+            if (opacity !== 1) {
+              node.setAttribute("stroke-opacity", `${opacity}`);
+              node.setAttribute("fill-opacity", `${opacity}`);
+            }
+            node.setAttribute(
+              "transform",
+              `translate(${offsetX || 0} ${offsetY || 0}) rotate(${degree} ${cx} ${cy})`
+            );
+            const lines = element.text.replace(/\r\n?/g, "\n").split("\n");
+            const lineHeightPx = getLineHeightInPx(
+              element.fontSize,
+              element.lineHeight
+            );
+            const horizontalOffset = element.textAlign === "center" ? element.width / 2 : element.textAlign === "right" ? element.width : 0;
+            const verticalOffset = getVerticalOffset(
+              element.fontFamily,
+              element.fontSize,
+              lineHeightPx
+            );
+            const direction = isRTL(element.text) ? "rtl" : "ltr";
+            const textAnchor = element.textAlign === "center" ? "middle" : element.textAlign === "right" || direction === "rtl" ? "end" : "start";
+            for (let i2 = 0; i2 < lines.length; i2++) {
+              const text = svgRoot.ownerDocument.createElementNS(SVG_NS, "text");
+              text.textContent = lines[i2];
+              text.setAttribute("x", `${horizontalOffset}`);
+              text.setAttribute("y", `${i2 * lineHeightPx + verticalOffset}`);
+              text.setAttribute("font-family", getFontFamilyString(element));
+              text.setAttribute("font-size", `${element.fontSize}px`);
+              text.setAttribute("fill", element.strokeColor);
+              text.setAttribute("text-anchor", textAnchor);
+              text.setAttribute("style", "white-space: pre;");
+              text.setAttribute("direction", direction);
+              text.setAttribute("dominant-baseline", "alphabetic");
+              node.appendChild(text);
+            }
+            const g = maybeWrapNodesInFrameClipPath(
+              element,
+              root,
+              [node],
+              renderConfig.frameRendering,
+              elementsMap
+            );
+            addToRoot(g || node, element);
+          } else {
+            throw new Error(`Unimplemented type ${element.type}`);
+          }
+        }
+      }
+    };
+    renderSceneToSvg = (elements, elementsMap, rsvg, svgRoot, files, renderConfig) => {
+      if (!svgRoot) {
+        return;
+      }
+      elements.filter((el) => !isIframeLikeElement(el)).forEach((element) => {
+        if (!element.isDeleted) {
+          if (isTextElement(element) && element.containerId && elementsMap.has(element.containerId)) {
+            return;
+          }
+          try {
+            renderElementToSvg(
+              element,
+              elementsMap,
+              rsvg,
+              svgRoot,
+              files,
+              element.x + renderConfig.offsetX,
+              element.y + renderConfig.offsetY,
+              renderConfig
+            );
+            const boundTextElement = getBoundTextElement(element, elementsMap);
+            if (boundTextElement) {
+              renderElementToSvg(
+                boundTextElement,
+                elementsMap,
+                rsvg,
+                svgRoot,
+                files,
+                boundTextElement.x + renderConfig.offsetX,
+                boundTextElement.y + renderConfig.offsetY,
+                renderConfig
+              );
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      });
+      elements.filter((el) => isIframeLikeElement(el)).forEach((element) => {
+        if (!element.isDeleted) {
+          try {
+            renderElementToSvg(
+              element,
+              elementsMap,
+              rsvg,
+              svgRoot,
+              files,
+              element.x + renderConfig.offsetX,
+              element.y + renderConfig.offsetY,
+              renderConfig
+            );
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      });
+    };
   }
 });
 
@@ -26306,11 +26624,11 @@ __export(file_open_002ab408_exports, {
 var e, t;
 var init_file_open_002ab408 = __esm({
   "node_modules/browser-fs-access/dist/file-open-002ab408.js"() {
-    e = /* @__PURE__ */ __name(async (e8) => {
+    e = async (e8) => {
       const t4 = await e8.getFile();
       return t4.handle = e8, t4;
-    }, "e");
-    t = /* @__PURE__ */ __name(async (t4 = [{}]) => {
+    };
+    t = async (t4 = [{}]) => {
       Array.isArray(t4) || (t4 = [t4]);
       const i2 = [];
       t4.forEach((e8, t5) => {
@@ -26320,7 +26638,7 @@ var init_file_open_002ab408 = __esm({
       });
       const a2 = await window.showOpenFilePicker({ id: t4[0].id, startIn: t4[0].startIn, types: i2, multiple: t4[0].multiple || false, excludeAcceptAllOption: t4[0].excludeAcceptAllOption || false }), c = await Promise.all(a2.map(e));
       return t4[0].multiple ? c : c[0];
-    }, "t");
+    };
   }
 });
 
@@ -26332,18 +26650,18 @@ __export(file_open_7c801643_exports, {
 var e2;
 var init_file_open_7c801643 = __esm({
   "node_modules/browser-fs-access/dist/file-open-7c801643.js"() {
-    e2 = /* @__PURE__ */ __name(async (e8 = [{}]) => (Array.isArray(e8) || (e8 = [e8]), new Promise((t4, n2) => {
+    e2 = async (e8 = [{}]) => (Array.isArray(e8) || (e8 = [e8]), new Promise((t4, n2) => {
       const a2 = document.createElement("input");
       a2.type = "file";
       const i2 = [...e8.map((e9) => e9.mimeTypes || []), ...e8.map((e9) => e9.extensions || [])].join();
       a2.multiple = e8[0].multiple || false, a2.accept = i2 || "";
-      const c = /* @__PURE__ */ __name((e9) => {
+      const c = (e9) => {
         "function" == typeof l2 && l2(), t4(e9);
-      }, "c"), l2 = e8[0].legacySetup && e8[0].legacySetup(c, () => l2(n2), a2);
+      }, l2 = e8[0].legacySetup && e8[0].legacySetup(c, () => l2(n2), a2);
       a2.addEventListener("change", () => {
         c(a2.multiple ? Array.from(a2.files) : a2.files[0]);
       }), a2.click();
-    })), "e");
+    }));
   }
 });
 
@@ -26360,24 +26678,22 @@ function e3(r2) {
       return { value: e9, done: r3 };
     });
   }
-  __name(t4, "t");
-  return e3 = /* @__PURE__ */ __name(function(e8) {
+  return e3 = function(e8) {
     this.s = e8, this.n = e8.next;
-  }, "e"), e3.prototype = { s: null, n: null, next: /* @__PURE__ */ __name(function() {
+  }, e3.prototype = { s: null, n: null, next: function() {
     return t4(this.n.apply(this.s, arguments));
-  }, "next"), return: /* @__PURE__ */ __name(function(e8) {
+  }, return: function(e8) {
     var r3 = this.s.return;
     return void 0 === r3 ? Promise.resolve({ value: e8, done: true }) : t4(r3.apply(this.s, arguments));
-  }, "return"), throw: /* @__PURE__ */ __name(function(e8) {
+  }, throw: function(e8) {
     var r3 = this.s.return;
     return void 0 === r3 ? Promise.reject(e8) : t4(r3.apply(this.s, arguments));
-  }, "throw") }, new e3(r2);
+  } }, new e3(r2);
 }
 var r, t2;
 var init_directory_open_4ed118d0 = __esm({
   "node_modules/browser-fs-access/dist/directory-open-4ed118d0.js"() {
-    __name(e3, "e");
-    r = /* @__PURE__ */ __name(async (t4, n2, i2 = t4.name, a2) => {
+    r = async (t4, n2, i2 = t4.name, a2) => {
       const o2 = [], l2 = [];
       var s2, u = false, c = false;
       try {
@@ -26391,7 +26707,7 @@ var init_directory_open_4ed118d0 = __esm({
           throw new TypeError("Object is not async iterable");
         }(t4.values()); u = !(y = await f.next()).done; u = false) {
           const e8 = y.value, s3 = `${i2}/${e8.name}`;
-          "file" === e8.kind ? l2.push(e8.getFile().then((r2) => (r2.directoryHandle = t4, r2.handle = e8, Object.defineProperty(r2, "webkitRelativePath", { configurable: true, enumerable: true, get: /* @__PURE__ */ __name(() => s3, "get") })))) : "directory" !== e8.kind || !n2 || a2 && a2(e8) || o2.push(r(e8, n2, s3, a2));
+          "file" === e8.kind ? l2.push(e8.getFile().then((r2) => (r2.directoryHandle = t4, r2.handle = e8, Object.defineProperty(r2, "webkitRelativePath", { configurable: true, enumerable: true, get: () => s3 })))) : "directory" !== e8.kind || !n2 || a2 && a2(e8) || o2.push(r(e8, n2, s3, a2));
         }
       } catch (e8) {
         c = true, s2 = e8;
@@ -26403,12 +26719,12 @@ var init_directory_open_4ed118d0 = __esm({
         }
       }
       return [...(await Promise.all(o2)).flat(), ...await Promise.all(l2)];
-    }, "r");
-    t2 = /* @__PURE__ */ __name(async (e8 = {}) => {
+    };
+    t2 = async (e8 = {}) => {
       e8.recursive = e8.recursive || false;
       const t4 = await window.showDirectoryPicker({ id: e8.id, startIn: e8.startIn });
       return r(t4, e8.recursive, void 0, e8.skipDirectory);
-    }, "t");
+    };
   }
 });
 
@@ -26420,17 +26736,17 @@ __export(directory_open_01563666_exports, {
 var e4;
 var init_directory_open_01563666 = __esm({
   "node_modules/browser-fs-access/dist/directory-open-01563666.js"() {
-    e4 = /* @__PURE__ */ __name(async (e8 = [{}]) => (Array.isArray(e8) || (e8 = [e8]), e8[0].recursive = e8[0].recursive || false, new Promise((t4, r2) => {
+    e4 = async (e8 = [{}]) => (Array.isArray(e8) || (e8 = [e8]), e8[0].recursive = e8[0].recursive || false, new Promise((t4, r2) => {
       const i2 = document.createElement("input");
       i2.type = "file", i2.webkitdirectory = true;
-      const c = /* @__PURE__ */ __name((e9) => {
+      const c = (e9) => {
         "function" == typeof a2 && a2(), t4(e9);
-      }, "c"), a2 = e8[0].legacySetup && e8[0].legacySetup(c, () => a2(r2), i2);
+      }, a2 = e8[0].legacySetup && e8[0].legacySetup(c, () => a2(r2), i2);
       i2.addEventListener("change", () => {
         let t5 = Array.from(i2.files);
         e8[0].recursive ? e8[0].recursive && e8[0].skipDirectory && (t5 = t5.filter((t6) => t6.webkitRelativePath.split("/").every((t7) => !e8[0].skipDirectory({ name: t7, kind: "directory" })))) : t5 = t5.filter((e9) => 2 === e9.webkitRelativePath.split("/").length), c(t5);
       }), i2.click();
-    })), "e");
+    }));
   }
 });
 
@@ -26442,7 +26758,7 @@ __export(file_save_745eba88_exports, {
 var e5;
 var init_file_save_745eba88 = __esm({
   "node_modules/browser-fs-access/dist/file-save-745eba88.js"() {
-    e5 = /* @__PURE__ */ __name(async (e8, t4 = [{}], a2 = null, i2 = false, n2 = null) => {
+    e5 = async (e8, t4 = [{}], a2 = null, i2 = false, n2 = null) => {
       Array.isArray(t4) || (t4 = [t4]), t4[0].fileName = t4[0].fileName || "Untitled";
       const s2 = [];
       let c = null;
@@ -26463,7 +26779,7 @@ var init_file_save_745eba88 = __esm({
         return await t5.pipeTo(l2), r2;
       }
       return "body" in e8 ? (await e8.body.pipeTo(l2), r2) : (await l2.write(await e8), await l2.close(), r2);
-    }, "e");
+    };
   }
 });
 
@@ -26475,26 +26791,26 @@ __export(file_save_3189631c_exports, {
 var e6;
 var init_file_save_3189631c = __esm({
   "node_modules/browser-fs-access/dist/file-save-3189631c.js"() {
-    e6 = /* @__PURE__ */ __name(async (e8, t4 = {}) => {
+    e6 = async (e8, t4 = {}) => {
       Array.isArray(t4) && (t4 = t4[0]);
       const n2 = document.createElement("a");
       let a2 = e8;
       "body" in e8 && (a2 = await async function(e9, t5) {
-        const n3 = e9.getReader(), a3 = new ReadableStream({ start: /* @__PURE__ */ __name((e10) => (/* @__PURE__ */ __name(async function t6() {
+        const n3 = e9.getReader(), a3 = new ReadableStream({ start: (e10) => async function t6() {
           return n3.read().then(({ done: n4, value: a4 }) => {
             if (!n4) return e10.enqueue(a4), t6();
             e10.close();
           });
-        }, "t"))(), "start") }), r3 = new Response(a3), c2 = await r3.blob();
+        }() }), r3 = new Response(a3), c2 = await r3.blob();
         return n3.releaseLock(), new Blob([c2], { type: t5 });
       }(e8.body, e8.headers.get("content-type"))), n2.download = t4.fileName || "Untitled", n2.href = URL.createObjectURL(await a2);
-      const r2 = /* @__PURE__ */ __name(() => {
+      const r2 = () => {
         "function" == typeof c && c();
-      }, "r"), c = t4.legacySetup && t4.legacySetup(r2, () => c(reject), n2);
+      }, c = t4.legacySetup && t4.legacySetup(r2, () => c(reject), n2);
       return n2.addEventListener("click", () => {
         setTimeout(() => URL.revokeObjectURL(n2.href), 3e4), r2();
       }), n2.click(), null;
-    }, "e");
+    };
   }
 });
 
@@ -26821,7 +27137,6 @@ var init_pako_esm = __esm({
     Z_BINARY = 0;
     Z_TEXT = 1;
     Z_UNKNOWN = 2;
-    __name(zero, "zero");
     STORED_BLOCK = 0;
     STATIC_TREES = 1;
     DYN_TREES = 2;
@@ -26860,16 +27175,14 @@ var init_pako_esm = __esm({
     zero(base_length);
     base_dist = new Array(D_CODES);
     zero(base_dist);
-    __name(StaticTreeDesc, "StaticTreeDesc");
-    __name(TreeDesc, "TreeDesc");
-    d_code = /* @__PURE__ */ __name((dist) => {
+    d_code = (dist) => {
       return dist < 256 ? _dist_code[dist] : _dist_code[256 + (dist >>> 7)];
-    }, "d_code");
-    put_short = /* @__PURE__ */ __name((s2, w) => {
+    };
+    put_short = (s2, w) => {
       s2.pending_buf[s2.pending++] = w & 255;
       s2.pending_buf[s2.pending++] = w >>> 8 & 255;
-    }, "put_short");
-    send_bits = /* @__PURE__ */ __name((s2, value, length) => {
+    };
+    send_bits = (s2, value, length) => {
       if (s2.bi_valid > Buf_size - length) {
         s2.bi_buf |= value << s2.bi_valid & 65535;
         put_short(s2, s2.bi_buf);
@@ -26879,16 +27192,16 @@ var init_pako_esm = __esm({
         s2.bi_buf |= value << s2.bi_valid & 65535;
         s2.bi_valid += length;
       }
-    }, "send_bits");
-    send_code = /* @__PURE__ */ __name((s2, c, tree) => {
+    };
+    send_code = (s2, c, tree) => {
       send_bits(
         s2,
         tree[c * 2],
         tree[c * 2 + 1]
         /*.Len*/
       );
-    }, "send_code");
-    bi_reverse = /* @__PURE__ */ __name((code, len) => {
+    };
+    bi_reverse = (code, len) => {
       let res = 0;
       do {
         res |= code & 1;
@@ -26896,8 +27209,8 @@ var init_pako_esm = __esm({
         res <<= 1;
       } while (--len > 0);
       return res >>> 1;
-    }, "bi_reverse");
-    bi_flush = /* @__PURE__ */ __name((s2) => {
+    };
+    bi_flush = (s2) => {
       if (s2.bi_valid === 16) {
         put_short(s2, s2.bi_buf);
         s2.bi_buf = 0;
@@ -26907,8 +27220,8 @@ var init_pako_esm = __esm({
         s2.bi_buf >>= 8;
         s2.bi_valid -= 8;
       }
-    }, "bi_flush");
-    gen_bitlen = /* @__PURE__ */ __name((s2, desc) => {
+    };
+    gen_bitlen = (s2, desc) => {
       const tree = desc.dyn_tree;
       const max_code = desc.max_code;
       const stree = desc.stat_desc.static_tree;
@@ -26975,8 +27288,8 @@ var init_pako_esm = __esm({
           n2--;
         }
       }
-    }, "gen_bitlen");
-    gen_codes = /* @__PURE__ */ __name((tree, max_code, bl_count) => {
+    };
+    gen_codes = (tree, max_code, bl_count) => {
       const next_code = new Array(MAX_BITS + 1);
       let code = 0;
       let bits;
@@ -26991,8 +27304,8 @@ var init_pako_esm = __esm({
         }
         tree[n2 * 2] = bi_reverse(next_code[len]++, len);
       }
-    }, "gen_codes");
-    tr_static_init = /* @__PURE__ */ __name(() => {
+    };
+    tr_static_init = () => {
       let n2;
       let bits;
       let length;
@@ -27053,8 +27366,8 @@ var init_pako_esm = __esm({
       static_l_desc = new StaticTreeDesc(static_ltree, extra_lbits, LITERALS + 1, L_CODES, MAX_BITS);
       static_d_desc = new StaticTreeDesc(static_dtree, extra_dbits, 0, D_CODES, MAX_BITS);
       static_bl_desc = new StaticTreeDesc(new Array(0), extra_blbits, 0, BL_CODES, MAX_BL_BITS);
-    }, "tr_static_init");
-    init_block = /* @__PURE__ */ __name((s2) => {
+    };
+    init_block = (s2) => {
       let n2;
       for (n2 = 0; n2 < L_CODES; n2++) {
         s2.dyn_ltree[n2 * 2] = 0;
@@ -27068,8 +27381,8 @@ var init_pako_esm = __esm({
       s2.dyn_ltree[END_BLOCK * 2] = 1;
       s2.opt_len = s2.static_len = 0;
       s2.last_lit = s2.matches = 0;
-    }, "init_block");
-    bi_windup = /* @__PURE__ */ __name((s2) => {
+    };
+    bi_windup = (s2) => {
       if (s2.bi_valid > 8) {
         put_short(s2, s2.bi_buf);
       } else if (s2.bi_valid > 0) {
@@ -27077,8 +27390,8 @@ var init_pako_esm = __esm({
       }
       s2.bi_buf = 0;
       s2.bi_valid = 0;
-    }, "bi_windup");
-    copy_block = /* @__PURE__ */ __name((s2, buf, len, header) => {
+    };
+    copy_block = (s2, buf, len, header) => {
       bi_windup(s2);
       if (header) {
         put_short(s2, len);
@@ -27086,13 +27399,13 @@ var init_pako_esm = __esm({
       }
       s2.pending_buf.set(s2.window.subarray(buf, buf + len), s2.pending);
       s2.pending += len;
-    }, "copy_block");
-    smaller = /* @__PURE__ */ __name((tree, n2, m, depth) => {
+    };
+    smaller = (tree, n2, m, depth) => {
       const _n2 = n2 * 2;
       const _m2 = m * 2;
       return tree[_n2] < tree[_m2] || tree[_n2] === tree[_m2] && depth[n2] <= depth[m];
-    }, "smaller");
-    pqdownheap = /* @__PURE__ */ __name((s2, tree, k) => {
+    };
+    pqdownheap = (s2, tree, k) => {
       const v = s2.heap[k];
       let j = k << 1;
       while (j <= s2.heap_len) {
@@ -27107,8 +27420,8 @@ var init_pako_esm = __esm({
         j <<= 1;
       }
       s2.heap[k] = v;
-    }, "pqdownheap");
-    compress_block = /* @__PURE__ */ __name((s2, ltree, dtree) => {
+    };
+    compress_block = (s2, ltree, dtree) => {
       let dist;
       let lc;
       let lx = 0;
@@ -27141,8 +27454,8 @@ var init_pako_esm = __esm({
         } while (lx < s2.last_lit);
       }
       send_code(s2, END_BLOCK, ltree);
-    }, "compress_block");
-    build_tree = /* @__PURE__ */ __name((s2, desc) => {
+    };
+    build_tree = (s2, desc) => {
       const tree = desc.dyn_tree;
       const stree = desc.stat_desc.static_tree;
       const has_stree = desc.stat_desc.has_stree;
@@ -27215,8 +27528,8 @@ var init_pako_esm = __esm({
       ];
       gen_bitlen(s2, desc);
       gen_codes(tree, max_code, s2.bl_count);
-    }, "build_tree");
-    scan_tree = /* @__PURE__ */ __name((s2, tree, max_code) => {
+    };
+    scan_tree = (s2, tree, max_code) => {
       let n2;
       let prevlen = -1;
       let curlen;
@@ -27259,8 +27572,8 @@ var init_pako_esm = __esm({
           min_count = 4;
         }
       }
-    }, "scan_tree");
-    send_tree = /* @__PURE__ */ __name((s2, tree, max_code) => {
+    };
+    send_tree = (s2, tree, max_code) => {
       let n2;
       let prevlen = -1;
       let curlen;
@@ -27308,8 +27621,8 @@ var init_pako_esm = __esm({
           min_count = 4;
         }
       }
-    }, "send_tree");
-    build_bl_tree = /* @__PURE__ */ __name((s2) => {
+    };
+    build_bl_tree = (s2) => {
       let max_blindex;
       scan_tree(s2, s2.dyn_ltree, s2.l_desc.max_code);
       scan_tree(s2, s2.dyn_dtree, s2.d_desc.max_code);
@@ -27321,8 +27634,8 @@ var init_pako_esm = __esm({
       }
       s2.opt_len += 3 * (max_blindex + 1) + 5 + 5 + 4;
       return max_blindex;
-    }, "build_bl_tree");
-    send_all_trees = /* @__PURE__ */ __name((s2, lcodes, dcodes, blcodes) => {
+    };
+    send_all_trees = (s2, lcodes, dcodes, blcodes) => {
       let rank2;
       send_bits(s2, lcodes - 257, 5);
       send_bits(s2, dcodes - 1, 5);
@@ -27332,8 +27645,8 @@ var init_pako_esm = __esm({
       }
       send_tree(s2, s2.dyn_ltree, lcodes - 1);
       send_tree(s2, s2.dyn_dtree, dcodes - 1);
-    }, "send_all_trees");
-    detect_data_type = /* @__PURE__ */ __name((s2) => {
+    };
+    detect_data_type = (s2) => {
       let black_mask = 4093624447;
       let n2;
       for (n2 = 0; n2 <= 31; n2++, black_mask >>>= 1) {
@@ -27350,9 +27663,9 @@ var init_pako_esm = __esm({
         }
       }
       return Z_BINARY;
-    }, "detect_data_type");
+    };
     static_init_done = false;
-    _tr_init = /* @__PURE__ */ __name((s2) => {
+    _tr_init = (s2) => {
       if (!static_init_done) {
         tr_static_init();
         static_init_done = true;
@@ -27363,17 +27676,17 @@ var init_pako_esm = __esm({
       s2.bi_buf = 0;
       s2.bi_valid = 0;
       init_block(s2);
-    }, "_tr_init");
-    _tr_stored_block = /* @__PURE__ */ __name((s2, buf, stored_len, last) => {
+    };
+    _tr_stored_block = (s2, buf, stored_len, last) => {
       send_bits(s2, (STORED_BLOCK << 1) + (last ? 1 : 0), 3);
       copy_block(s2, buf, stored_len, true);
-    }, "_tr_stored_block");
-    _tr_align = /* @__PURE__ */ __name((s2) => {
+    };
+    _tr_align = (s2) => {
       send_bits(s2, STATIC_TREES << 1, 3);
       send_code(s2, END_BLOCK, static_ltree);
       bi_flush(s2);
-    }, "_tr_align");
-    _tr_flush_block = /* @__PURE__ */ __name((s2, buf, stored_len, last) => {
+    };
+    _tr_flush_block = (s2, buf, stored_len, last) => {
       let opt_lenb, static_lenb;
       let max_blindex = 0;
       if (s2.level > 0) {
@@ -27405,8 +27718,8 @@ var init_pako_esm = __esm({
       if (last) {
         bi_windup(s2);
       }
-    }, "_tr_flush_block");
-    _tr_tally = /* @__PURE__ */ __name((s2, dist, lc) => {
+    };
+    _tr_tally = (s2, dist, lc) => {
       s2.pending_buf[s2.d_buf + s2.last_lit * 2] = dist >>> 8 & 255;
       s2.pending_buf[s2.d_buf + s2.last_lit * 2 + 1] = dist & 255;
       s2.pending_buf[s2.l_buf + s2.last_lit] = lc & 255;
@@ -27420,7 +27733,7 @@ var init_pako_esm = __esm({
         s2.dyn_dtree[d_code(dist) * 2]++;
       }
       return s2.last_lit === s2.lit_bufsize - 1;
-    }, "_tr_tally");
+    };
     _tr_init_1 = _tr_init;
     _tr_stored_block_1 = _tr_stored_block;
     _tr_flush_block_1 = _tr_flush_block;
@@ -27433,7 +27746,7 @@ var init_pako_esm = __esm({
       _tr_tally: _tr_tally_1,
       _tr_align: _tr_align_1
     };
-    adler32 = /* @__PURE__ */ __name((adler, buf, len, pos) => {
+    adler32 = (adler, buf, len, pos) => {
       let s1 = adler & 65535 | 0, s2 = adler >>> 16 & 65535 | 0, n2 = 0;
       while (len !== 0) {
         n2 = len > 2e3 ? 2e3 : len;
@@ -27446,9 +27759,9 @@ var init_pako_esm = __esm({
         s2 %= 65521;
       }
       return s1 | s2 << 16 | 0;
-    }, "adler32");
+    };
     adler32_1 = adler32;
-    makeTable = /* @__PURE__ */ __name(() => {
+    makeTable = () => {
       let c, table = [];
       for (var n2 = 0; n2 < 256; n2++) {
         c = n2;
@@ -27458,9 +27771,9 @@ var init_pako_esm = __esm({
         table[n2] = c;
       }
       return table;
-    }, "makeTable");
+    };
     crcTable = new Uint32Array(makeTable());
-    crc32 = /* @__PURE__ */ __name((crc, buf, len, pos) => {
+    crc32 = (crc, buf, len, pos) => {
       const t4 = crcTable;
       const end = pos + len;
       crc ^= -1;
@@ -27468,7 +27781,7 @@ var init_pako_esm = __esm({
         crc = crc >>> 8 ^ t4[(crc ^ buf[i2]) & 255];
       }
       return crc ^ -1;
-    }, "crc32");
+    };
     crc32_1 = crc32;
     messages = {
       2: "need dictionary",
@@ -27577,22 +27890,22 @@ var init_pako_esm = __esm({
     BS_FINISH_STARTED = 3;
     BS_FINISH_DONE = 4;
     OS_CODE = 3;
-    err = /* @__PURE__ */ __name((strm, errorCode) => {
+    err = (strm, errorCode) => {
       strm.msg = messages[errorCode];
       return errorCode;
-    }, "err");
-    rank = /* @__PURE__ */ __name((f) => {
+    };
+    rank = (f) => {
       return (f << 1) - (f > 4 ? 9 : 0);
-    }, "rank");
-    zero$1 = /* @__PURE__ */ __name((buf) => {
+    };
+    zero$1 = (buf) => {
       let len = buf.length;
       while (--len >= 0) {
         buf[len] = 0;
       }
-    }, "zero$1");
-    HASH_ZLIB = /* @__PURE__ */ __name((s2, prev, data) => (prev << s2.hash_shift ^ data) & s2.hash_mask, "HASH_ZLIB");
+    };
+    HASH_ZLIB = (s2, prev, data) => (prev << s2.hash_shift ^ data) & s2.hash_mask;
     HASH = HASH_ZLIB;
-    flush_pending = /* @__PURE__ */ __name((strm) => {
+    flush_pending = (strm) => {
       const s2 = strm.state;
       let len = s2.pending;
       if (len > strm.avail_out) {
@@ -27610,20 +27923,20 @@ var init_pako_esm = __esm({
       if (s2.pending === 0) {
         s2.pending_out = 0;
       }
-    }, "flush_pending");
-    flush_block_only = /* @__PURE__ */ __name((s2, last) => {
+    };
+    flush_block_only = (s2, last) => {
       _tr_flush_block$1(s2, s2.block_start >= 0 ? s2.block_start : -1, s2.strstart - s2.block_start, last);
       s2.block_start = s2.strstart;
       flush_pending(s2.strm);
-    }, "flush_block_only");
-    put_byte = /* @__PURE__ */ __name((s2, b2) => {
+    };
+    put_byte = (s2, b2) => {
       s2.pending_buf[s2.pending++] = b2;
-    }, "put_byte");
-    putShortMSB = /* @__PURE__ */ __name((s2, b2) => {
+    };
+    putShortMSB = (s2, b2) => {
       s2.pending_buf[s2.pending++] = b2 >>> 8 & 255;
       s2.pending_buf[s2.pending++] = b2 & 255;
-    }, "putShortMSB");
-    read_buf = /* @__PURE__ */ __name((strm, buf, start2, size) => {
+    };
+    read_buf = (strm, buf, start2, size) => {
       let len = strm.avail_in;
       if (len > size) {
         len = size;
@@ -27641,8 +27954,8 @@ var init_pako_esm = __esm({
       strm.next_in += len;
       strm.total_in += len;
       return len;
-    }, "read_buf");
-    longest_match = /* @__PURE__ */ __name((s2, cur_match) => {
+    };
+    longest_match = (s2, cur_match) => {
       let chain_length = s2.max_chain_length;
       let scan = s2.strstart;
       let match;
@@ -27687,8 +28000,8 @@ var init_pako_esm = __esm({
         return best_len;
       }
       return s2.lookahead;
-    }, "longest_match");
-    fill_window = /* @__PURE__ */ __name((s2) => {
+    };
+    fill_window = (s2) => {
       const _w_size = s2.w_size;
       let p, n2, m, more, str;
       do {
@@ -27733,8 +28046,8 @@ var init_pako_esm = __esm({
           }
         }
       } while (s2.lookahead < MIN_LOOKAHEAD && s2.strm.avail_in !== 0);
-    }, "fill_window");
-    deflate_stored = /* @__PURE__ */ __name((s2, flush) => {
+    };
+    deflate_stored = (s2, flush) => {
       let max_block_size = 65535;
       if (max_block_size > s2.pending_buf_size - 5) {
         max_block_size = s2.pending_buf_size - 5;
@@ -27782,8 +28095,8 @@ var init_pako_esm = __esm({
         }
       }
       return BS_NEED_MORE;
-    }, "deflate_stored");
-    deflate_fast = /* @__PURE__ */ __name((s2, flush) => {
+    };
+    deflate_fast = (s2, flush) => {
       let hash_head;
       let bflush;
       for (; ; ) {
@@ -27850,8 +28163,8 @@ var init_pako_esm = __esm({
         }
       }
       return BS_BLOCK_DONE;
-    }, "deflate_fast");
-    deflate_slow = /* @__PURE__ */ __name((s2, flush) => {
+    };
+    deflate_slow = (s2, flush) => {
       let hash_head;
       let bflush;
       let max_insert;
@@ -27936,8 +28249,8 @@ var init_pako_esm = __esm({
         }
       }
       return BS_BLOCK_DONE;
-    }, "deflate_slow");
-    deflate_rle = /* @__PURE__ */ __name((s2, flush) => {
+    };
+    deflate_rle = (s2, flush) => {
       let bflush;
       let prev;
       let scan, strend;
@@ -27998,8 +28311,8 @@ var init_pako_esm = __esm({
         }
       }
       return BS_BLOCK_DONE;
-    }, "deflate_rle");
-    deflate_huff = /* @__PURE__ */ __name((s2, flush) => {
+    };
+    deflate_huff = (s2, flush) => {
       let bflush;
       for (; ; ) {
         if (s2.lookahead === 0) {
@@ -28037,8 +28350,7 @@ var init_pako_esm = __esm({
         }
       }
       return BS_BLOCK_DONE;
-    }, "deflate_huff");
-    __name(Config, "Config");
+    };
     configuration_table = [
       /*      good lazy nice chain */
       new Config(0, 0, 0, 0, deflate_stored),
@@ -28062,7 +28374,7 @@ var init_pako_esm = __esm({
       new Config(32, 258, 258, 4096, deflate_slow)
       /* 9 max compression */
     ];
-    lm_init = /* @__PURE__ */ __name((s2) => {
+    lm_init = (s2) => {
       s2.window_size = 2 * s2.w_size;
       zero$1(s2.head);
       s2.max_lazy_match = configuration_table[s2.level].max_lazy;
@@ -28076,9 +28388,8 @@ var init_pako_esm = __esm({
       s2.match_length = s2.prev_length = MIN_MATCH$1 - 1;
       s2.match_available = 0;
       s2.ins_h = 0;
-    }, "lm_init");
-    __name(DeflateState, "DeflateState");
-    deflateResetKeep = /* @__PURE__ */ __name((strm) => {
+    };
+    deflateResetKeep = (strm) => {
       if (!strm || !strm.state) {
         return err(strm, Z_STREAM_ERROR);
       }
@@ -28095,15 +28406,15 @@ var init_pako_esm = __esm({
       s2.last_flush = Z_NO_FLUSH;
       _tr_init$1(s2);
       return Z_OK;
-    }, "deflateResetKeep");
-    deflateReset = /* @__PURE__ */ __name((strm) => {
+    };
+    deflateReset = (strm) => {
       const ret = deflateResetKeep(strm);
       if (ret === Z_OK) {
         lm_init(strm.state);
       }
       return ret;
-    }, "deflateReset");
-    deflateSetHeader = /* @__PURE__ */ __name((strm, head) => {
+    };
+    deflateSetHeader = (strm, head) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR;
       }
@@ -28112,8 +28423,8 @@ var init_pako_esm = __esm({
       }
       strm.state.gzhead = head;
       return Z_OK;
-    }, "deflateSetHeader");
-    deflateInit2 = /* @__PURE__ */ __name((strm, level, method, windowBits, memLevel, strategy) => {
+    };
+    deflateInit2 = (strm, level, method, windowBits, memLevel, strategy) => {
       if (!strm) {
         return Z_STREAM_ERROR;
       }
@@ -28158,11 +28469,11 @@ var init_pako_esm = __esm({
       s2.strategy = strategy;
       s2.method = method;
       return deflateReset(strm);
-    }, "deflateInit2");
-    deflateInit = /* @__PURE__ */ __name((strm, level) => {
+    };
+    deflateInit = (strm, level) => {
       return deflateInit2(strm, level, Z_DEFLATED, MAX_WBITS, DEF_MEM_LEVEL, Z_DEFAULT_STRATEGY);
-    }, "deflateInit");
-    deflate = /* @__PURE__ */ __name((strm, flush) => {
+    };
+    deflate = (strm, flush) => {
       let beg, val;
       if (!strm || !strm.state || flush > Z_BLOCK || flush < 0) {
         return strm ? err(strm, Z_STREAM_ERROR) : Z_STREAM_ERROR;
@@ -28412,8 +28723,8 @@ var init_pako_esm = __esm({
         s2.wrap = -s2.wrap;
       }
       return s2.pending !== 0 ? Z_OK : Z_STREAM_END;
-    }, "deflate");
-    deflateEnd = /* @__PURE__ */ __name((strm) => {
+    };
+    deflateEnd = (strm) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR;
       }
@@ -28423,8 +28734,8 @@ var init_pako_esm = __esm({
       }
       strm.state = null;
       return status === BUSY_STATE ? err(strm, Z_DATA_ERROR) : Z_OK;
-    }, "deflateEnd");
-    deflateSetDictionary = /* @__PURE__ */ __name((strm, dictionary) => {
+    };
+    deflateSetDictionary = (strm, dictionary) => {
       let dictLength = dictionary.length;
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR;
@@ -28481,7 +28792,7 @@ var init_pako_esm = __esm({
       strm.avail_in = avail;
       s2.wrap = wrap;
       return Z_OK;
-    }, "deflateSetDictionary");
+    };
     deflateInit_1 = deflateInit;
     deflateInit2_1 = deflateInit2;
     deflateReset_1 = deflateReset;
@@ -28502,10 +28813,10 @@ var init_pako_esm = __esm({
       deflateSetDictionary: deflateSetDictionary_1,
       deflateInfo
     };
-    _has = /* @__PURE__ */ __name((obj, key) => {
+    _has = (obj, key) => {
       return Object.prototype.hasOwnProperty.call(obj, key);
-    }, "_has");
-    assign = /* @__PURE__ */ __name(function(obj) {
+    };
+    assign = function(obj) {
       const sources = Array.prototype.slice.call(arguments, 1);
       while (sources.length) {
         const source = sources.shift();
@@ -28522,8 +28833,8 @@ var init_pako_esm = __esm({
         }
       }
       return obj;
-    }, "assign");
-    flattenChunks = /* @__PURE__ */ __name((chunks) => {
+    };
+    flattenChunks = (chunks) => {
       let len = 0;
       for (let i2 = 0, l2 = chunks.length; i2 < l2; i2++) {
         len += chunks[i2].length;
@@ -28535,7 +28846,7 @@ var init_pako_esm = __esm({
         pos += chunk.length;
       }
       return result;
-    }, "flattenChunks");
+    };
     common = {
       assign,
       flattenChunks
@@ -28551,7 +28862,7 @@ var init_pako_esm = __esm({
       _utf8len[q] = q >= 252 ? 6 : q >= 248 ? 5 : q >= 240 ? 4 : q >= 224 ? 3 : q >= 192 ? 2 : 1;
     }
     _utf8len[254] = _utf8len[254] = 1;
-    string2buf = /* @__PURE__ */ __name((str) => {
+    string2buf = (str) => {
       let buf, c, c2, m_pos, i2, str_len = str.length, buf_len = 0;
       for (m_pos = 0; m_pos < str_len; m_pos++) {
         c = str.charCodeAt(m_pos);
@@ -28591,8 +28902,8 @@ var init_pako_esm = __esm({
         }
       }
       return buf;
-    }, "string2buf");
-    buf2binstring = /* @__PURE__ */ __name((buf, len) => {
+    };
+    buf2binstring = (buf, len) => {
       if (len < 65534) {
         if (buf.subarray && STR_APPLY_UIA_OK) {
           return String.fromCharCode.apply(null, buf.length === len ? buf : buf.subarray(0, len));
@@ -28603,8 +28914,8 @@ var init_pako_esm = __esm({
         result += String.fromCharCode(buf[i2]);
       }
       return result;
-    }, "buf2binstring");
-    buf2string = /* @__PURE__ */ __name((buf, max) => {
+    };
+    buf2string = (buf, max) => {
       let i2, out;
       const len = max || buf.length;
       const utf16buf = new Array(len * 2);
@@ -28638,8 +28949,8 @@ var init_pako_esm = __esm({
         }
       }
       return buf2binstring(utf16buf, out);
-    }, "buf2string");
-    utf8border = /* @__PURE__ */ __name((buf, max) => {
+    };
+    utf8border = (buf, max) => {
       max = max || buf.length;
       if (max > buf.length) {
         max = buf.length;
@@ -28655,13 +28966,12 @@ var init_pako_esm = __esm({
         return max;
       }
       return pos + _utf8len[buf[pos]] > max ? pos : max;
-    }, "utf8border");
+    };
     strings = {
       string2buf,
       buf2string,
       utf8border
     };
-    __name(ZStream, "ZStream");
     zstream = ZStream;
     toString = Object.prototype.toString;
     ({
@@ -28675,7 +28985,6 @@ var init_pako_esm = __esm({
       Z_DEFAULT_STRATEGY: Z_DEFAULT_STRATEGY$1,
       Z_DEFLATED: Z_DEFLATED$1
     } = constants);
-    __name(Deflate, "Deflate");
     Deflate.prototype.push = function(data, flush_mode) {
       const strm = this.strm;
       const chunkSize = this.options.chunkSize;
@@ -28739,9 +29048,6 @@ var init_pako_esm = __esm({
       this.err = status;
       this.msg = this.strm.msg;
     };
-    __name(deflate$1, "deflate$1");
-    __name(deflateRaw, "deflateRaw");
-    __name(gzip, "gzip");
     Deflate_1 = Deflate;
     deflate_2$1 = deflate$1;
     deflateRaw_1 = deflateRaw;
@@ -28756,7 +29062,7 @@ var init_pako_esm = __esm({
     };
     BAD = 30;
     TYPE = 12;
-    inffast = /* @__PURE__ */ __name(function inflate_fast(strm, start2) {
+    inffast = function inflate_fast(strm, start2) {
       let _in;
       let last;
       let _out;
@@ -28974,7 +29280,7 @@ var init_pako_esm = __esm({
       state.hold = hold;
       state.bits = bits;
       return;
-    }, "inflate_fast");
+    };
     MAXBITS = 15;
     ENOUGH_LENS = 852;
     ENOUGH_DISTS = 592;
@@ -29119,7 +29425,7 @@ var init_pako_esm = __esm({
       64,
       64
     ]);
-    inflate_table = /* @__PURE__ */ __name((type, lens, lens_index, codes, table, table_index, work, opts) => {
+    inflate_table = (type, lens, lens_index, codes, table, table_index, work, opts) => {
       const bits = opts.bits;
       let len = 0;
       let sym = 0;
@@ -29282,7 +29588,7 @@ var init_pako_esm = __esm({
       }
       opts.bits = root;
       return 0;
-    }, "inflate_table");
+    };
     inftrees = inflate_table;
     CODES$1 = 0;
     LENS$1 = 1;
@@ -29336,11 +29642,10 @@ var init_pako_esm = __esm({
     ENOUGH_DISTS$1 = 592;
     MAX_WBITS$1 = 15;
     DEF_WBITS = MAX_WBITS$1;
-    zswap32 = /* @__PURE__ */ __name((q) => {
+    zswap32 = (q) => {
       return (q >>> 24 & 255) + (q >>> 8 & 65280) + ((q & 65280) << 8) + ((q & 255) << 24);
-    }, "zswap32");
-    __name(InflateState, "InflateState");
-    inflateResetKeep = /* @__PURE__ */ __name((strm) => {
+    };
+    inflateResetKeep = (strm) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR$1;
       }
@@ -29362,8 +29667,8 @@ var init_pako_esm = __esm({
       state.sane = 1;
       state.back = -1;
       return Z_OK$2;
-    }, "inflateResetKeep");
-    inflateReset = /* @__PURE__ */ __name((strm) => {
+    };
+    inflateReset = (strm) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR$1;
       }
@@ -29372,8 +29677,8 @@ var init_pako_esm = __esm({
       state.whave = 0;
       state.wnext = 0;
       return inflateResetKeep(strm);
-    }, "inflateReset");
-    inflateReset2 = /* @__PURE__ */ __name((strm, windowBits) => {
+    };
+    inflateReset2 = (strm, windowBits) => {
       let wrap;
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR$1;
@@ -29397,8 +29702,8 @@ var init_pako_esm = __esm({
       state.wrap = wrap;
       state.wbits = windowBits;
       return inflateReset(strm);
-    }, "inflateReset2");
-    inflateInit2 = /* @__PURE__ */ __name((strm, windowBits) => {
+    };
+    inflateInit2 = (strm, windowBits) => {
       if (!strm) {
         return Z_STREAM_ERROR$1;
       }
@@ -29410,12 +29715,12 @@ var init_pako_esm = __esm({
         strm.state = null;
       }
       return ret;
-    }, "inflateInit2");
-    inflateInit = /* @__PURE__ */ __name((strm) => {
+    };
+    inflateInit = (strm) => {
       return inflateInit2(strm, DEF_WBITS);
-    }, "inflateInit");
+    };
     virgin = true;
-    fixedtables = /* @__PURE__ */ __name((state) => {
+    fixedtables = (state) => {
       if (virgin) {
         lenfix = new Int32Array(512);
         distfix = new Int32Array(32);
@@ -29444,8 +29749,8 @@ var init_pako_esm = __esm({
       state.lenbits = 9;
       state.distcode = distfix;
       state.distbits = 5;
-    }, "fixedtables");
-    updatewindow = /* @__PURE__ */ __name((strm, src, end, copy) => {
+    };
+    updatewindow = (strm, src, end, copy) => {
       let dist;
       const state = strm.state;
       if (state.window === null) {
@@ -29480,8 +29785,8 @@ var init_pako_esm = __esm({
         }
       }
       return 0;
-    }, "updatewindow");
-    inflate = /* @__PURE__ */ __name((strm, flush) => {
+    };
+    inflate = (strm, flush) => {
       let state;
       let input, output;
       let next;
@@ -30404,8 +30709,8 @@ var init_pako_esm = __esm({
         ret = Z_BUF_ERROR$1;
       }
       return ret;
-    }, "inflate");
-    inflateEnd = /* @__PURE__ */ __name((strm) => {
+    };
+    inflateEnd = (strm) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR$1;
       }
@@ -30415,8 +30720,8 @@ var init_pako_esm = __esm({
       }
       strm.state = null;
       return Z_OK$2;
-    }, "inflateEnd");
-    inflateGetHeader = /* @__PURE__ */ __name((strm, head) => {
+    };
+    inflateGetHeader = (strm, head) => {
       if (!strm || !strm.state) {
         return Z_STREAM_ERROR$1;
       }
@@ -30427,8 +30732,8 @@ var init_pako_esm = __esm({
       state.head = head;
       head.done = false;
       return Z_OK$2;
-    }, "inflateGetHeader");
-    inflateSetDictionary = /* @__PURE__ */ __name((strm, dictionary) => {
+    };
+    inflateSetDictionary = (strm, dictionary) => {
       const dictLength = dictionary.length;
       let state;
       let dictid;
@@ -30454,7 +30759,7 @@ var init_pako_esm = __esm({
       }
       state.havedict = 1;
       return Z_OK$2;
-    }, "inflateSetDictionary");
+    };
     inflateReset_1 = inflateReset;
     inflateReset2_1 = inflateReset2;
     inflateResetKeep_1 = inflateResetKeep;
@@ -30477,7 +30782,6 @@ var init_pako_esm = __esm({
       inflateSetDictionary: inflateSetDictionary_1,
       inflateInfo
     };
-    __name(GZheader, "GZheader");
     gzheader = GZheader;
     toString$1 = Object.prototype.toString;
     ({
@@ -30490,7 +30794,6 @@ var init_pako_esm = __esm({
       Z_DATA_ERROR: Z_DATA_ERROR$2,
       Z_MEM_ERROR: Z_MEM_ERROR$1
     } = constants);
-    __name(Inflate, "Inflate");
     Inflate.prototype.push = function(data, flush_mode) {
       const strm = this.strm;
       const chunkSize = this.options.chunkSize;
@@ -30576,8 +30879,6 @@ var init_pako_esm = __esm({
       this.err = status;
       this.msg = this.strm.msg;
     };
-    __name(inflate$1, "inflate$1");
-    __name(inflateRaw, "inflateRaw");
     Inflate_1 = Inflate;
     inflate_2$1 = inflate$1;
     inflateRaw_1 = inflateRaw;
@@ -30606,21 +30907,24 @@ var init_encryption = __esm({
 });
 
 // packages/excalidraw/data/encode.ts
-var toByteString, encode;
+var toByteString, stringToBase64, encode;
 var init_encode = __esm({
   "packages/excalidraw/data/encode.ts"() {
     "use strict";
     init_pako_esm();
     init_encryption();
-    toByteString = /* @__PURE__ */ __name((data) => {
+    toByteString = (data) => {
       const bytes = typeof data === "string" ? new TextEncoder().encode(data) : data instanceof Uint8Array ? data : new Uint8Array(data);
       let bstring = "";
       for (const byte of bytes) {
         bstring += String.fromCharCode(byte);
       }
       return bstring;
-    }, "toByteString");
-    encode = /* @__PURE__ */ __name(({
+    };
+    stringToBase64 = (str, isByteString = false) => {
+      return isByteString ? window.btoa(str) : window.btoa(toByteString(str));
+    };
+    encode = ({
       text,
       compress
     }) => {
@@ -30638,7 +30942,7 @@ var init_encode = __esm({
         compressed: !!deflated,
         encoded: deflated || toByteString(text)
       };
-    }, "encode");
+    };
   }
 });
 
@@ -30684,13 +30988,13 @@ var init_restore = __esm({
       laser: false,
       magicframe: false
     };
-    getFontFamilyByName = /* @__PURE__ */ __name((fontFamilyName) => {
+    getFontFamilyByName = (fontFamilyName) => {
       if (Object.keys(FONT_FAMILY).includes(fontFamilyName)) {
         return FONT_FAMILY[fontFamilyName];
       }
       return DEFAULT_FONT_FAMILY;
-    }, "getFontFamilyByName");
-    repairBinding = /* @__PURE__ */ __name((element, binding) => {
+    };
+    repairBinding = (element, binding) => {
       if (!binding) {
         return null;
       }
@@ -30707,8 +31011,8 @@ var init_restore = __esm({
         ...binding,
         focus
       };
-    }, "repairBinding");
-    restoreElementWithProperties = /* @__PURE__ */ __name((element, extra) => {
+    };
+    restoreElementWithProperties = (element, extra) => {
       const base = {
         type: extra.type || element.type,
         // all elements must have version > 0 so getSceneVersion() will pick up
@@ -30755,8 +31059,8 @@ var init_restore = __esm({
         ...getNormalizedDimensions(base),
         ...extra
       };
-    }, "restoreElementWithProperties");
-    restoreElement = /* @__PURE__ */ __name((element) => {
+    };
+    restoreElement = (element) => {
       element = { ...element };
       switch (element.type) {
         case "text":
@@ -30882,8 +31186,8 @@ var init_restore = __esm({
           });
       }
       return null;
-    }, "restoreElement");
-    repairContainerElement = /* @__PURE__ */ __name((container, elementsMap) => {
+    };
+    repairContainerElement = (container, elementsMap) => {
       if (container.boundElements) {
         const boundElements = container.boundElements.slice();
         const boundIds = /* @__PURE__ */ new Set();
@@ -30907,8 +31211,8 @@ var init_restore = __esm({
           []
         );
       }
-    }, "repairContainerElement");
-    repairBoundElement = /* @__PURE__ */ __name((boundElement, elementsMap) => {
+    };
+    repairBoundElement = (boundElement, elementsMap) => {
       const container = boundElement.containerId ? elementsMap.get(boundElement.containerId) : null;
       if (!container) {
         boundElement.containerId = null;
@@ -30922,16 +31226,16 @@ var init_restore = __esm({
         boundElements.push({ type: "text", id: boundElement.id });
         container.boundElements = boundElements;
       }
-    }, "repairBoundElement");
-    repairFrameMembership = /* @__PURE__ */ __name((element, elementsMap) => {
+    };
+    repairFrameMembership = (element, elementsMap) => {
       if (element.frameId) {
         const containingFrame = elementsMap.get(element.frameId);
         if (!containingFrame) {
           element.frameId = null;
         }
       }
-    }, "repairFrameMembership");
-    restoreElements = /* @__PURE__ */ __name((elements, localElements, opts) => {
+    };
+    restoreElements = (elements, localElements, opts) => {
       const existingIds = /* @__PURE__ */ new Set();
       const localElementsMap = localElements ? arrayToMap(localElements) : null;
       const restoredElements = syncInvalidIndices(
@@ -31038,13 +31342,13 @@ var init_restore = __esm({
         }
         return element;
       });
-    }, "restoreElements");
-    coalesceAppStateValue = /* @__PURE__ */ __name((key, appState, defaultAppState2) => {
+    };
+    coalesceAppStateValue = (key, appState, defaultAppState2) => {
       const value = appState[key];
       return value !== void 0 ? value : defaultAppState2[key];
-    }, "coalesceAppStateValue");
+    };
     LegacyAppStateMigrations = {
-      isSidebarDocked: /* @__PURE__ */ __name((appState, defaultAppState2) => {
+      isSidebarDocked: (appState, defaultAppState2) => {
         return [
           "defaultSidebarDockedPreference",
           appState.isSidebarDocked ?? coalesceAppStateValue(
@@ -31053,9 +31357,9 @@ var init_restore = __esm({
             defaultAppState2
           )
         ];
-      }, "isSidebarDocked")
+      }
     };
-    restoreAppState = /* @__PURE__ */ __name((appState, localAppState) => {
+    restoreAppState = (appState, localAppState) => {
       appState = appState || {};
       const defaultAppState2 = getDefaultAppState();
       const nextAppState = {};
@@ -31106,14 +31410,14 @@ var init_restore = __esm({
         ),
         editingFrame: null
       };
-    }, "restoreAppState");
-    restore = /* @__PURE__ */ __name((data, localAppState, localElements, elementsConfig) => {
+    };
+    restore = (data, localAppState, localElements, elementsConfig) => {
       return {
         elements: restoreElements(data?.elements, localElements, elementsConfig),
         appState: restoreAppState(data?.appState, localAppState || null),
         files: data?.files || {}
       };
-    }, "restore");
+    };
   }
 });
 
@@ -31133,7 +31437,7 @@ var init_blob = __esm({
     init_filesystem();
     init_json();
     init_restore();
-    blobToArrayBuffer = /* @__PURE__ */ __name((blob) => {
+    blobToArrayBuffer = (blob) => {
       if ("arrayBuffer" in blob) {
         return blob.arrayBuffer();
       }
@@ -31147,7 +31451,7 @@ var init_blob = __esm({
         };
         reader.readAsArrayBuffer(blob);
       });
-    }, "blobToArrayBuffer");
+    };
   }
 });
 
@@ -31161,7 +31465,7 @@ var init_json = __esm({
     init_constants();
     init_element();
     init_blob();
-    filterOutDeletedFiles = /* @__PURE__ */ __name((elements, files) => {
+    filterOutDeletedFiles = (elements, files) => {
       const nextFiles = {};
       for (const element of elements) {
         if (!element.isDeleted && "fileId" in element && element.fileId && files[element.fileId]) {
@@ -31169,8 +31473,8 @@ var init_json = __esm({
         }
       }
       return nextFiles;
-    }, "filterOutDeletedFiles");
-    serializeAsJSON = /* @__PURE__ */ __name((elements, appState, files, type) => {
+    };
+    serializeAsJSON = (elements, appState, files, type) => {
       const data = {
         type: EXPORT_DATA_TYPES.excalidraw,
         version: VERSIONS.excalidraw,
@@ -31183,7 +31487,7 @@ var init_json = __esm({
         )
       };
       return JSON.stringify(data, null, 2);
-    }, "serializeAsJSON");
+    };
   }
 });
 
@@ -31194,7 +31498,7 @@ var init_image = __esm({
     "use strict";
     init_constants();
     init_typeChecks();
-    loadHTMLImageElement = /* @__PURE__ */ __name((dataURL) => {
+    loadHTMLImageElement = (dataURL) => {
       return new Promise((resolve, reject2) => {
         const image = new Image();
         image.onload = () => {
@@ -31205,8 +31509,8 @@ var init_image = __esm({
         };
         image.src = dataURL;
       });
-    }, "loadHTMLImageElement");
-    updateImageCache = /* @__PURE__ */ __name(async ({
+    };
+    updateImageCache = async ({
       fileIds,
       files,
       imageCache
@@ -31248,10 +31552,10 @@ var init_image = __esm({
         /** files that failed when creating HTMLImageElement */
         erroredFiles
       };
-    }, "updateImageCache");
-    getInitializedImageElements = /* @__PURE__ */ __name((elements) => elements.filter(
+    };
+    getInitializedImageElements = (elements) => elements.filter(
       (element) => isInitializedImageElement(element)
-    ), "getInitializedImageElements");
+    );
   }
 });
 
@@ -31273,7 +31577,7 @@ var init_helpers = __esm({
     ELEMENT_LINK_IMG.src = `data:${MIME_TYPES.svg}, ${encodeURIComponent(
       `<svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="#1971c2"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-right-line"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-6v-6h6z" /><path d="M3 9v6" /></svg>`
     )}`;
-    getLinkHandleFromCoords = /* @__PURE__ */ __name(([x1, y1, x2, y2], angle, appState) => {
+    getLinkHandleFromCoords = ([x1, y1, x2, y2], angle, appState) => {
       const size = DEFAULT_LINK_SIZE;
       const linkWidth = size / appState.zoom.value;
       const linkHeight = size / appState.zoom.value;
@@ -31295,7 +31599,7 @@ var init_helpers = __esm({
         linkWidth,
         linkHeight
       ];
-    }, "getLinkHandleFromCoords");
+    };
   }
 });
 
@@ -31305,10 +31609,10 @@ var init_helpers2 = __esm({
   "packages/excalidraw/renderer/helpers.ts"() {
     "use strict";
     init_constants();
-    getNormalizedCanvasDimensions = /* @__PURE__ */ __name((canvas, scale) => {
+    getNormalizedCanvasDimensions = (canvas, scale) => {
       return [canvas.width / scale, canvas.height / scale];
-    }, "getNormalizedCanvasDimensions");
-    bootstrapCanvas = /* @__PURE__ */ __name(({
+    };
+    bootstrapCanvas = ({
       canvas,
       scale,
       normalizedWidth,
@@ -31338,7 +31642,7 @@ var init_helpers2 = __esm({
         context.clearRect(0, 0, normalizedWidth, normalizedHeight);
       }
       return context;
-    }, "bootstrapCanvas");
+    };
   }
 });
 
@@ -31350,14 +31654,14 @@ var init_elementLink = __esm({
     init_constants();
     init_url();
     init_groups();
-    isElementLink = /* @__PURE__ */ __name((url) => {
+    isElementLink = (url) => {
       try {
         const _url = new URL(url);
         return _url.searchParams.has(ELEMENT_LINK_KEY) && _url.host === window.location.host;
       } catch (error) {
         return false;
       }
-    }, "isElementLink");
+    };
   }
 });
 
@@ -31381,7 +31685,7 @@ var init_staticScene = __esm({
       Bold: "#dddddd",
       Regular: "#e5e5e5"
     };
-    strokeGrid = /* @__PURE__ */ __name((context, gridSize, gridStep, scrollX, scrollY, zoom, width, height) => {
+    strokeGrid = (context, gridSize, gridStep, scrollX, scrollY, zoom, width, height) => {
       const offsetX = scrollX % gridSize - gridSize;
       const offsetY = scrollY % gridSize - gridSize;
       const actualGridSize = gridSize * zoom.value;
@@ -31421,8 +31725,8 @@ var init_staticScene = __esm({
         context.stroke();
       }
       context.restore();
-    }, "strokeGrid");
-    frameClip = /* @__PURE__ */ __name((frame, context, renderConfig, appState) => {
+    };
+    frameClip = (frame, context, renderConfig, appState) => {
       context.translate(frame.x + appState.scrollX, frame.y + appState.scrollY);
       context.beginPath();
       if (context.roundRect) {
@@ -31441,12 +31745,12 @@ var init_staticScene = __esm({
         -(frame.x + appState.scrollX),
         -(frame.y + appState.scrollY)
       );
-    }, "frameClip");
+    };
     linkIconCanvasCache = {
       regularLink: null,
       elementLink: null
     };
-    renderLinkIcon = /* @__PURE__ */ __name((element, context, appState, elementsMap) => {
+    renderLinkIcon = (element, context, appState, elementsMap) => {
       if (element.link && !appState.selectedElementIds[element.id]) {
         const [x1, y1, x2, y2] = getElementAbsoluteCoords(element, elementsMap);
         const [x, y, width, height] = getLinkHandleFromCoords(
@@ -31491,8 +31795,8 @@ var init_staticScene = __esm({
         context.drawImage(linkCanvas, x - centerX, y - centerY, width, height);
         context.restore();
       }
-    }, "renderLinkIcon");
-    _renderStaticScene = /* @__PURE__ */ __name(({
+    };
+    _renderStaticScene = ({
       canvas,
       rc,
       elementsMap,
@@ -31612,7 +31916,7 @@ var init_staticScene = __esm({
       });
       visibleElements.filter((el) => isIframeLikeElement(el)).forEach((element) => {
         try {
-          const render = /* @__PURE__ */ __name(() => {
+          const render = () => {
             renderElement(
               element,
               elementsMap,
@@ -31637,7 +31941,7 @@ var init_staticScene = __esm({
             if (!isExporting) {
               renderLinkIcon(element, context, appState, elementsMap);
             }
-          }, "render");
+          };
           const frameId = element.frameId || appState.frameToHighlight?.id;
           if (frameId && appState.frameRendering.enabled && appState.frameRendering.clip) {
             context.save();
@@ -31675,25 +31979,25 @@ var init_staticScene = __esm({
           console.error(error);
         }
       });
-    }, "_renderStaticScene");
+    };
     renderStaticSceneThrottled = throttleRAF(
       (config) => {
         _renderStaticScene(config);
       },
       { trailing: true }
     );
-    renderStaticScene = /* @__PURE__ */ __name((renderConfig, throttle2) => {
+    renderStaticScene = (renderConfig, throttle2) => {
       if (throttle2) {
         renderStaticSceneThrottled(renderConfig);
         return;
       }
       _renderStaticScene(renderConfig);
-    }, "renderStaticScene");
+    };
   }
 });
 
 // packages/excalidraw/scene/export.ts
-var truncateText, addFrameLabelsAsTextElements, getFrameRenderingConfig, prepareElementsForRender, exportToCanvas, getCanvasSize;
+var truncateText, addFrameLabelsAsTextElements, getFrameRenderingConfig, prepareElementsForRender, exportToCanvas, createHTMLComment, exportToSvg, encodeSvgBase64Payload, getCanvasSize;
 var init_export = __esm({
   "packages/excalidraw/scene/export.ts"() {
     "use strict";
@@ -31713,7 +32017,7 @@ var init_export = __esm({
     init_staticScene();
     init_fonts();
     init_encode();
-    truncateText = /* @__PURE__ */ __name((element, maxWidth) => {
+    truncateText = (element, maxWidth) => {
       if (element.width <= maxWidth) {
         return element;
       }
@@ -31735,8 +32039,8 @@ var init_export = __esm({
         }
       }
       return newElementWith(element, { text, width: maxWidth });
-    }, "truncateText");
-    addFrameLabelsAsTextElements = /* @__PURE__ */ __name((elements, opts) => {
+    };
+    addFrameLabelsAsTextElements = (elements, opts) => {
       const nextElements = [];
       for (const element of elements) {
         if (isFrameLikeElement(element)) {
@@ -31756,8 +32060,8 @@ var init_export = __esm({
         nextElements.push(element);
       }
       return nextElements;
-    }, "addFrameLabelsAsTextElements");
-    getFrameRenderingConfig = /* @__PURE__ */ __name((exportingFrame, frameRendering) => {
+    };
+    getFrameRenderingConfig = (exportingFrame, frameRendering) => {
       frameRendering = frameRendering || getDefaultAppState().frameRendering;
       return {
         enabled: exportingFrame ? true : frameRendering.enabled,
@@ -31765,8 +32069,8 @@ var init_export = __esm({
         name: exportingFrame ? false : frameRendering.name,
         clip: exportingFrame ? true : frameRendering.clip
       };
-    }, "getFrameRenderingConfig");
-    prepareElementsForRender = /* @__PURE__ */ __name(({
+    };
+    prepareElementsForRender = ({
       elements,
       exportingFrame,
       frameRendering,
@@ -31783,8 +32087,8 @@ var init_export = __esm({
         nextElements = elements;
       }
       return nextElements;
-    }, "prepareElementsForRender");
-    exportToCanvas = /* @__PURE__ */ __name(async (elements, appState, files, {
+    };
+    exportToCanvas = async (elements, appState, files, {
       exportBackground,
       exportPadding = DEFAULT_EXPORT_PADDING,
       viewBackgroundColor,
@@ -31860,13 +32164,159 @@ var init_export = __esm({
         }
       });
       return canvas;
-    }, "exportToCanvas");
-    getCanvasSize = /* @__PURE__ */ __name((elements, exportPadding) => {
+    };
+    createHTMLComment = (text) => {
+      return document.createComment(` ${text} `);
+    };
+    exportToSvg = async (elements, appState, files, opts) => {
+      const frameRendering = getFrameRenderingConfig(
+        opts?.exportingFrame ?? null,
+        appState.frameRendering ?? null
+      );
+      let {
+        exportPadding = DEFAULT_EXPORT_PADDING,
+        exportWithDarkMode = false,
+        viewBackgroundColor,
+        exportScale = 1,
+        exportEmbedScene
+      } = appState;
+      const { exportingFrame = null } = opts || {};
+      const elementsForRender = prepareElementsForRender({
+        elements,
+        exportingFrame,
+        exportWithDarkMode,
+        frameRendering
+      });
+      if (exportingFrame) {
+        exportPadding = 0;
+      }
+      const [minX, minY, width, height] = getCanvasSize(
+        exportingFrame ? [exportingFrame] : getRootElements(elementsForRender),
+        exportPadding
+      );
+      const offsetX = -minX + exportPadding;
+      const offsetY = -minY + exportPadding;
+      const svgRoot = document.createElementNS(SVG_NS, "svg");
+      svgRoot.setAttribute("version", "1.1");
+      svgRoot.setAttribute("xmlns", SVG_NS);
+      svgRoot.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svgRoot.setAttribute("width", `${width * exportScale}`);
+      svgRoot.setAttribute("height", `${height * exportScale}`);
+      if (exportWithDarkMode) {
+        svgRoot.setAttribute("filter", THEME_FILTER);
+      }
+      const defsElement = svgRoot.ownerDocument.createElementNS(SVG_NS, "defs");
+      const metadataElement = svgRoot.ownerDocument.createElementNS(
+        SVG_NS,
+        "metadata"
+      );
+      svgRoot.appendChild(createHTMLComment("svg-source:excalidraw"));
+      svgRoot.appendChild(metadataElement);
+      svgRoot.appendChild(defsElement);
+      if (exportEmbedScene) {
+        try {
+          encodeSvgBase64Payload({
+            metadataElement,
+            // when embedding scene, we want to embed the origionally supplied
+            // elements which don't contain the temp frame labels.
+            // But it also requires that the exportToSvg is being supplied with
+            // only the elements that we're exporting, and no extra.
+            payload: serializeAsJSON(elements, appState, files || {}, "local")
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      const frameElements = getFrameLikeElements(elements);
+      if (frameElements.length) {
+        const elementsMap = arrayToMap(elements);
+        for (const frame of frameElements) {
+          const clipPath = svgRoot.ownerDocument.createElementNS(
+            SVG_NS,
+            "clipPath"
+          );
+          clipPath.setAttribute("id", frame.id);
+          const [x1, y1, x2, y2] = getElementAbsoluteCoords(frame, elementsMap);
+          const cx = (x2 - x1) / 2 - (frame.x - x1);
+          const cy = (y2 - y1) / 2 - (frame.y - y1);
+          const rect = svgRoot.ownerDocument.createElementNS(SVG_NS, "rect");
+          rect.setAttribute(
+            "transform",
+            `translate(${frame.x + offsetX} ${frame.y + offsetY}) rotate(${frame.angle} ${cx} ${cy})`
+          );
+          rect.setAttribute("width", `${frame.width}`);
+          rect.setAttribute("height", `${frame.height}`);
+          if (!exportingFrame) {
+            rect.setAttribute("rx", `${FRAME_STYLE.radius}`);
+            rect.setAttribute("ry", `${FRAME_STYLE.radius}`);
+          }
+          clipPath.appendChild(rect);
+          defsElement.appendChild(clipPath);
+        }
+      }
+      const fontFaces = !opts?.skipInliningFonts ? await Fonts.generateFontFaceDeclarations(elements) : [];
+      const delimiter = "\n      ";
+      const style = svgRoot.ownerDocument.createElementNS(SVG_NS, "style");
+      style.classList.add("style-fonts");
+      style.appendChild(
+        document.createTextNode(`${delimiter}${fontFaces.join(delimiter)}`)
+      );
+      defsElement.appendChild(style);
+      if (appState.exportBackground && viewBackgroundColor) {
+        const rect = svgRoot.ownerDocument.createElementNS(SVG_NS, "rect");
+        rect.setAttribute("x", "0");
+        rect.setAttribute("y", "0");
+        rect.setAttribute("width", `${width}`);
+        rect.setAttribute("height", `${height}`);
+        rect.setAttribute("fill", viewBackgroundColor);
+        svgRoot.appendChild(rect);
+      }
+      const rsvg = rough_default.svg(svgRoot);
+      const renderEmbeddables = opts?.renderEmbeddables ?? false;
+      renderSceneToSvg(
+        elementsForRender,
+        toBrandedType(arrayToMap(elementsForRender)),
+        rsvg,
+        svgRoot,
+        files || {},
+        {
+          offsetX,
+          offsetY,
+          isExporting: true,
+          exportWithDarkMode,
+          renderEmbeddables,
+          frameRendering,
+          canvasBackgroundColor: viewBackgroundColor,
+          embedsValidationStatus: renderEmbeddables ? new Map(
+            elementsForRender.filter((element) => isFrameLikeElement(element)).map((element) => [element.id, true])
+          ) : /* @__PURE__ */ new Map(),
+          reuseImages: opts?.reuseImages ?? true
+        }
+      );
+      return svgRoot;
+    };
+    encodeSvgBase64Payload = ({
+      payload,
+      metadataElement
+    }) => {
+      const base64 = stringToBase64(
+        JSON.stringify(encode({ text: payload })),
+        true
+      );
+      metadataElement.appendChild(
+        createHTMLComment(`payload-type:${MIME_TYPES.excalidraw}`)
+      );
+      metadataElement.appendChild(createHTMLComment("payload-version:2"));
+      metadataElement.appendChild(createHTMLComment("payload-start"));
+      metadataElement.appendChild(document.createTextNode(base64));
+      metadataElement.appendChild(createHTMLComment("payload-end"));
+    };
+    getCanvasSize = (elements, exportPadding) => {
       const [minX, minY, maxX, maxY] = getCommonBounds(elements);
       const width = distance2(minX, maxX) + exportPadding * 2;
       const height = distance2(minY, maxY) + exportPadding * 2;
       return [minX, minY, width, height];
-    }, "getCanvasSize");
+    };
   }
 });
 
@@ -31908,7 +32358,6 @@ var require_crc32 = __commonJS({
         }
         return typeof Int32Array !== "undefined" ? new Int32Array(table2) : table2;
       }
-      __name(signed_crc_table, "signed_crc_table");
       var table = signed_crc_table();
       var use_buffer = typeof Buffer !== "undefined";
       function crc32_bstr(bstr) {
@@ -31923,7 +32372,6 @@ var require_crc32 = __commonJS({
         if (i2 === L2) crc = crc >>> 8 ^ table[(crc ^ bstr.charCodeAt(i2)) & 255];
         return crc ^ -1;
       }
-      __name(crc32_bstr, "crc32_bstr");
       function crc32_buf(buf) {
         if (buf.length > 1e4) return crc32_buf_8(buf);
         for (var crc = -1, i2 = 0, L2 = buf.length - 3; i2 < L2; ) {
@@ -31935,7 +32383,6 @@ var require_crc32 = __commonJS({
         while (i2 < L2 + 3) crc = crc >>> 8 ^ table[(crc ^ buf[i2++]) & 255];
         return crc ^ -1;
       }
-      __name(crc32_buf, "crc32_buf");
       function crc32_buf_8(buf) {
         for (var crc = -1, i2 = 0, L2 = buf.length - 7; i2 < L2; ) {
           crc = crc >>> 8 ^ table[(crc ^ buf[i2++]) & 255];
@@ -31950,7 +32397,6 @@ var require_crc32 = __commonJS({
         while (i2 < L2 + 7) crc = crc >>> 8 ^ table[(crc ^ buf[i2++]) & 255];
         return crc ^ -1;
       }
-      __name(crc32_buf_8, "crc32_buf_8");
       function crc32_str(str) {
         for (var crc = -1, i2 = 0, L2 = str.length, c, d; i2 < L2; ) {
           c = str.charCodeAt(i2++);
@@ -31974,7 +32420,6 @@ var require_crc32 = __commonJS({
         }
         return crc ^ -1;
       }
-      __name(crc32_str, "crc32_str");
       CRC322.table = table;
       CRC322.bstr = crc32_bstr;
       CRC322.buf = crc32_buf;
@@ -32051,7 +32496,6 @@ var require_png_chunks_extract = __commonJS({
       }
       return chunks;
     }
-    __name(extractChunks, "extractChunks");
   }
 });
 
@@ -32090,7 +32534,6 @@ var require_encode = __commonJS({
         data: output
       };
     }
-    __name(encode2, "encode");
   }
 });
 
@@ -32126,7 +32569,6 @@ var require_decode = __commonJS({
         text
       };
     }
-    __name(decode2, "decode");
   }
 });
 
@@ -32216,7 +32658,6 @@ var require_png_chunks_encode = __commonJS({
       }
       return output;
     }
-    __name(encodeChunks, "encodeChunks");
   }
 });
 
@@ -32231,7 +32672,7 @@ var init_image2 = __esm({
     init_encode();
     init_constants();
     init_blob();
-    encodePngMetadata = /* @__PURE__ */ __name(async ({
+    encodePngMetadata = async ({
       blob,
       metadata
     }) => {
@@ -32247,7 +32688,7 @@ var init_image2 = __esm({
       );
       chunks.splice(-1, 0, metadataChunk);
       return new Blob([(0, import_png_chunks_encode.default)(chunks)], { type: MIME_TYPES.png });
-    }, "encodePngMetadata");
+    };
   }
 });
 
@@ -32299,7 +32740,7 @@ var init_clipboard = __esm({
 });
 
 // packages/utils/export.ts
-var exportToCanvas2, exportToBlob;
+var exportToCanvas2, exportToBlob, exportToSvg2;
 var init_export2 = __esm({
   "packages/utils/export.ts"() {
     "use strict";
@@ -32310,7 +32751,7 @@ var init_export2 = __esm({
     init_image2();
     init_json();
     init_clipboard();
-    exportToCanvas2 = /* @__PURE__ */ __name(({
+    exportToCanvas2 = ({
       elements,
       appState,
       files,
@@ -32356,8 +32797,8 @@ var init_export2 = __esm({
           };
         }
       );
-    }, "exportToCanvas");
-    exportToBlob = /* @__PURE__ */ __name(async (opts) => {
+    };
+    exportToBlob = async (opts) => {
       let { mimeType = MIME_TYPES.png, quality } = opts;
       if (mimeType === MIME_TYPES.png && typeof quality === "number") {
         console.warn(`"quality" will be ignored for "${MIME_TYPES.png}" mimeType`);
@@ -32402,14 +32843,41 @@ var init_export2 = __esm({
           quality
         );
       });
-    }, "exportToBlob");
+    };
+    exportToSvg2 = async ({
+      elements,
+      appState = getDefaultAppState(),
+      files = {},
+      exportPadding,
+      renderEmbeddables,
+      exportingFrame,
+      skipInliningFonts,
+      reuseImages
+    }) => {
+      const { elements: restoredElements, appState: restoredAppState } = restore(
+        { elements, appState },
+        null,
+        null
+      );
+      const exportAppState = {
+        ...restoredAppState,
+        exportPadding
+      };
+      return exportToSvg(restoredElements, exportAppState, files, {
+        exportingFrame,
+        renderEmbeddables,
+        skipInliningFonts,
+        reuseImages
+      });
+    };
   }
 });
 
 // bin/index.js
 init_export2();
 export {
-  exportToBlob
+  exportToBlob,
+  exportToSvg2 as exportToSvg
 };
 /**
 * The following wasm module is generated with `scripts/buildWasm.js` and encoded as base64.

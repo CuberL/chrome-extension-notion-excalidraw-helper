@@ -59,11 +59,24 @@
 </head>
 <body>
   <h1>Options</h1>
+
+  <div class="option-group">
+    <label for="embedFormat">Embed format</label>
+    <div class="description">
+      SVG is a vector format ideal for simple shapes and text, offering small file sizes and infinite scalability. 
+      PNG is better suited for complex images, such as photos, gradients, and screenshots, preserving high-quality details at the cost of larger file sizes.
+    </div>
+    <select id="embedFormat">
+      <option value="png">PNG</option>
+      <option value="svg">SVG</option>
+    </select>
+  </div>
+
   <div class="option-group">
     <label for="scale">Scale ratio</label>
     <div class="description">
-      Scale ratio determines the resolution of the embedded PNG, with 1x for standard screens, 2x for high-resolution displays, and 3x for ultra-high-resolution screens.
-      If you need faster document loading or the image exceeds Notion's limits, you can choose 1x.
+      Scale ratio only applies to PNG format. 1x for standard screens, 2x for high-resolution displays, and 3x for ultra-high-resolution screens.
+      Choose a lower ratio if you need faster document loading or when the image size exceeds Notion's limits.
     </div>
     <select id="scale">
       <option value="1">1x</option>
@@ -71,6 +84,8 @@
       <option value="3">3x</option>
     </select>
   </div>
+
+
   <div class="status" id="status">Saved</div>
   <script src="options.bundle.js"></script>
 </body>
